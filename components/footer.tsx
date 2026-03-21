@@ -4,15 +4,15 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="bg-white pt-16 text-primary md:pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <footer className="text-primary bg-white pt-16 md:pt-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-9">
           {/* Brand */}
           <div className="space-y-3.5 sm:col-span-2 lg:col-span-3">
             <div>
               <Brand />
             </div>
-            <p className="text-sm leading-relaxed max-w-lg">
+            <p className="max-w-lg text-sm leading-relaxed">
               Lorem ipsum dolor sit amet consectetur. Lectus facilisis pharetra
               amet quam a libero sit id. Justo ullamcorper tellus sed velit
             </p>

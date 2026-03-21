@@ -26,7 +26,7 @@ export const Navbar = ({ home }: { home: boolean }) => {
   const pathname = usePathname();
 
   return (
-    <header className="absolute top-0 w-full h-20 z-20 border-b border-white/20">
+    <header className="absolute top-0 z-20 h-20 w-full border-b border-white/20">
       {!home && (
         <div className="absolute inset-0 -z-10">
           <Image
@@ -38,15 +38,15 @@ export const Navbar = ({ home }: { home: boolean }) => {
           />
         </div>
       )}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
+      <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Brand />
-        <NavigationMenu className="md:block hidden">
+        <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="flex space-x-8">
             {NAVIGATION_LINKS.map((link, idx) => (
               <NavigationMenuItem key={idx}>
                 <Link
                   href={link.url}
-                  className={`text-base ${pathname === link.url ? "underline text-[#7C5CFC]" : "text-white"}`}
+                  className={`text-base ${pathname === link.url ? "text-[#7C5CFC] underline" : "text-white"}`}
                 >
                   {link.name}
                 </Link>
@@ -61,7 +61,7 @@ export const Navbar = ({ home }: { home: boolean }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="bg-transparent! ring-0! focus:ring-0! border-0!"
+              className="border-0! bg-transparent! ring-0! focus:ring-0!"
             >
               <Menu className="size-6 text-white" />
               <span className="sr-only">Toggle menu</span>

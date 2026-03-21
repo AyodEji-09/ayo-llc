@@ -34,7 +34,7 @@ export default function RootLayout({
         geist.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         {/* <Navbar /> */}
         <section className="grow">{children}</section>
         <Footer />
