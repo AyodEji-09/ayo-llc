@@ -1,10 +1,85 @@
-import { Brand } from "./brand";
+"use client";
 
-export const Navbar = () => {
+import Link from "next/link";
+import Image from "next/image";
+import { Brand } from "./brand";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "./ui/navigation-menu";
+import { Button } from "./ui/button";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+import { useState } from "react";
+import { NAVIGATION_LINKS } from "@/data.js";
+import { usePathname } from "next/navigation";
+
+export const Navbar = ({ home }: { home: boolean }) => {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
   return (
-    <header className="bg-transparent">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <header className="absolute top-0 w-full h-20 z-20 border-b border-white/20">
+      {!home && (
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/nav-bg.png"
+            alt="Navbar Background"
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+      )}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
         <Brand />
+        <NavigationMenu className="md:block hidden">
+          <NavigationMenuList className="flex space-x-8">
+            {NAVIGATION_LINKS.map((link, idx) => (
+              <NavigationMenuItem key={idx}>
+                <Link
+                  href={link.url}
+                  className={`text-base ${pathname === link.url ? "underline text-[#7C5CFC]" : "text-white"}`}
+                >
+                  {link.name}
+                </Link>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Mobile */}
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="bg-transparent! ring-0! focus:ring-0! border-0!"
+            >
+              <Menu className="size-6 text-white" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent
+            side="left"
+            showCloseButton={false}
+            className="w-60 px-5 py-10 sm:w-75 md:hidden"
+          >
+            <SheetTitle className="sr-only" />
+            <SheetDescription className="sr-only" />
+            <nav className="flex flex-col space-y-4">
+              {/* <MenuItemComponent menuItems={menuItems} onClose={onClose} /> */}
+            </nav>
+          </SheetContent>
+        </Sheet>
       </nav>
     </header>
   );
