@@ -5,6 +5,7 @@ import { GridWrapper } from "@/components/grid-wrapper";
 import { Navbar } from "@/components/navbar";
 import { services, partners, benefits } from "@/data";
 import Image from "next/image";
+import { PartnersMarquee } from "@/components/partners-marquee";
 
 export default function Home() {
   return (
@@ -33,20 +34,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
         {/* partners */}
-        <section className="w-full overflow-hidden">
-          <div className="animate-marquee flex w-max items-center gap-x-12 gap-y-10 sm:gap-x-16 md:gap-x-20">
-            {partners.map((partner, idx) => (
-              <div key={idx} className="relative h-15 w-30 shrink-0">
-                <Image
-                  src={partner}
-                  alt={`Partner ${idx + 1}`}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+        <PartnersMarquee partners={partners} />
 
         {/* about */}
         <section>
