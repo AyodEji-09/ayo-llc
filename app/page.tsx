@@ -33,8 +33,8 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
         {/* partners */}
-        <section className="w-full">
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-10 sm:gap-x-16 md:gap-x-20">
+        <section className="w-full overflow-hidden">
+          <div className="animate-marquee flex w-max items-center gap-x-12 gap-y-10 sm:gap-x-16 md:gap-x-20">
             {partners.map((partner, idx) => (
               <div key={idx} className="relative h-15 w-30 shrink-0">
                 <Image
@@ -82,7 +82,7 @@ export default function Home() {
         {/* why choose ayo llc */}
         <section>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm">
+            <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
               Why Choose Ayo LLC
             </p>
             <h2 className="mt-3 mb-3 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
@@ -124,7 +124,7 @@ export default function Home() {
 
         <section>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm">
+            <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
               WHAT OUR CLIENTS SAYS
             </p>
             <h2 className="mt-3 mb-3 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">

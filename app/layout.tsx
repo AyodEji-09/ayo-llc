@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/footer";
 
@@ -34,9 +33,8 @@ export default function RootLayout({
         geist.variable,
       )}
     >
-      <body className="flex min-h-full flex-col">
-        {/* <Navbar /> */}
-        <section className="grow">{children}</section>
+      <body className="flex min-h-full flex-col overflow-x-hidden">
+        <main className="grow">{children}</main>
         <Footer />
       </body>
     </html>

@@ -21,20 +21,26 @@ import { useState } from "react";
 import { NAVIGATION_LINKS } from "@/data";
 import { usePathname } from "next/navigation";
 
-export const Navbar = ({ home }: { home: boolean }) => {
+export const Navbar = ({ home }: { home?: boolean }) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <header className="absolute top-0 z-20 h-20 w-full border-b border-white/20">
+    <header
+      className={
+        home
+          ? "absolute top-0 z-20 h-20 w-full border-b border-white/20"
+          : "relative z-20 h-20 w-full shrink-0 border-b border-white/20"
+      }
+    >
       {!home && (
-        <div className="absolute inset-0 -z-10">
+        <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
             src="/images/nav-bg.png"
             alt="Navbar Background"
             fill
             priority
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
       )}
