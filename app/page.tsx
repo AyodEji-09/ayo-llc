@@ -20,21 +20,21 @@ export default function Home() {
         />
         <Navbar home />
 
-        <div className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center space-y-5 px-4 text-center">
-          <h1 className="bg-[linear-gradient(176.64deg,#FFFFFF_15.1%,#CEC9FF_88%)] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl md:text-6xl">
+        <div className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center gap-6 px-4 text-center sm:px-6">
+          <h1 className="bg-[linear-gradient(176.64deg,#FFFFFF_15.1%,#CEC9FF_88%)] bg-clip-text text-4xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-5xl sm:leading-[1.08] md:text-6xl md:leading-[1.06]">
             Welcome to AYO LLC, Where Innovation Meets Excellence
           </h1>
-          <p className="text-lg font-normal text-white sm:text-xl">
+          <p className="max-w-xl text-lg leading-relaxed font-normal text-white sm:text-xl">
             Your one-stop finance empower platform.
             <br /> Manage all your business expenses with our supafast app.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl space-y-24 px-4 pt-12 pb-24 sm:px-6">
+      <section className="mx-auto max-w-7xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
         {/* partners */}
-        <section className="w-full overflow-hidden">
-          <div className="flex w-max items-center gap-16">
+        <section className="w-full">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-10 sm:gap-x-16 md:gap-x-20">
             {partners.map((partner, idx) => (
               <div key={idx} className="relative h-15 w-30 shrink-0">
                 <Image
@@ -72,7 +72,7 @@ export default function Home() {
               innovation an Empowering businesses with cutting-edge tech."
           />
 
-          <div className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid justify-items-center gap-x-8 gap-y-14 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
             {services.map((benefit, idx) => (
               <Card key={idx} {...benefit} />
             ))}
@@ -82,20 +82,20 @@ export default function Home() {
         {/* why choose ayo llc */}
         <section>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary font-semibold uppercase">
+            <p className="text-secondary text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm">
               Why Choose Ayo LLC
             </p>
-            <h2 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
+            <h2 className="mt-3 mb-3 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
               Easy, Simple, Affordable
             </h2>
-            <p className="text-primary text-base font-normal sm:text-lg">
+            <p className="text-primary text-base leading-relaxed font-normal sm:text-lg">
               Choose Ayo LLC - where innovative technology meets exceptional
               solutions <br />
               for a smarter future.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-12 sm:grid-cols-2">
+          <div className="mt-16 grid justify-items-center gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14">
             {benefits.map((benefits, idx) => (
               <BenefitCard key={idx} {...benefits} />
             ))}
@@ -117,26 +117,26 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-12">
+          <div className="mt-16 sm:mt-20">
             <AppCarousel type="book" />
           </div>
         </section>
 
         <section>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary font-semibold uppercase">
+            <p className="text-secondary text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm">
               WHAT OUR CLIENTS SAYS
             </p>
-            <h2 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
+            <h2 className="mt-3 mb-3 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
               Our Clients Kind Words
             </h2>
-            <p className="text-primary text-base font-normal sm:text-lg">
+            <p className="text-primary text-base leading-relaxed font-normal sm:text-lg">
               Choose Ayo LLC - where innovative technology meets <br />
               exceptional
             </p>
           </div>
 
-          <div className="my-12">
+          <div className="mt-16 sm:mt-20">
             <AppCarousel type="review" />
           </div>
         </section>

@@ -41,12 +41,12 @@ export const Navbar = ({ home }: { home: boolean }) => {
       <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Brand />
         <NavigationMenu className="hidden md:block">
-          <NavigationMenuList className="flex space-x-8">
+          <NavigationMenuList className="flex gap-8">
             {NAVIGATION_LINKS.map((link, idx) => (
               <NavigationMenuItem key={idx}>
                 <Link
                   href={link.url}
-                  className={`text-base ${pathname === link.url ? "text-[#7C5CFC] underline" : "text-white"}`}
+                  className={`text-base leading-snug ${pathname === link.url ? "text-[#7C5CFC] underline underline-offset-4" : "text-white"}`}
                 >
                   {link.name}
                 </Link>

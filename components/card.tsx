@@ -8,7 +8,7 @@ interface CardProps {
 
 export const Card = ({ imageUrl, title, description }: CardProps) => {
   return (
-    <div className="max-w-sm">
+    <div className="w-full max-w-sm">
       <div>
         <Image
           src={imageUrl}
@@ -18,9 +18,11 @@ export const Card = ({ imageUrl, title, description }: CardProps) => {
           className="rounded-lg"
         />
       </div>
-      <div className="mt-4">
-        <h2 className="text-xl font-semibold text-[#040815]">{title}</h2>
-        <p className="text-primary mt-2">{description}</p>
+      <div className="mt-5 space-y-2">
+        <h2 className="text-xl font-semibold tracking-tight text-[#040815]">
+          {title}
+        </h2>
+        <p className="text-primary leading-relaxed">{description}</p>
       </div>
     </div>
   );

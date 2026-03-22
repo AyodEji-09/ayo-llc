@@ -23,7 +23,7 @@ export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
   return (
     <div className="relative w-full">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6">
+        <div className="flex gap-6 md:gap-8">
           {[...Array(6)].map((_, idx) =>
             type === "book" ? (
               <div key={idx} className="min-w-65">
@@ -87,9 +87,11 @@ const BookCard = () => {
         />
       </div>
 
-      <div className="py-4">
-        <p className="text-[#040815]">Writing and Self Publishing</p>
-        <Button className="bg-secondary mt-4 h-auto w-full rounded-md px-4 py-2 text-sm text-white">
+      <div className="space-y-3 py-4">
+        <p className="text-sm leading-snug font-medium text-[#040815] sm:text-base">
+          Writing and Self Publishing
+        </p>
+        <Button className="bg-secondary h-auto w-full rounded-md px-4 py-2.5 text-sm text-white">
           Preview
         </Button>
       </div>
@@ -100,11 +102,11 @@ const BookCard = () => {
 const ReviewCard = () => {
   return (
     <div className="w-80 rounded-xl border border-gray-200 bg-white p-6">
-      <h3 className="line-clamp-1 font-semibold text-[#040815]">
+      <h3 className="line-clamp-1 text-base font-semibold tracking-tight text-[#040815]">
         Lorem ipsum dolor
       </h3>
 
-      <p className="mt-2 line-clamp-5 text-sm leading-relaxed text-[#596780]">
+      <p className="mt-3 line-clamp-5 text-sm leading-relaxed text-[#596780]">
         Lorem ipsum dolor sit amet consectetur. Lectus facilisis pharetra amet
         quam a libero sit id. Justo ullamcorper tellus sed velit curabitur in.
         Amet etiam faucibus sollicitudin tekdso...
@@ -113,10 +115,10 @@ const ReviewCard = () => {
         </span>
       </p>
 
-      <div className="my-5 h-px w-full bg-gray-200" />
+      <div className="my-6 h-px w-full bg-gray-200" />
 
       <div className="flex items-center gap-3">
-        <div className="rounde-lg relative h-12 w-12 overflow-hidden">
+        <div className="relative h-12 w-12 overflow-hidden rounded-lg">
           <Image
             src="/images/avatar.png"
             alt="Author"

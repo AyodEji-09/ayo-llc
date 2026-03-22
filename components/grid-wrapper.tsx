@@ -17,15 +17,17 @@ export const GridWrapper = ({
   link,
 }: GridWrapperProps) => {
   return (
-    <div className="grid gap-x-6 gap-y-4 md:grid-cols-5">
-      <div className="col-span-2 space-y-2">
-        <p className="text-secondary font-semibold uppercase">{subtitle}</p>
-        <h2 className="text-3xl font-bold text-[#040815] md:text-4xl">
+    <div className="grid gap-x-8 gap-y-6 md:grid-cols-5 lg:gap-x-10">
+      <div className="col-span-2 space-y-2 md:space-y-3">
+        <p className="text-secondary text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm">
+          {subtitle}
+        </p>
+        <h2 className="text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
           {header}
         </h2>
       </div>
-      <div className="col-span-3 space-y-4">
-        <p className="text-primary text-base leading-loose font-normal tracking-tight sm:text-lg">
+      <div className="col-span-3 space-y-5">
+        <p className="text-primary text-base leading-relaxed font-normal sm:text-lg">
           {description}
         </p>
         {link && (

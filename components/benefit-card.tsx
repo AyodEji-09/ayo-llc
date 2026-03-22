@@ -8,7 +8,7 @@ interface BenefitCardProps {
 
 export const BenefitCard = ({ icon, title, description }: BenefitCardProps) => {
   return (
-    <div className="flex max-w-lg gap-3 sm:gap-6">
+    <div className="flex w-full max-w-lg gap-3 sm:gap-6">
       <div className="bg-secondary flex size-12 shrink-0 items-center justify-center rounded-lg">
         <Image
           src={icon}
@@ -19,8 +19,10 @@ export const BenefitCard = ({ icon, title, description }: BenefitCardProps) => {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold text-[#040815]">{title}</h3>
-        <p className="text-primary">{description}</p>
+        <h3 className="text-lg font-semibold tracking-tight text-[#040815]">
+          {title}
+        </h3>
+        <p className="text-primary leading-relaxed">{description}</p>
       </div>
     </div>
   );
