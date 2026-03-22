@@ -18,7 +18,7 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { useState } from "react";
-import { NAVIGATION_LINKS } from "@/data.js";
+import { NAVIGATION_LINKS } from "@/data";
 import { usePathname } from "next/navigation";
 
 export const Navbar = ({ home }: { home: boolean }) => {
