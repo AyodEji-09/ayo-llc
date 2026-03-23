@@ -110,6 +110,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* reviews */}
         <section>
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
