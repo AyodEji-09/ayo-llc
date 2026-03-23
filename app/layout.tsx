@@ -33,9 +33,11 @@ export default function RootLayout({
         geist.variable,
       )}
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden">
-        <main className="grow">{children}</main>
-        <Footer />
+      <body>
+        <div className="flex min-h-full flex-col overflow-x-hidden">
+          <main className="grow">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
