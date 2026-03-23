@@ -25,6 +25,8 @@ export const Navbar = ({ home }: { home?: boolean }) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  const onClose = () => setOpen(false);
+
   return (
     <header
       className={
@@ -73,7 +75,6 @@ export const Navbar = ({ home }: { home?: boolean }) => {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-
           <SheetContent
             side="left"
             showCloseButton={false}
@@ -82,7 +83,22 @@ export const Navbar = ({ home }: { home?: boolean }) => {
             <SheetTitle className="sr-only" />
             <SheetDescription className="sr-only" />
             <nav className="flex flex-col space-y-4">
-              {/* <MenuItemComponent menuItems={menuItems} onClose={onClose} /> */}
+              <div className="flex flex-col items-start gap-6 text-base font-medium">
+                {NAVIGATION_LINKS.map((item, idx) => (
+                  <Link
+                    href={item.url}
+                    key={idx}
+                    className={`${
+                      pathname === item.url
+                        ? "text-secondary underline underline-offset-4"
+                        : "hover:text-primary"
+                    }`}
+                    onClick={onClose}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
             </nav>
           </SheetContent>
         </Sheet>
