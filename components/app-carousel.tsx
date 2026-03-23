@@ -58,14 +58,14 @@ export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
         <div className="mt-6 flex justify-center gap-4">
           <button
             onClick={scrollPrev}
-            className="rounded-full border p-2 transition hover:bg-neutral-100"
+            className="rounded-full border border-[#00006180] p-2 text-[#00006180] transition hover:bg-neutral-100"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
 
           <button
             onClick={scrollNext}
-            className="rounded-full border p-2 transition hover:bg-neutral-100"
+            className="bg-secondary hover:bg-secondary/80 rounded-full border p-2 text-white transition"
           >
             <ArrowRight className="h-5 w-5" />
           </button>
