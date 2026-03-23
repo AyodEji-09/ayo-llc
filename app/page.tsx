@@ -1,11 +1,12 @@
-import { BenefitCard } from "@/components/benefit-card";
-import { AppCarousel } from "@/components/app-carousel";
-import { Card } from "@/components/card";
 import { GridWrapper } from "@/components/grid-wrapper";
 import { Navbar } from "@/components/navbar";
-import { services, partners, benefits } from "@/data";
+import { partners } from "@/data";
 import Image from "next/image";
 import { PartnersMarquee } from "@/components/partners-marquee";
+import { ServicesSection } from "@/components/sections/services-section";
+import { WhyChooseSection } from "@/components/sections/why-choose-section";
+import { BookPublishingSection } from "@/components/sections/book-publishing-section";
+import { ReviewsSection } from "@/components/sections/reviews-section";
 
 export default function Home() {
   return (
@@ -51,84 +52,16 @@ export default function Home() {
         </section>
 
         {/* what we offer */}
-        <section>
-          <GridWrapper
-            subtitle="What We Offer"
-            header="Lorem, Ipsum, Remsum"
-            description="
-              Empowering businesses with cutting-edge tech solutions to drive
-              innovation an Empowering businesses with cutting-edge tech."
-          />
-
-          <div className="mt-16 grid justify-items-center gap-x-8 gap-y-14 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
-            {services.map((benefit, idx) => (
-              <Card key={idx} {...benefit} />
-            ))}
-          </div>
-        </section>
+        <ServicesSection />
 
         {/* why choose ayo llc */}
-        <section>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
-              Why Choose Ayo LLC
-            </p>
-            <h2 className="mt-3 mb-3 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
-              Easy, Simple, Affordable
-            </h2>
-            <p className="text-primary text-base leading-relaxed font-normal sm:text-lg">
-              Choose Ayo LLC - where innovative technology meets exceptional
-              solutions <br />
-              for a smarter future.
-            </p>
-          </div>
-
-          <div className="mt-16 grid justify-items-center gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14">
-            {benefits.map((benefits, idx) => (
-              <BenefitCard key={idx} {...benefits} />
-            ))}
-          </div>
-        </section>
+        <WhyChooseSection />
 
         {/* book publishing */}
-        <section>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary font-semibold uppercase">
-              Lorem Ipsum Dolor
-            </p>
-            <h2 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
-              Book Publishing
-            </h2>
-            <p className="text-primary text-base font-normal sm:text-lg">
-              Discover our collection of published books, offering diverse
-              <br /> insights and knowledge across various topics.
-            </p>
-          </div>
-
-          <div className="mt-16 sm:mt-20">
-            <AppCarousel type="book" />
-          </div>
-        </section>
+        <BookPublishingSection />
 
         {/* reviews */}
-        <section>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
-              WHAT OUR CLIENTS SAYS
-            </p>
-            <h2 className="mt-3 mb-3 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
-              Our Clients Kind Words
-            </h2>
-            <p className="text-primary text-base leading-relaxed font-normal sm:text-lg">
-              Choose Ayo LLC - where innovative technology meets <br />
-              exceptional
-            </p>
-          </div>
-
-          <div className="mt-16 sm:mt-20">
-            <AppCarousel type="review" />
-          </div>
-        </section>
+        <ReviewsSection />
       </section>
     </>
   );
