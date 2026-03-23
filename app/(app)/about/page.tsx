@@ -3,11 +3,11 @@ import { BenefitCard } from "@/components/benefit-card";
 import { GridWrapper } from "@/components/grid-wrapper";
 import { benefits } from "@/data";
 
-export default function AboutPage() {
+export default function About() {
   return (
     <div className="mx-auto max-w-7xl space-y-24 px-4 pt-8 pb-28 sm:space-y-28 sm:px-6 sm:pt-12 lg:space-y-32 lg:px-8">
       {/* about  */}
-      <div>
+      <section>
         <GridWrapper
           header="About AYO LLC"
           subtitle="LOREM IPSUM DOLOR"
@@ -27,7 +27,7 @@ export default function AboutPage() {
           auctor vulputate duis enim imperdiet viverra amet. Sem facilisis
           mattis mattis vitae sed id tortor vel
         </p>
-      </div>
+      </section>
 
       {/* why choose ayo llc */}
       <section>
