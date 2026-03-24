@@ -26,7 +26,7 @@ export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
         <div className="flex gap-6 md:gap-8">
           {[...Array(6)].map((_, idx) =>
             type === "book" ? (
-              <div key={idx} className="min-w-65">
+              <div key={idx} className="max-w-65 min-w-65">
                 <BookCard />
               </div>
             ) : (
@@ -75,7 +75,7 @@ export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
   );
 };
 
-const BookCard = () => {
+export const BookCard = () => {
   return (
     <div className="w-full">
       <div className="relative h-60 w-full overflow-hidden rounded-xl">
