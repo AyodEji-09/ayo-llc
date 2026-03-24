@@ -1,6 +1,6 @@
 import { NAVIGATION_LINKS } from "@/data";
-import { Brand } from "./brand";
 import Link from "next/link";
+import { Brand } from "../common/brand";
 
 export const Footer = () => {
   return (

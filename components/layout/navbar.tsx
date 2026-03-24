@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Brand } from "./brand";
+import { Brand } from "../common/brand";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "./ui/navigation-menu";
-import { Button } from "./ui/button";
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import {
   Sheet,
@@ -16,7 +16,7 @@ import {
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "@/components/ui/sheet";
 import { useState } from "react";
 import { NAVIGATION_LINKS } from "@/data";
 import { usePathname } from "next/navigation";

@@ -1,4 +1,4 @@
-import { AppCarousel } from "@/components/app-carousel";
+import { AppCarousel } from "@/components/common/app-carousel";
 
 interface BookPublishingSectionProps {
   subtitle?: string;

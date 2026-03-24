@@ -1,4 +1,4 @@
-import { GridWrapper } from "@/components/grid-wrapper";
+import { GridWrapper } from "@/components/common/grid-wrapper";
 import { WhyChooseSection } from "@/components/sections/why-choose-section";
 import { ReviewsSection } from "@/components/sections/reviews-section";
 

@@ -1,8 +1,8 @@
-import { GridWrapper } from "@/components/grid-wrapper";
-import { Navbar } from "@/components/navbar";
+import { GridWrapper } from "@/components/common/grid-wrapper";
+import { Navbar } from "@/components/layout/navbar";
 import { partners } from "@/data";
 import Image from "next/image";
-import { PartnersMarquee } from "@/components/partners-marquee";
+import { PartnersMarquee } from "@/components/common/partners-marquee";
 import { ServicesSection } from "@/components/sections/services-section";
 import { WhyChooseSection } from "@/components/sections/why-choose-section";
 import { BookPublishingSection } from "@/components/sections/book-publishing-section";

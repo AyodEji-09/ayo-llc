@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/layout/footer";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 

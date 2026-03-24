@@ -1,5 +1,5 @@
-import { Card } from "@/components/card";
-import { GridWrapper } from "@/components/grid-wrapper";
+import { Card } from "@/components/common/card";
+import { GridWrapper } from "@/components/common/grid-wrapper";
 import { services } from "@/data";
 
 interface ServicesSectionProps {

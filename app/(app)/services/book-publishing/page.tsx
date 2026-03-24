@@ -1,5 +1,5 @@
-import { BookCard } from "@/components/app-carousel";
-import { SearchBox } from "@/components/searchbox";
+import { BookCard } from "@/components/common/book-card";
+import { SearchBox } from "@/components/common/searchbox";
 
 export default function BookPublishing() {
   return (

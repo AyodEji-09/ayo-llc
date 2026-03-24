@@ -1,4 +1,4 @@
-import { BenefitCard } from "@/components/benefit-card";
+import { BenefitCard } from "@/components/common/benefit-card";
 import { benefits } from "@/data";
 
 interface WhyChooseSectionProps {
