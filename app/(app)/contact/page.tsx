@@ -1,0 +1,37 @@
+import CustomForm from "@/components/common/custom-form";
+import Image from "next/image";
+
+export default function Contact() {
+  return (
+    <div className="mx-auto max-w-6xl px-4 pt-16 pb-28 sm:px-6 sm:pt-20 lg:px-8">
+      <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:gap-x-10">
+        <div>
+          <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
+            Lorem ipsum dolor
+          </p>
+          <h2 className="mt-3 mb-6 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
+            Contact Us
+          </h2>
+          <p className="text-primary max-w-md text-base leading-relaxed font-normal sm:text-lg">
+            We are committed to processing the information in order to contact
+            you and talk about your project.
+          </p>
+
+          <div className="mt-10 space-y-4">
+            <div className="flex items-center gap-x-4">
+              <Image src="/icons/mail.svg" alt="mail" width={24} height={24} />
+              <p className="text-base sm:text-lg">info@ayo-llc.com</p>
+            </div>
+            <div className="flex items-center gap-x-4">
+              <Image src="/icons/phone.svg" alt="mail" width={24} height={24} />
+              <p className="text-base sm:text-lg">+18586211597</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <CustomForm />
+        </div>
+      </div>
+    </div>
+  );
+}
