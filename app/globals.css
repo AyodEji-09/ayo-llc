@@ -123,14 +123,66 @@
   }
   body {
     @apply bg-background text-foreground text-base leading-relaxed;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
   }
   h1,
   h2,
   h3,
   h4 {
     @apply font-heading text-balance;
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Prevent AOS animations from causing overflow */
+  [data-aos] {
+    pointer-events: auto;
+  }
+
+  body [data-aos].aos-animate {
+    pointer-events: auto;
+  }
+
+  /* Blur to clear animation for hero subtitle */
+  @keyframes blur-in {
+    0% {
+      filter: blur(10px);
+      opacity: 0;
+    }
+    100% {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-blur-in {
+    animation: blur-in 1.2s ease-out forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
   }
 }

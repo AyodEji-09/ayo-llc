@@ -8,8 +8,8 @@ interface BenefitCardProps {
 
 export const BenefitCard = ({ icon, title, description }: BenefitCardProps) => {
   return (
-    <div className="flex w-full max-w-lg gap-3 sm:gap-6">
-      <div className="bg-secondary flex size-12 shrink-0 items-center justify-center rounded-lg">
+    <div className="group flex w-full max-w-lg cursor-pointer gap-3 sm:gap-6">
+      <div className="bg-secondary flex size-12 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
         <Image
           src={icon}
           alt="Benefit Card"
@@ -18,7 +18,7 @@ export const BenefitCard = ({ icon, title, description }: BenefitCardProps) => {
           className="object-contain"
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 transition-transform duration-300 group-hover:translate-x-1">
         <h3 className="text-lg font-semibold tracking-tight text-[#040815]">
           {title}
         </h3>

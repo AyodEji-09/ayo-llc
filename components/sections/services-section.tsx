@@ -23,7 +23,9 @@ export const ServicesSection = ({
 
       <div className="mt-16 grid justify-items-center gap-x-8 gap-y-14 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
         {services.map((benefit, idx) => (
-          <Card key={idx} {...benefit} />
+          <div key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
+            <Card {...benefit} />
+          </div>
         ))}
       </div>
     </section>

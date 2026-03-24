@@ -18,7 +18,7 @@ export const ReviewsSection = ({
 }: ReviewsSectionProps) => {
   return (
     <section>
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
         <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
           {subtitle}
         </p>
@@ -30,7 +30,7 @@ export const ReviewsSection = ({
         </p>
       </div>
 
-      <div className="mt-16 sm:mt-20">
+      <div className="mt-16 sm:mt-20" data-aos="fade-up" data-aos-delay="200">
         <AppCarousel type="review" />
       </div>
     </section>

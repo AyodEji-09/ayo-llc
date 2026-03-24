@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <div className="mx-auto max-w-6xl px-4 pt-16 pb-28 sm:px-6 sm:pt-20 lg:px-8">
       <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:gap-x-10">
-        <div>
+        <div data-aos="fade-right">
           <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
             Lorem ipsum dolor
           </p>
@@ -18,17 +18,22 @@ export default function Contact() {
           </p>
 
           <div className="mt-10 space-y-4">
-            <div className="flex items-center gap-x-4">
+            <div className="flex items-center gap-x-4 transition-transform duration-200 hover:translate-x-1">
               <Image src="/icons/mail.svg" alt="mail" width={24} height={24} />
               <p className="text-base sm:text-lg">info@ayo-llc.com</p>
             </div>
-            <div className="flex items-center gap-x-4">
-              <Image src="/icons/phone.svg" alt="mail" width={24} height={24} />
+            <div className="flex items-center gap-x-4 transition-transform duration-200 hover:translate-x-1">
+              <Image
+                src="/icons/phone.svg"
+                alt="phone"
+                width={24}
+                height={24}
+              />
               <p className="text-base sm:text-lg">+18586211597</p>
             </div>
           </div>
         </div>
-        <div>
+        <div data-aos="fade-left" data-aos-delay="200">
           <CustomForm />
         </div>
       </div>

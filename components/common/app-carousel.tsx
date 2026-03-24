@@ -22,7 +22,7 @@ export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
 
   return (
     <div className="relative w-full">
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="overflow-hidden py-4" ref={emblaRef}>
         <div className="flex gap-6 md:gap-8">
           {[...Array(6)].map((_, idx) =>
             type === "book" ? (

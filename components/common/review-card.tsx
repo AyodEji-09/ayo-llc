@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const ReviewCard = () => {
   return (
-    <div className="w-80 rounded-xl border border-gray-200 bg-white p-6">
+    <div className="w-80 cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-all duration-500 hover:-translate-y-2">
       <h3 className="line-clamp-1 text-base font-semibold tracking-tight text-[#040815]">
         Lorem ipsum dolor
       </h3>
@@ -19,7 +19,7 @@ export const ReviewCard = () => {
       <div className="my-6 h-px w-full bg-gray-200" />
 
       <div className="flex items-center gap-3">
-        <div className="relative h-12 w-12 overflow-hidden rounded-lg">
+        <div className="relative h-12 w-12 overflow-hidden rounded-lg transition-transform duration-300 hover:scale-110">
           <Image
             src="/images/avatar.png"
             alt="Author"

@@ -20,7 +20,7 @@ export const WhyChooseSection = ({
 }: WhyChooseSectionProps) => {
   return (
     <section>
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
         <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
           {subtitle}
         </p>
@@ -34,7 +34,9 @@ export const WhyChooseSection = ({
 
       <div className="mt-16 grid justify-items-center gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14">
         {benefits.map((benefits, idx) => (
-          <BenefitCard key={idx} {...benefits} />
+          <div key={idx} data-aos="fade-up" data-aos-delay={idx * 120}>
+            <BenefitCard {...benefits} />
+          </div>
         ))}
       </div>
     </section>

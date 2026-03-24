@@ -25,8 +25,16 @@ export const Footer = () => {
             </h1>
             <ul className="space-y-2.5 text-sm leading-relaxed sm:space-y-3">
               {NAVIGATION_LINKS.map((link, idx) => (
-                <li key={idx}>
-                  <Link href={link.url}>{link.name}</Link>
+                <li
+                  key={idx}
+                  className="transition-transform duration-200 hover:translate-x-1"
+                >
+                  <Link
+                    href={link.url}
+                    className="transition-colors duration-200 hover:text-[#7C5CFC]"
+                  >
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -46,7 +54,12 @@ export const Footer = () => {
                 "Illustration & Animation",
                 "Video Works",
               ].map((service, idx) => (
-                <li key={idx}>{service}</li>
+                <li
+                  key={idx}
+                  className="transition-transform duration-200 hover:translate-x-1"
+                >
+                  {service}
+                </li>
               ))}
             </ul>
           </div>
@@ -58,7 +71,12 @@ export const Footer = () => {
             </h1>
             <ul className="space-y-2.5 text-sm leading-relaxed sm:space-y-3">
               {["X", "Facebook", "Instagram", "LinkedIn"].map((social, idx) => (
-                <li key={idx}>{social}</li>
+                <li
+                  key={idx}
+                  className="transition-transform duration-200 hover:translate-x-1"
+                >
+                  {social}
+                </li>
               ))}
             </ul>
           </div>

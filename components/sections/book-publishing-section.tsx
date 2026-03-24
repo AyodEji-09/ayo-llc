@@ -18,7 +18,7 @@ export const BookPublishingSection = ({
 }: BookPublishingSectionProps) => {
   return (
     <section>
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
         <p className="text-secondary font-semibold uppercase">{subtitle}</p>
         <h2 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
           {header}
@@ -28,7 +28,7 @@ export const BookPublishingSection = ({
         </p>
       </div>
 
-      <div className="mt-16 sm:mt-20">
+      <div className="mt-16 sm:mt-20" data-aos="fade-up" data-aos-delay="200">
         <AppCarousel type="book" />
       </div>
     </section>

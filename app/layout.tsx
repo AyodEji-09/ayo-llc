@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/layout/footer";
+import { AOSInit } from "@/components/common/aos-init";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -33,9 +34,10 @@ export default function RootLayout({
         geist.variable,
       )}
     >
-      <body>
-        <div className="flex min-h-full flex-col overflow-x-hidden">
-          <main className="grow">{children}</main>
+      <body className="overflow-x-hidden overflow-y-auto">
+        <AOSInit />
+        <div className="flex min-h-full flex-col">
+          <main className="grow overflow-hidden">{children}</main>
           <Footer />
         </div>
       </body>

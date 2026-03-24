@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       {/* hero */}
-      <section className="relative min-h-screen">
+      <section className="relative min-h-screen overflow-hidden">
         <Image
           src="/images/bg.png"
           alt="Background Image"
@@ -23,10 +23,20 @@ export default function Home() {
         <Navbar home />
 
         <div className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center gap-6 px-4 text-center sm:px-6">
-          <h1 className="bg-[linear-gradient(176.64deg,#FFFFFF_15.1%,#CEC9FF_88%)] bg-clip-text text-4xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-5xl sm:leading-[1.08] md:text-6xl md:leading-[1.06]">
+          <h1
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-duration="800"
+            className="bg-[linear-gradient(176.64deg,#FFFFFF_15.1%,#CEC9FF_88%)] bg-clip-text text-4xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-5xl sm:leading-[1.08] md:text-6xl md:leading-[1.06]"
+          >
             Welcome to AYO LLC, Where Innovation Meets Excellence
           </h1>
-          <p className="max-w-xl text-lg leading-relaxed font-normal text-white sm:text-xl">
+          <p
+            data-aos="fade-up"
+            data-aos-delay="400"
+            data-aos-duration="800"
+            className="max-w-xl text-lg leading-relaxed font-normal text-white sm:text-xl"
+          >
             Your one-stop finance empower platform.
             <br /> Manage all your business expenses with our supafast app.
           </p>
@@ -35,7 +45,9 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
         {/* partners */}
-        <PartnersMarquee partners={partners} />
+        <div data-aos="fade-up">
+          <PartnersMarquee partners={partners} />
+        </div>
 
         {/* about */}
         <section>
