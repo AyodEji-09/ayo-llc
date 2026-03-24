@@ -4,7 +4,7 @@ import { ReviewsSection } from "@/components/sections/reviews-section";
 
 export default function About() {
   return (
-    <div className="mx-auto max-w-7xl space-y-24 px-4 pt-8 pb-28 sm:space-y-28 sm:px-6 sm:pt-12 lg:space-y-32 lg:px-8">
+    <div className="mx-auto max-w-6xl space-y-24 px-4 pt-16 pb-28 sm:space-y-28 sm:px-6 sm:pt-20 lg:space-y-32 lg:px-8">
       {/* about  */}
       <section>
         <GridWrapper

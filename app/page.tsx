@@ -33,7 +33,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
+      <section className="mx-auto max-w-6xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
         {/* partners */}
         <PartnersMarquee partners={partners} />
 

@@ -7,7 +7,7 @@ import {
 
 export const SearchBox = () => {
   return (
-    <InputGroup className="h-auto rounded-3xl border-[#C5C3C6]! py-1 shadow-none ring-0!">
+    <InputGroup className="h-auto rounded-3xl border-[#C5C3C6]! py-1 ring-0!">
       <InputGroupInput placeholder="Search..." />
       <InputGroupAddon>
         <SearchIcon />
