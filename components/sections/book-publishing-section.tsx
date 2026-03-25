@@ -12,7 +12,8 @@ export const BookPublishingSection = ({
   description = (
     <>
       Discover our collection of published books, offering diverse
-      <br /> insights and knowledge across various topics.
+      <br className="hidden md:block" /> insights and knowledge across various
+      topics.
     </>
   ),
 }: BookPublishingSectionProps) => {

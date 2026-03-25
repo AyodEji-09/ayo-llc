@@ -11,7 +11,8 @@ export const ReviewsSection = ({
   header = "Our Clients Kind Words",
   description = (
     <>
-      Choose Ayo LLC - where innovative technology meets <br />
+      Choose Ayo LLC - where innovative technology meets
+      <br className="hidden md:block" />
       exceptional
     </>
   ),

@@ -12,8 +12,8 @@ export const WhyChooseSection = ({
   header = "Easy, Simple, Affordable",
   description = (
     <>
-      Choose Ayo LLC - where innovative technology meets exceptional solutions{" "}
-      <br />
+      Choose Ayo LLC - where innovative technology meets exceptional solutions
+      <br className="hidden md:block" />
       for a smarter future.
     </>
   ),

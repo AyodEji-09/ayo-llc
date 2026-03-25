@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const ReviewCard = () => {
   return (
-    <div className="w-80 cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-all duration-500 hover:-translate-y-2">
+    <div className="w-80 rounded-xl border border-gray-200 bg-white p-6 transition-all duration-500 hover:-translate-y-2">
       <h3 className="line-clamp-1 text-base font-semibold tracking-tight text-[#040815]">
         Lorem ipsum dolor
       </h3>
