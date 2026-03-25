@@ -10,7 +10,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-3">
             <div>
-              <Brand />
+              <Brand logoBlue />
             </div>
             <p className="max-w-lg text-sm leading-relaxed">
               Lorem ipsum dolor sit amet consectetur. Lectus facilisis pharetra

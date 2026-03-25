@@ -13,9 +13,38 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AYO LLC",
+  title: {
+    default: "AYO LLC - Your Creative Solutions Partner",
+    template: "%s | AYO LLC",
+  },
   description:
-    "Official website of AYO LLC, a leading company in innovative solutions. Explore our services, projects, and contact information.",
+    "Welcome to AYO LLC - Your Creative Solutions Partner. We offer social media management, website design, graphic design, book publishing, illustration, animation, and video production services.",
+  keywords: [
+    "AYO LLC",
+    "creative solutions",
+    "social media management",
+    "website design",
+    "website management",
+    "graphic design",
+    "book publishing",
+    "self publishing",
+    "illustration services",
+    "animation services",
+    "video production",
+    "digital marketing",
+    "branding services",
+    "content creation",
+    "creative agency",
+  ],
+  authors: [{ name: "AYO LLC" }],
+  creator: "AYO LLC",
+  publisher: "AYO LLC",
+  metadataBase: new URL("https://ayollc.com"),
+  icons: {
+    icon: "/images/favicon.png",
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
+  },
 };
 
 export default function RootLayout({

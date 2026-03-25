@@ -1,5 +1,12 @@
 import { BookCard } from "@/components/common/book-card";
 import { SearchBox } from "@/components/common/searchbox";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Book Publishing",
+  description:
+    "Discover our book publishing services at AYO LLC. Browse our collection of published books and learn how we can help you bring your story to life through professional publishing services.",
+};
 
 export default function BookPublishing() {
   return (

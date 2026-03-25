@@ -1,4 +1,11 @@
 import { ServicesSection } from "@/components/sections/services-section";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Explore AYO LLC's comprehensive range of creative services including social media management, website design, graphic design, book publishing, illustration, animation, and video production.",
+};
 
 export default function Services() {
   return (

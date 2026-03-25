@@ -1,5 +1,12 @@
 import CustomForm from "@/components/common/custom-form";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with AYO LLC. Contact us to discuss your project, request a quote, or learn more about our creative services. We're here to help bring your vision to life.",
+};
 
 export default function Contact() {
   return (

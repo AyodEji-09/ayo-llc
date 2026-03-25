@@ -1,6 +1,13 @@
 import { GridWrapper } from "@/components/common/grid-wrapper";
 import { WhyChooseSection } from "@/components/sections/why-choose-section";
 import { ReviewsSection } from "@/components/sections/reviews-section";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about AYO LLC - Your trusted creative solutions partner. Discover our mission, values, and commitment to delivering exceptional services.",
+};
 
 export default function About() {
   return (
