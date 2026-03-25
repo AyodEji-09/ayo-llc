@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const ReviewCard = () => {
   return (
@@ -11,9 +12,12 @@ export const ReviewCard = () => {
         Lorem ipsum dolor sit amet consectetur. Lectus facilisis pharetra amet
         quam a libero sit id. Justo ullamcorper tellus sed velit curabitur in.
         Amet etiam faucibus sollicitudin tekdso...
-        <span className="text-secondary ml-1 cursor-pointer font-medium">
+        <Link
+          href="/reviews/lorem"
+          className="text-secondary ml-1 cursor-pointer font-medium"
+        >
           Read more
-        </span>
+        </Link>
       </p>
 
       <div className="my-6 h-px w-full bg-gray-200" />
