@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/layout/footer";
 import { AOSInit } from "@/components/common/aos-init";
+import { Toaster } from "@/components/ui/sonner";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -65,6 +66,7 @@ export default function RootLayout({
     >
       <body className="overflow-x-hidden overflow-y-auto">
         <AOSInit />
+        <Toaster position="top-right" />
         <div className="flex min-h-full flex-col">
           <main className="grow overflow-hidden">{children}</main>
           <Footer />

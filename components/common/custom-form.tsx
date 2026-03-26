@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { FieldGroup, FieldSet } from "../ui/field";
 import CustomInput from "./custom-input";
 import { useState, FormEvent } from "react";
+import { toast } from "sonner";
 
 const CustomForm = () => {
   const [formData, setFormData] = useState({
@@ -11,15 +12,11 @@ const CustomForm = () => {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
+    setIsLoading(true);
 
     try {
       const response = await fetch("/api/contact", {
@@ -36,22 +33,18 @@ const CustomForm = () => {
         throw new Error(data.error || "Failed to send message");
       }
 
-      setStatus("success");
-      // Don't clear form data - keep it visible
+      // Show success toast
+      toast.success("Message sent successfully! We'll get back to you soon.");
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setStatus("idle"), 5000);
+      // Clear form fields
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      setStatus("error");
-      setErrorMessage(
+      // Show error toast
+      toast.error(
         error instanceof Error ? error.message : "Something went wrong",
       );
-
-      // Reset error message after 5 seconds
-      setTimeout(() => {
-        setStatus("idle");
-        setErrorMessage("");
-      }, 5000);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,7 +64,7 @@ const CustomForm = () => {
               value={formData.name}
               onChange={(value) => handleChange("name", value)}
               required
-              disabled={status === "loading"}
+              disabled={isLoading}
             />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
@@ -82,7 +75,7 @@ const CustomForm = () => {
               value={formData.email}
               onChange={(value) => handleChange("email", value)}
               required
-              disabled={status === "loading"}
+              disabled={isLoading}
             />
           </div>
           <div data-aos="fade-up" data-aos-delay="300">
@@ -93,38 +86,18 @@ const CustomForm = () => {
               value={formData.message}
               onChange={(value) => handleChange("message", value)}
               required
-              disabled={status === "loading"}
+              disabled={isLoading}
             />
           </div>
         </FieldGroup>
 
-        {/* Success Message */}
-        {status === "success" && (
-          <div
-            className="mb-4 rounded-sm bg-green-50 p-4 text-center text-sm text-green-800 sm:text-base"
-            data-aos="fade-up"
-          >
-            ✓ Message sent successfully! We'll get back to you soon.
-          </div>
-        )}
-
-        {/* Error Message */}
-        {status === "error" && (
-          <div
-            className="mb-4 rounded-sm bg-red-50 p-4 text-center text-sm text-red-800 sm:text-base"
-            data-aos="fade-up"
-          >
-            ✗ {errorMessage}
-          </div>
-        )}
-
         <div data-aos="fade-up" data-aos-delay="400">
           <Button
             type="submit"
-            disabled={status === "loading"}
+            disabled={isLoading}
             className="bg-secondary h-auto w-full cursor-pointer rounded-sm py-3 text-sm transition-all duration-200 hover:scale-[1.02] hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 sm:text-base"
           >
-            {status === "loading" ? "Sending..." : "Send Message"}
+            {isLoading ? "Sending..." : "Send Message"}
           </Button>
         </div>
       </FieldSet>
