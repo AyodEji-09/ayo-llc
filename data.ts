@@ -94,3 +94,19 @@ export const benefits = [
       "Your satisfaction is our priority. We are committed to building lasting partnerships with our clients.",
   },
 ];
+
+export const socials = [
+  { name: "X", href: "#" },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/share/18TYHmLLEC/",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/theayollc.company?igsh=aGxraDF5YTU5eXds",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/ayo-llc/",
+  },
+];

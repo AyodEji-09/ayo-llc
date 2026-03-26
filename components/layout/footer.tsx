@@ -1,4 +1,4 @@
-import { NAVIGATION_LINKS } from "@/data";
+import { NAVIGATION_LINKS, socials } from "@/data";
 import Link from "next/link";
 import { Brand } from "../common/brand";
 
@@ -40,7 +40,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Service Times */}
+          {/* Services */}
           <div className="space-y-4 lg:col-span-2">
             <h1 className="text-lg font-medium tracking-tight text-[#1A202C]">
               Our Services
@@ -64,18 +64,24 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Social */}
           <div className="space-y-4 lg:col-span-2">
             <h1 className="text-lg font-medium tracking-tight text-[#010000]">
               Follow Us
             </h1>
             <ul className="space-y-2.5 text-sm leading-relaxed sm:space-y-3">
-              {["X", "Facebook", "Instagram", "LinkedIn"].map((social, idx) => (
+              {socials.map((social, idx) => (
                 <li
                   key={idx}
-                  className="transition-transform duration-200 hover:translate-x-1"
+                  className="hover:text-secondary transition-transform duration-200 hover:translate-x-1"
                 >
-                  {social}
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.name}
+                  </a>
                 </li>
               ))}
             </ul>
