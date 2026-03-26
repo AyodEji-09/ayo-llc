@@ -37,7 +37,7 @@ const CustomForm = () => {
       }
 
       setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+      // Don't clear form data - keep it visible
 
       // Reset success message after 5 seconds
       setTimeout(() => setStatus("idle"), 5000);
