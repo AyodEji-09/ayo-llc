@@ -22,11 +22,12 @@ export const NAVIGATION_LINKS = [
 ];
 
 export const partners = [
-  "/images/partner1.png",
-  "/images/partner2.png",
-  "/images/partner5.png",
-  "/images/partner3.png",
-  "/images/partner4.png",
+  "/images/GFGH1.png",
+  "/images/ARISEII.png",
+  "/images/_PGC.png",
+  "/images/WONDERKIDDIESHUBLogoII.png",
+  "/images/ZIONCOVENANTMINISTRYLOGOicon.png",
+  "/images/REVIVALCENTERLOGO1.png",
 ];
 
 export const services = [
