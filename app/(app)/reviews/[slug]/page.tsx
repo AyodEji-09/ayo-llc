@@ -16,7 +16,7 @@ export default function Review() {
           </p>
         </div>
         <div
-          className="mt-16 rounded-xl border border-gray-200 bg-white p-6 sm:mt-20"
+          className="mx-auto mt-16 max-w-5xl rounded-xl border border-gray-200 bg-white p-6 sm:mt-20"
           data-aos="fade-up"
           data-aos-delay="200"
         >

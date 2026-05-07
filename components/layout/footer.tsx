@@ -13,8 +13,9 @@ export const Footer = () => {
               <Brand logoBlue />
             </div>
             <p className="max-w-lg text-sm leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur. Lectus facilisis pharetra
-              amet quam a libero sit id. Justo ullamcorper tellus sed velit
+              A creative agency delivering high-impact design, digital
+              excellence, and publishing solutions to businesses and visionary
+              creators across the globe.
             </p>
           </div>
 
