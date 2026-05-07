@@ -6,7 +6,7 @@ import Image from "next/image";
 export const PartnersMarquee = ({ partners }: { partners: string[] }) => {
   return (
     <div className="w-full overflow-hidden">
-      <Marquee autoFill gradient pauseOnHover>
+      <Marquee autoFill pauseOnHover>
         <div className="mr-12 flex items-center gap-x-12 sm:mr-16 sm:gap-x-16 md:mr-20 md:gap-x-20">
           {partners.map((partner, idx) => (
             <div key={idx} className="relative h-15 w-30">
