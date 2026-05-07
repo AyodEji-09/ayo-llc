@@ -32,39 +32,45 @@ export const partners = [
 export const services = [
   {
     imageUrl: "/images/social-media.png",
+    slug: "social-media-management",
     title: "Social Media Management",
     description:
-      "Transform your online presence with our expert social media strategies. From creating captivating content to managing campaigns, we help businesses grow and connect authentically with their audience.",
+      "End-to-end management of your social platforms, from content creation and scheduling to community engagement and performance analytics.",
   },
   {
     imageUrl: "/images/web-design.png",
+    slug: "web-design-management",
     title: "Web Design & Management",
     description:
-      "Your website is your digital storefront, and we make it stand out. Our team designs sleek, user-friendly websites tailored to your brand, ensuring seamless functionality and ongoing management to keep it running smoothly.",
+      "Beautiful, responsive, and high-converting websites that effectively represent your brand and deliver exceptional user experiences.",
   },
   {
     imageUrl: "/images/graphics.png",
+    slug: "graphics-design",
     title: "Graphics Design",
     description:
-      "Have more than 1 bank account or credit/debit card? Our platform is already integrated with many banks around the world, for easier payments!",
+      "Eye-catching logos, branding materials, marketing collateral, and visual assets that communicate your message powerfully.",
   },
   {
     imageUrl: "/images/book.png",
-    title: "Book Publisihing",
+    slug: "book-publishing",
+    title: "Book Publishing",
     description:
-      "Bring your literacy dreams to reality with or comprehensive book publishing services. Whether it’s editing, layout, or getting your book onto the shelves, we guide you every step of the way.",
+      "Professional support for authors, from manuscript editing and formatting to cover design, publishing, and distribution.",
   },
   {
     imageUrl: "/images/illustration.png",
+    slug: "illustration-animation",
     title: "Illustration & Animation",
     description:
-      "Add a creative edge to your projects with our custom illustrations and animations. From character design to motion graphics, we craft visuals that captivate and inspire.",
+      "Custom illustrations and motion graphics that make your stories memorable and engaging.",
   },
   {
     imageUrl: "/images/video.png",
+    slug: "video-works",
     title: "Video Works",
     description:
-      "Tell your story like never before with our professional video production services. We specialize in creating high-quality videos that resonate with your audience and achieve your goals.",
+      "High-quality video content including promotional videos, brand stories, animations, and social media reels.",
   },
 ];
 

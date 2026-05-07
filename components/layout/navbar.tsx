@@ -42,6 +42,7 @@ export const Navbar = ({ home }: { home?: boolean }) => {
             alt="Navbar Background"
             fill
             priority
+            fetchPriority="high"
             className="object-cover object-top"
           />
         </div>

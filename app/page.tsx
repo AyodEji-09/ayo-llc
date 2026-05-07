@@ -18,6 +18,7 @@ export default function Home() {
           alt="Background Image"
           fill
           priority
+          fetchPriority="high"
           className="-z-10 object-cover"
         />
         <Navbar home />
@@ -52,13 +53,9 @@ export default function Home() {
         {/* about */}
         <section>
           <GridWrapper
-            subtitle="Lorem Ipsum Dolor"
+            subtitle="ABOUT US"
             header="About AYO LLC"
-            description="
-              Lorem ipsum dolor sit amet consectetur. Viverra orci auctor
-              vulputate duis enim imperdiet viverra amet. Sem facilisis mattis
-              mattis vitae sed id tortor vel. Eget vulputate nibh sagittis nisl
-              condimentum sed placerat eget lacus."
+            description="AYO LLC is a USA-based creative solutions agency headquartered in Riverside, California. For over five years, we have partnered with businesses and creators to transform ideas into impactful brands through innovative design, strategic content, and digital excellence."
             link={{ text: "Know more", url: "/about" }}
           />
         </section>

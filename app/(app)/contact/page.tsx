@@ -14,14 +14,15 @@ export default function Contact() {
       <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:gap-x-10">
         <div data-aos="fade-right">
           <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
-            Lorem ipsum dolor
+            LET’S BRING YOUR IDEA TO LIFE
           </p>
           <h2 className="mt-3 mb-6 text-3xl font-bold tracking-tight text-[#040815] md:text-4xl">
             Contact Us
           </h2>
           <p className="text-primary max-w-md text-base leading-relaxed font-normal sm:text-lg">
-            We are committed to processing the information in order to contact
-            you and talk about your project.
+            We’re excited to hear about your project. Reach out to us and let’s
+            discuss how we can help bring your vision to reality with creative
+            excellence.
           </p>
 
           <div className="mt-10 space-y-4">

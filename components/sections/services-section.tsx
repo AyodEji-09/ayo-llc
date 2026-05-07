@@ -10,8 +10,8 @@ interface ServicesSectionProps {
 
 export const ServicesSection = ({
   subtitle = "What We Offer",
-  header = "Lorem, Ipsum, Remsum",
-  description = "Empowering businesses with cutting-edge tech solutions to drive innovation an Empowering businesses with cutting-edge tech.",
+  header = "Creative Solutions That Drive Results",
+  description = "Empowering businesses and creators with creative excellence, strategic design, and impactful digital solutions that bring ideas to life and drive real growth.",
 }: ServicesSectionProps) => {
   return (
     <section>

@@ -7,13 +7,13 @@ interface BookPublishingSectionProps {
 }
 
 export const BookPublishingSection = ({
-  subtitle = "Lorem Ipsum Dolor",
+  subtitle = "DISCOVER EXCELLENCE IN PUBLISHING",
   header = "Book Publishing",
   description = (
     <>
-      Discover our collection of published books, offering diverse
-      <br className="hidden md:block" /> insights and knowledge across various
-      topics.
+      Discover our expertly published books and explore a wide range of
+      <br className="hidden md:block" /> insightful titles across fiction,
+      non-fiction, business, self-help, and more.
     </>
   ),
 }: BookPublishingSectionProps) => {

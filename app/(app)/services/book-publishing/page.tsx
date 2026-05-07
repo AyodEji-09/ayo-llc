@@ -20,8 +20,9 @@ export default function BookPublishing() {
             Book Publishing
           </h2>
           <p className="text-primary mb-10 text-base font-normal sm:text-lg">
-            Discover our collection of published books, offering diverse
-            insights and knowledge across various topics.
+            Discover our expertly published books and explore a wide range of
+            insightful titles across fiction, non-fiction, business, self-help,
+            and more.
           </p>
           <SearchBox />
         </div>
