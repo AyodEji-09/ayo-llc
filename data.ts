@@ -117,3 +117,141 @@ export const socials = [
     href: "https://www.linkedin.com/company/ayo-llc/",
   },
 ];
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  service: string;
+  avatar?: string;
+  testimonial: string;
+  qa?: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    name: "Olalekan Ayeni",
+    role: "Author of 'A Journey of Faith and Mission'",
+    service: "Book Publishing",
+    testimonial:
+      "Working with this agency was a turning point in writing my book. Their strategic approach, professionalism, and clear communication helped transform the story and journey of my experience in the mission field into reality to many people on the mission. I highly recommend them to any author serious about building impact and achieving measurable results.",
+    qa: [
+      {
+        question: "Name of book(s) we helped you publish:",
+        answer: "A Journey of Faith and Mission",
+      },
+      {
+        question:
+          "What were your primary goals when you first approached us, and what challenges were you facing in achieving them?",
+        answer:
+          "When I was linked up with you, I was struggling with creating or writing the book although I believed in the value of my work, I lacked the expertise and systems needed to reach the right readers effectively and consistently. but I was told of your many projects and book write ups which gave me confidence and knowing your background as a pastor, I sincerely felt that I was in safe hands.",
+      },
+      {
+        question:
+          "What had you tried before working with us, and why wasn’t it working?",
+        answer:
+          "It is my first book write up and I was linked up by my manager Mrs Dolapo who assured me based on her working with you that I will be in good and safe hands.",
+      },
+      {
+        question:
+          "What stood out to you most about working with our agency compared to other experiences you’ve had?",
+        answer:
+          "What stood out most was your strategic approach and professionalism. Rather than offering generic solutions, you took time to understand my goals, audience, and brand. The clarity of your plan and the structured execution gave me confidence that I was finally working with a team that understood both publishing and marketing dynamics.",
+      },
+      {
+        question:
+          "How would you describe our communication style and responsiveness throughout the project?",
+        answer:
+          "Your communication was clear, proactive, and transparent. I appreciated the regular updates and the willingness to explain strategy and results in a way that was easy to understand. Any questions or concerns I had been addressed promptly, which made the collaboration smooth and reassuring.",
+      },
+      {
+        question:
+          "What specific services or aspects of our work were most valuable to you?",
+        answer:
+          "The most valuable aspects were audience targeting, campaign optimization, and branding guidance. Your ability to refine messaging and position the book effectively made a significant difference. The structured marketing framework you implemented also provided clarity and measurable direction.",
+      },
+      {
+        question:
+          "What concrete results did you achieve through our partnership? If possible, how would you quantify the return on investment from our services?",
+        answer:
+          "Through our partnership, I experienced visibility through our meetings, personal engagement. Our combination of strategy, execution, and consistent communication sets you apart. Overall, my experience was very positive.",
+      },
+      {
+        question:
+          "Would you recommend our agency to other authors? If yes, why?",
+        answer:
+          "YA very big YES! I would absolutely recommend your agency to many people.",
+      },
+      {
+        question:
+          "Is there anything you feel we could have done better or differently?",
+        answer:
+          "It’s my first and will not be able to advise but can encourage better than what you have been doing and still doing.",
+      },
+    ],
+  },
+  {
+    name: "HUG",
+    role: "Author of 'HUG (Healing • Understanding • Gratitude): A Simple Gesture, A Profound Impact'",
+    service: "Book Publishing",
+    testimonial:
+      "Working with your agency to publish HUG was truly uplifting. Your professionalism and dedication helped transform my manuscript into a polished, impactful book. I appreciated your attention to detail and the way you honored my vision throughout the process. I wholeheartedly recommend your services to any author seeking excellence and a trustworthy partnership.",
+    qa: [
+      {
+        question: "Name of book(s) we helped you publish:",
+        answer:
+          "H U G (Healing • Understanding • Gratitude): A Simple Gesture, A Profound Impact",
+      },
+      {
+        question:
+          "What were your primary goals when you first approached us, and what challenges were you facing in achieving them?",
+        answer:
+          "My goal was to ensure that the idea conceived in my heart became tangible, something people could hold and feel. I had no challenges with the production process while working with Ayo LLC.",
+      },
+      {
+        question:
+          "What had you tried before working with us, and why wasn’t it working?",
+        answer:
+          "I explored self‑publishing options, but the process felt overwhelming and time-consuming. I needed expert guidance to ensure the book was polished, credible, and ready for public release.",
+      },
+      {
+        question:
+          "What stood out to you most about working with our agency compared to other experiences you’ve had?",
+        answer:
+          "Your professionalism, attention to detail, and genuine commitment to my vision stood out. You didn’t just process a project, you partnered with me to refine and elevate it.",
+      },
+      {
+        question:
+          "How would you describe our communication style and responsiveness throughout the project?",
+        answer:
+          "Clear, supportive, and consistent. I received updates at every stage.",
+      },
+      {
+        question:
+          "What specific services or aspects of our work were most valuable to you?",
+        answer:
+          "The overall publishing experience was valuable. You helped shape the book into cohesive and impactful work.",
+      },
+      {
+        question:
+          "What concrete results did you achieve through our partnership?",
+        answer:
+          "I successfully published HUG with confidence and excellence. The book now reflects the quality and message I envisioned, and the process saved me significant time and stress.",
+      },
+      {
+        question:
+          "Would you recommend our agency to other authors? If yes, why?",
+        answer:
+          "Absolutely. Your agency’s professionalism is genuine, making the publishing journey smooth, efficient, and rewarding.",
+      },
+      {
+        question:
+          "Is there anything you feel we could have done better or differently?",
+        answer:
+          "For me, the experience was excellent. I felt supported throughout the entire process.",
+      },
+    ],
+  },
+];

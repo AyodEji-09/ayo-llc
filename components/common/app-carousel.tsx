@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { BookCard } from "./book-card";
 import { ReviewCard } from "./review-card";
+import { testimonials } from "@/data";
 
 export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -20,21 +21,23 @@ export const AppCarousel = ({ type = "book" }: { type: "book" | "review" }) => {
     emblaApi?.scrollNext();
   }, [emblaApi]);
 
+  const slidesCount = type === "book" ? 6 : testimonials.length;
+
   return (
     <div className="relative w-full">
       <div className="overflow-hidden py-4" ref={emblaRef}>
-        <div className="flex gap-6 md:gap-8">
-          {[...Array(6)].map((_, idx) =>
-            type === "book" ? (
-              <div key={idx} className="max-w-65 min-w-65">
-                <BookCard />
-              </div>
-            ) : (
-              <div key={idx}>
-                <ReviewCard />
-              </div>
-            ),
-          )}
+        <div className="flex gap-6 md:gap-8 items-stretch">
+          {type === "book"
+            ? [...Array(slidesCount)].map((_, idx) => (
+                <div key={idx} className="max-w-65 min-w-65">
+                  <BookCard />
+                </div>
+              ))
+            : testimonials.map((testimonial, idx) => (
+                <div key={idx} className="flex h-auto">
+                  <ReviewCard testimonial={testimonial} />
+                </div>
+              ))}
         </div>
       </div>
 
