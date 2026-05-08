@@ -66,7 +66,7 @@ export default async function Review({
 
           <div className="space-y-6">
             <p className="text-base leading-relaxed font-medium text-[#596780] italic sm:text-lg md:text-xl">
-              "{testimonial.testimonial}"
+              &quot;{testimonial.testimonial}&quot;
             </p>
 
             {testimonial.qa && testimonial.qa.length > 0 && (

@@ -118,6 +118,50 @@ export const socials = [
   },
 ];
 
+export interface Book {
+  title: string;
+  coverImage: string;
+}
+
+export const books: Book[] = [
+  {
+    title: "Mommy Will Santa Come",
+    coverImage: "/images/mummy-will-santa-come.png",
+  },
+  {
+    title: "Myths About Sex In Marriage",
+    coverImage: "/images/myths-about-sex-in-marriage.jpg",
+  },
+  {
+    title: "Love And Submission",
+    coverImage: "/images/love-and-submission.jpg",
+  },
+  {
+    title: "Bible Heroes",
+    coverImage: "/images/bible-heroes.jpg",
+  },
+  {
+    title: "The Creator In You",
+    coverImage: "/images/the-creator-in-you.jpg",
+  },
+  {
+    title: "Tommy Too Can Win",
+    coverImage: "/images/tommy-too-can-win.jpg",
+  },
+  {
+    title: "The Reality of Christian Marriage",
+    coverImage: "/images/the-reality-of-christian-marriage.jpg",
+  },
+  {
+    title: "Fatherhood Unveiled",
+    coverImage: "/images/fatherhood-unveiled.jpg",
+  },
+  {
+    title: "Little Alfie",
+    coverImage: "/images/little-alfie.jpg",
+  },
+];
+
 export interface Testimonial {
   name: string;
   role: string;
@@ -194,7 +238,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: "HUG",
-    role: "Author of 'HUG (Healing • Understanding • Gratitude): A Simple Gesture, A Profound Impact'",
+    role: "Author",
     service: "Book Publishing",
     testimonial:
       "Working with your agency to publish HUG was truly uplifting. Your professionalism and dedication helped transform my manuscript into a polished, impactful book. I appreciated your attention to detail and the way you honored my vision throughout the process. I wholeheartedly recommend your services to any author seeking excellence and a trustworthy partnership.",

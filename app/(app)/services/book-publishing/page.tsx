@@ -1,5 +1,6 @@
 import { BookCard } from "@/components/common/book-card";
 import { SearchBox } from "@/components/common/searchbox";
+import { books } from "@/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -28,9 +29,9 @@ export default function BookPublishing() {
         </div>
 
         <div className="mt-16 grid gap-8 sm:mt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {[...Array(10)].map((_, i) => (
+          {books.map((book, i) => (
             <div key={i} data-aos="fade-up" data-aos-delay={i * 100}>
-              <BookCard />
+              <BookCard book={book} />
             </div>
           ))}
         </div>
