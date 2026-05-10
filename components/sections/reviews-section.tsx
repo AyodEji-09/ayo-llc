@@ -13,7 +13,7 @@ export const ReviewsSection = ({
     <>
       Choose Ayo LLC - where innovative technology meets{" "}
       <br className="hidden md:block" />
-      exceptional
+      exceptional results
     </>
   ),
 }: ReviewsSectionProps) => {

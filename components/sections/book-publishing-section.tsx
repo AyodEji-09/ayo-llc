@@ -11,7 +11,7 @@ export const BookPublishingSection = ({
   header = "Book Publishing",
   description = (
     <>
-      Discover our expertly published books and explore a wide range of
+      Discover our expertly published books and explore a wide range of{" "}
       <br className="hidden md:block" /> insightful titles across fiction,
       non-fiction, business, self-help, and more.
     </>

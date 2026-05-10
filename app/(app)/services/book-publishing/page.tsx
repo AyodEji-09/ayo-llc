@@ -15,7 +15,7 @@ export default function BookPublishing() {
       <section>
         <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <p className="text-secondary font-semibold uppercase">
-            Lorem ipsum dolor
+            DISCOVER EXCELLENCE IN PUBLISHING
           </p>
           <h2 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
             Book Publishing
