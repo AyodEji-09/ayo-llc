@@ -81,6 +81,9 @@ export const Navbar = ({ home }: { home?: boolean }) => {
             showCloseButton={false}
             className="w-60 px-5 py-10 sm:w-75 md:hidden"
           >
+            <div className="mb-8 flex items-center">
+              <Brand logoBlue />
+            </div>
             <SheetTitle className="sr-only" />
             <SheetDescription className="sr-only" />
             <nav className="flex flex-col space-y-4">

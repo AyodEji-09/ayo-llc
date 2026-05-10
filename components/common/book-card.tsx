@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { type Book } from "@/data";
 
 export const BookCard = ({ book }: { book: Book }) => {
@@ -18,9 +18,9 @@ export const BookCard = ({ book }: { book: Book }) => {
         <p className="text-sm leading-snug text-[#040815] sm:text-base">
           {book.title}
         </p>
-        <Button className="bg-secondary h-auto w-full cursor-pointer rounded-sm px-4 py-2.5 text-sm text-white transition-all duration-300 ease-in-out hover:border hover:border-yellow-500 hover:bg-white hover:text-yellow-500">
+        {/* <Button className="bg-secondary h-auto w-full cursor-pointer rounded-sm px-4 py-2.5 text-sm text-white transition-all duration-300 ease-in-out hover:border hover:border-yellow-500 hover:bg-white hover:text-yellow-500">
           Preview
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

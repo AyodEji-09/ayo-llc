@@ -12,10 +12,6 @@ export const NAVIGATION_LINKS = [
     url: "/services",
   },
   {
-    name: "Book Publishing",
-    url: "/services/book-publishing",
-  },
-  {
     name: "Contact",
     url: "/contact",
   },
@@ -148,18 +144,18 @@ export const books: Book[] = [
     title: "Tommy Too Can Win",
     coverImage: "/images/tommy-too-can-win.jpg",
   },
-  {
-    title: "The Reality of Christian Marriage",
-    coverImage: "/images/the-reality-of-christian-marriage.jpg",
-  },
-  {
-    title: "Fatherhood Unveiled",
-    coverImage: "/images/fatherhood-unveiled.jpg",
-  },
-  {
-    title: "Little Alfie",
-    coverImage: "/images/little-alfie.jpg",
-  },
+  // {
+  //   title: "The Reality of Christian Marriage",
+  //   coverImage: "/images/the-reality-of-christian-marriage.jpg",
+  // },
+  // {
+  //   title: "Fatherhood Unveiled",
+  //   coverImage: "/images/fatherhood-unveiled.jpg",
+  // },
+  // {
+  //   title: "Little Alfie",
+  //   coverImage: "/images/little-alfie.jpg",
+  // },
 ];
 
 export interface Testimonial {
