@@ -121,37 +121,37 @@ export interface Book {
 
 export const books: Book[] = [
   {
-    title: "Mommy Will Santa Come",
-    coverImage: "/images/mummy-will-santa-come.png",
+    title: "A Life Redeemed",
+    coverImage: "/images/a-life-redeemed.jpg",
   },
   {
-    title: "Myths About Sex In Marriage",
-    coverImage: "/images/myths-about-sex-in-marriage.jpg",
+    title: "HUG",
+    coverImage: "/images/hug.jpg",
   },
   {
-    title: "Love And Submission",
-    coverImage: "/images/love-and-submission.jpg",
+    title: "Jesus Handmaiden Diary",
+    coverImage: "/images/jesus-handmaiden-diary.jpg",
   },
   {
-    title: "Bible Heroes",
-    coverImage: "/images/bible-heroes.jpg",
+    title: "Unleashing Your Full Potentials",
+    coverImage: "/images/unleashing-your-full-potentials.jpg",
   },
   {
-    title: "The Creator In You",
-    coverImage: "/images/the-creator-in-you.jpg",
+    title: "Not Alone",
+    coverImage: "/images/not-alone.jpg",
   },
   {
-    title: "Tommy Too Can Win",
-    coverImage: "/images/tommy-too-can-win.jpg",
+    title: "No Write Off",
+    coverImage: "/images/no-write-off.jpg",
   },
-  // {
-  //   title: "The Reality of Christian Marriage",
-  //   coverImage: "/images/the-reality-of-christian-marriage.jpg",
-  // },
-  // {
-  //   title: "Fatherhood Unveiled",
-  //   coverImage: "/images/fatherhood-unveiled.jpg",
-  // },
+  {
+    title: "Tongues Of Fire",
+    coverImage: "/images/tongues-of-fire.jpg",
+  },
+  {
+    title: "From Pain to Promise",
+    coverImage: "/images/from-pain-to-promise.jpg",
+  },
   // {
   //   title: "Little Alfie",
   //   coverImage: "/images/little-alfie.jpg",
