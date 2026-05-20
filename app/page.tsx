@@ -38,7 +38,7 @@ export default function Home() {
             data-aos-duration="800"
             className="max-w-xl text-lg leading-relaxed font-normal text-white sm:text-xl"
           >
-            A creative agency delivering world-class solutions.
+            Your one-stop creative powerhouse.
             <br />
             Design, digital excellence, and publishing for modern brands.
           </p>
