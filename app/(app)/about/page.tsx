@@ -16,7 +16,7 @@ export default function About() {
       <section>
         <GridWrapper
           header="About AYO LLC"
-          subtitle="LOREM IPSUM DOLOR"
+          subtitle="ABOUT US"
           description="AYO LLC is a USA-based creative solutions agency headquartered in Riverside, California. For over five years, we have partnered with businesses and creators to transform ideas into impactful brands through innovative design, strategic content, and digital excellence."
         />
 

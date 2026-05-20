@@ -12,6 +12,10 @@ export const NAVIGATION_LINKS = [
     url: "/services",
   },
   {
+    name: "Portfolio",
+    url: "/portfolio",
+  },
+  {
     name: "Contact",
     url: "/contact",
   },
