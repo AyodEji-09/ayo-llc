@@ -38,8 +38,9 @@ export default function Home() {
             data-aos-duration="800"
             className="max-w-xl text-lg leading-relaxed font-normal text-white sm:text-xl"
           >
-            Your one-stop finance empower platform.
-            <br /> Manage all your business expenses with our supafast app.
+            A creative agency delivering world-class solutions.
+            <br />
+            Design, digital excellence, and publishing for modern brands.
           </p>
         </div>
       </section>
