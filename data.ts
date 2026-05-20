@@ -152,10 +152,6 @@ export const books: Book[] = [
     title: "From Pain to Promise",
     coverImage: "/images/from-pain-to-promise.jpg",
   },
-  // {
-  //   title: "Little Alfie",
-  //   coverImage: "/images/little-alfie.jpg",
-  // },
 ];
 
 export interface Project {
