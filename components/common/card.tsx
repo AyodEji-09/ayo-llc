@@ -11,7 +11,7 @@ interface CardProps {
 
 export const Card = ({ imageUrl, slug, title, description }: CardProps) => {
   return (
-    <Link href={`/portfolio/${slug}`}>
+    <Link href={`/portfolio/${slug}`} className="block w-full">
       <div className="group w-full max-w-sm cursor-pointer">
         <div className="relative overflow-hidden rounded-lg">
           <Image
@@ -21,19 +21,19 @@ export const Card = ({ imageUrl, slug, title, description }: CardProps) => {
             height={382}
             className="rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
           />
-
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <span className="flex cursor-pointer items-center gap-2 text-lg text-white underline">
-              View Portfolio <MoveUpRight size={20} />
-            </span>
-          </div>
         </div>
 
-        <div className="mt-5 space-y-2 transition-transform duration-500 group-hover:-translate-y-1">
-          <h2 className="text-xl font-semibold tracking-tight text-[#040815]">
+        <div className="mt-5 space-y-2.5 transition-transform duration-500 group-hover:-translate-y-1">
+          <h2 className="text-xl font-semibold tracking-tight text-[#040815] transition-colors duration-300 group-hover:text-secondary">
             {title}
           </h2>
           <p className="text-primary leading-relaxed">{description}</p>
+          
+          {/* Always visible 'View Portfolio' link for all screen sizes, perfect for mobile/touch screens */}
+          <div className="inline-flex items-center gap-1.5 text-secondary font-semibold text-sm pt-1 transition-all duration-300 group-hover:underline">
+            <span>View Portfolio</span>
+            <MoveUpRight size={15} />
+          </div>
         </div>
       </div>
     </Link>

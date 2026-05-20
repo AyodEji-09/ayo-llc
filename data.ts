@@ -158,6 +158,57 @@ export const books: Book[] = [
   // },
 ];
 
+export interface Project {
+  title: string;
+  description: string;
+  imageUrl: string;
+  link: string;
+  category: string;
+}
+
+export const webProjects: Project[] = [
+  {
+    title: "City of David Calgary",
+    description:
+      "A highly responsive digital platform for RCCG City of David Calgary, hosting sermon media and community resources.",
+    imageUrl: "/images/cityofdavid.png",
+    link: "https://rccgcityofdavidcalgary.com",
+    category: "Church / Ministry",
+  },
+  {
+    title: "Dola Nancy Bankole",
+    description:
+      "A compassionate digital portal showcasing Counseling services, Parenting guides, and book publications.",
+    imageUrl: "/images/dolanancybankole.png",
+    link: "https://dolanancybankole.com",
+    category: "Portfolio",
+  },
+  {
+    title: "Iyin Ojekunle",
+    description:
+      "The official blog and personal hub for public health advocate and speaker Iyin Ojekunle, showcasing her missions and advocacy work.",
+    imageUrl: "/images/iyinojekunle.png",
+    link: "https://iyinojekunle.com",
+    category: "Portfolio",
+  },
+  {
+    title: "Arise Church Riverside",
+    description:
+      "A modern, engaging website built for Arise Church Riverside to connect their congregation and stream services.",
+    imageUrl: "/images/arisechurch.png",
+    link: "https://arisechurchriverside.org",
+    category: "Church / Ministry",
+  },
+  {
+    title: "RCCG Restoration Arena",
+    description:
+      "An intuitive digital hub for RCCG Restoration Arena featuring sermon streams and interactive ministry calendars.",
+    imageUrl: "/images/restorationarena.png",
+    link: "https://rccgrestorationarena.org",
+    category: "Church / Ministry",
+  },
+];
+
 export interface Testimonial {
   name: string;
   role: string;

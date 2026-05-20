@@ -6,36 +6,47 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
+import { Tag } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { type Project } from "@/data";
 
-const PortfolioCard = () => {
+interface PortfolioCardProps {
+  project: Project;
+}
+
+const PortfolioCard = ({ project }: PortfolioCardProps) => {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0 ring-0">
       <div className="relative aspect-video w-full">
         <Image
-          src="/images/portfolio.png"
-          alt="Event cover"
+          src={project.imageUrl}
+          alt={project.title}
           fill
           priority
           className="z-20 w-full object-cover object-top"
         />
       </div>
       <CardHeader className="gap-2.5">
-        <CardTitle>Comprehensive Spine and Joint</CardTitle>
-        <CardDescription>
-          Comprehensive Spine and Joint helps people of all ages overcome...
+        <CardTitle className="line-clamp-1">{project.title}</CardTitle>
+        <CardDescription className="line-clamp-3">
+          {project.description}
         </CardDescription>
       </CardHeader>
       <CardFooter className="mt-2 flex items-center justify-between gap-2">
         <div className="text-primary flex items-center gap-2 text-sm">
           <span>
-            <MapPin size={18} />
+            <Tag size={16} />
           </span>
-          <p>Michigan, USA</p>
+          <p>{project.category}</p>
         </div>
-        <Button className="bg-secondary hover:bg-secondary/70 h-auto cursor-pointer rounded-sm px-4 py-2.5 text-sm text-white">
-          View Project
+        <Button
+          asChild
+          className="bg-secondary hover:bg-secondary/70 h-auto cursor-pointer rounded-sm px-4 py-2.5 text-sm text-white"
+        >
+          <Link href={project.link} target="_blank" rel="noopener noreferrer">
+            View Project
+          </Link>
         </Button>
       </CardFooter>
     </Card>
@@ -43,3 +54,4 @@ const PortfolioCard = () => {
 };
 
 export default PortfolioCard;
+
