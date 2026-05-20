@@ -10,9 +10,18 @@ import { services, books, webProjects } from "@/data";
 
 type FilterSlug = "all" | (typeof services)[number]["slug"];
 
+// For now, only include services that have portfolio content (or are intended to be shown)
+const allowedFilterSlugs: FilterSlug[] = [
+  "social-media-management",
+  "web-design-management",
+  "book-publishing",
+];
+
 const filters: { label: string; slug: FilterSlug }[] = [
   { label: "All", slug: "all" },
-  ...services.map((s) => ({ label: s.title, slug: s.slug as FilterSlug })),
+  ...services
+    .filter((s) => allowedFilterSlugs.includes(s.slug as FilterSlug))
+    .map((s) => ({ label: s.title, slug: s.slug as FilterSlug })),
 ];
 
 // Helper to render section headers with optional "View All" link
@@ -25,10 +34,7 @@ const SectionHeader = ({
   slug: string;
   showViewAll: boolean;
 }) => (
-  <div
-    className="mb-8 flex items-center justify-between"
-    data-aos="fade-up"
-  >
+  <div className="mb-8 flex items-center justify-between" data-aos="fade-up">
     <h2 className="text-2xl font-bold text-[#040815]">{title}</h2>
     {showViewAll && (
       <Link
@@ -50,9 +56,7 @@ export default function PortfolioPage() {
   const showAll = activeFilter === "all";
 
   // Limit to 3 items in "All" view, show everything when filtered
-  const displayedWebProjects = showAll
-    ? webProjects.slice(0, 3)
-    : webProjects;
+  const displayedWebProjects = showAll ? webProjects.slice(0, 3) : webProjects;
   const displayedBooks = showAll ? books.slice(0, 3) : books;
 
   return (
@@ -156,4 +160,3 @@ export default function PortfolioPage() {
     </div>
   );
 }
-
