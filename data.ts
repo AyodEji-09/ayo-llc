@@ -176,6 +176,14 @@ export const webProjects: Project[] = [
     category: "Church / Ministry",
   },
   {
+    title: "Wonder Kiddies Hub",
+    description:
+      "An engaging website featuring children’s books and faith-based learning resources that inspire creativity and confidence.",
+    imageUrl: "/images/wonderkiddiehub.png",
+    link: "https://wonderkiddiehub.com",
+    category: "Children's Education",
+  },
+  {
     title: "Dola Nancy Bankole",
     description:
       "A compassionate digital portal showcasing Counseling services, Parenting guides, and book publications.",

@@ -26,6 +26,10 @@ export const Navbar = ({ home }: { home?: boolean }) => {
   const pathname = usePathname();
 
   const onClose = () => setOpen(false);
+  const isActiveLink = (url: string) =>
+    url === "/"
+      ? pathname === "/"
+      : pathname === url || pathname.startsWith(`${url}/`);
 
   return (
     <header
@@ -55,7 +59,7 @@ export const Navbar = ({ home }: { home?: boolean }) => {
               <NavigationMenuItem key={idx}>
                 <Link
                   href={link.url}
-                  className={`text-base leading-snug transition-all duration-200 hover:-translate-y-0.5 ${pathname === link.url ? "text-[#7C5CFC] underline underline-offset-4" : "text-white hover:text-[#7C5CFC]"}`}
+                  className={`text-base leading-snug transition-all duration-200 hover:-translate-y-0.5 ${isActiveLink(link.url) ? "text-[#7C5CFC] underline underline-offset-4" : "text-white hover:text-[#7C5CFC]"}`}
                 >
                   {link.name}
                 </Link>
@@ -93,7 +97,7 @@ export const Navbar = ({ home }: { home?: boolean }) => {
                     href={item.url}
                     key={idx}
                     className={`transition-colors duration-200 ${
-                      pathname === item.url
+                      isActiveLink(item.url)
                         ? "text-secondary underline underline-offset-4"
                         : "hover:text-primary"
                     }`}
