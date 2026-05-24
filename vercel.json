@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/webmail",
-      "destination": "https://mail.yourdomain.com/webmail"
+      "destination": "https://mail.ayo-llc.com/webmail"
     },
     {
       "source": "/webmail/:path*",
-      "destination": "https://mail.yourdomain.com/webmail/:path*"
+      "destination": "https://mail.ayo-llc.com/webmail/:path*"
     }
   ]
 }
