@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/webmail",
+      "destination": "https://mail.yourdomain.com/webmail"
+    },
+    {
+      "source": "/webmail/:path*",
+      "destination": "https://mail.yourdomain.com/webmail/:path*"
+    }
+  ]
+}
