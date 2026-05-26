@@ -1,16 +1,15 @@
 import PortfolioCard from "@/components/common/portfolio-card";
 import { BookCard } from "@/components/common/book-card";
 import { EmptyState } from "@/components/common/empty-state";
-import { services, books, webProjects } from "@/data";
+import { SocialMediaCard } from "@/components/common/social-media-card";
+import { services, books, socialMediaProjects, webProjects } from "@/data";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function Portfolio({ params }: PageProps) {
+export default async function Portfolio({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
 
@@ -56,6 +55,19 @@ export default async function Portfolio({ params }: PageProps) {
                 className="w-full"
               >
                 <PortfolioCard project={project} />
+              </div>
+            ))}
+          </div>
+        ) : slug === "social-media-management" ? (
+          <div className="mt-16 grid justify-items-center gap-x-8 gap-y-14 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
+            {socialMediaProjects.map((project, i) => (
+              <div
+                key={project.slug}
+                data-aos="fade-up"
+                data-aos-delay={i * 100}
+                className="w-full"
+              >
+                <SocialMediaCard project={project} />
               </div>
             ))}
           </div>

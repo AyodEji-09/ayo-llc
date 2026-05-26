@@ -217,6 +217,48 @@ export const webProjects: Project[] = [
   },
 ];
 
+export interface SocialMetric {
+  label: string;
+  value: string;
+  delta?: string;
+}
+
+export interface SocialMediaProject {
+  slug: string;
+  title: string;
+  summary: string;
+  thumbnail: string;
+  platforms: string[];
+  metrics: SocialMetric[];
+}
+
+export const socialMediaProjects: SocialMediaProject[] = [
+  {
+    slug: "social-media-management",
+    title: "Social Media Management",
+    summary: `
+    We are a creative and strategy-driven social media management department focused on helping brands
+    grow through impactful storytelling, engaging content, and intentional digital presence. 
+
+    With experience managing 20+ social media platforms across industries including faith, education, lifestyle,
+    skincare, family, and children-focused brands, we create content that builds visibility, connection, and
+    community.
+
+    From content strategy and page management to reels production, branding, and audience engagement, we
+    help brands communicate their message clearly and consistently in the digital space. 
+
+    Our goal is not just to manage pages, but to build meaningful online experiences that inspire growth,
+    influence, and lasting impact.`,
+    thumbnail: "/images/smm.png",
+    platforms: ["Instagram", "Facebook", "X", "YouTube", "TikTok"],
+    metrics: [
+      { label: "Reach", value: "17K", delta: "+9%" },
+      { label: "Engagement Rate", value: "100%" },
+      { label: "Profile Activity", value: "636%" },
+    ],
+  },
+];
+
 export interface Testimonial {
   name: string;
   role: string;

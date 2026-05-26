@@ -6,7 +6,8 @@ import { MoveUpRight } from "lucide-react";
 import PortfolioCard from "@/components/common/portfolio-card";
 import { BookCard } from "@/components/common/book-card";
 import { EmptyState } from "@/components/common/empty-state";
-import { services, books, webProjects } from "@/data";
+import { SocialMediaCard } from "@/components/common/social-media-card";
+import { services, books, socialMediaProjects, webProjects } from "@/data";
 
 type FilterSlug = "all" | (typeof services)[number]["slug"];
 
@@ -51,11 +52,16 @@ export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<FilterSlug>("all");
 
   const hasContent = (slug: string) =>
-    slug === "web-design-management" || slug === "book-publishing";
+    slug === "social-media-management" ||
+    slug === "web-design-management" ||
+    slug === "book-publishing";
 
   const showAll = activeFilter === "all";
 
   // Limit to 3 items in "All" view, show everything when filtered
+  const displayedSocialProjects = showAll
+    ? socialMediaProjects.slice(0, 3)
+    : socialMediaProjects;
   const displayedWebProjects = showAll ? webProjects.slice(0, 3) : webProjects;
   const displayedBooks = showAll ? books.slice(0, 3) : books;
 
@@ -102,6 +108,30 @@ export default function PortfolioPage() {
 
       {/* Portfolio Content */}
       <section>
+        {/* Social Media Projects */}
+        {(showAll || activeFilter === "social-media-management") &&
+          socialMediaProjects.length > 0 && (
+            <div className="mb-16">
+              <SectionHeader
+                title="Social Media Management"
+                slug="social-media-management"
+                showViewAll={showAll && socialMediaProjects.length > 3}
+              />
+              <div className="grid justify-items-center gap-x-8 gap-y-14 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
+                {displayedSocialProjects.map((project, i) => (
+                  <div
+                    key={project.slug}
+                    data-aos="fade-up"
+                    data-aos-delay={i * 100}
+                    className="w-full"
+                  >
+                    <SocialMediaCard project={project} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
         {/* Web Design Projects */}
         {(showAll || activeFilter === "web-design-management") &&
           webProjects.length > 0 && (
