@@ -7,7 +7,7 @@ interface ReviewsSectionProps {
 }
 
 export const ReviewsSection = ({
-  subtitle = "WHAT OUR CLIENTS SAYS",
+  subtitle = "WHAT OUR CLIENTS SAY",
   header = "Our Clients Kind Words",
   description = (
     <>
