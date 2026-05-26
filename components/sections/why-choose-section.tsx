@@ -13,7 +13,7 @@ export const WhyChooseSection = ({
   description = (
     <>
       Choose Ayo LLC - where innovative technology meets exceptional solutions
-      <br className="hidden md:block" />
+      <br className="hidden md:block" /> {" "}
       for a smarter future.
     </>
   ),
