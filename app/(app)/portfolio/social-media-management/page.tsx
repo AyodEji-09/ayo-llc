@@ -43,7 +43,7 @@ export default function SocialMediaManagementPage() {
     <div className="mx-auto max-w-6xl space-y-14 px-4 pt-16 pb-28 sm:space-y-16 sm:px-6 sm:pt-20 lg:space-y-20 lg:px-8">
       <section className="mx-auto max-w-2xl text-center" data-aos="fade-up">
         <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
-          SOCIAL MEDIA MANAGEMENT
+          OUR PORTFOLIO
         </p>
         <h1 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
           {project.title}
