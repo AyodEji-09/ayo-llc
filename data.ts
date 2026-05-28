@@ -25,9 +25,14 @@ export const partners = [
   "/images/GFGH1.png",
   "/images/ARISEII.png",
   "/images/_PGC.png",
+  "/images/VHOP.jpeg",
   "/images/WONDERKIDDIESHUBLogoII.png",
+  "/images/HOF.jpeg",
   "/images/ZIONCOVENANTMINISTRYLOGOicon.png",
   "/images/REVIVALCENTERLOGO1.png",
+  "/images/DCB.jpeg",
+  "/images/GNC.jpeg",
+  "/images/JIC.jpeg",
 ];
 
 export const services = [
