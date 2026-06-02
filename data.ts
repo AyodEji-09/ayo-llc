@@ -129,10 +129,10 @@ export interface Book {
 }
 
 export const books: Book[] = [
-  {
-    title: "A Life Redeemed",
-    coverImage: "/images/a-life-redeemed.jpg",
-  },
+  // {
+  //   title: "A Life Redeemed",
+  //   coverImage: "/images/a-life-redeemed.jpg",
+  // },
   {
     title: "HUG",
     coverImage: "/images/hug.jpg",
@@ -339,8 +339,8 @@ export const testimonials: Testimonial[] = [
     ],
   },
   {
-    name: "HUG",
-    role: "Author",
+    name: "Dola Nancy",
+    role: "Author of 'HUG (Healing • Understanding • Gratitude)'",
     service: "Book Publishing",
     testimonial:
       "Working with your agency to publish HUG was truly uplifting. Your professionalism and dedication helped transform my manuscript into a polished, impactful book. I appreciated your attention to detail and the way you honored my vision throughout the process. I wholeheartedly recommend your services to any author seeking excellence and a trustworthy partnership.",
