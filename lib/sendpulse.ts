@@ -5,16 +5,42 @@ const SENDPULSE_EMAIL_URL = "https://api.sendpulse.com/smtp/emails";
 const SENDPULSE_ADDRESS_BOOKS_URL = "https://api.sendpulse.com/addressbooks";
 
 /**
- * Ensures phone number is formatted with a leading + for SendPulse international delivery.
- * Users type in their country code (e.g. +234... or +1...).
+ * Ensures phone number is formatted with a leading + and valid international structure.
+ * Strips trunk zeros (e.g. +234080... -> +23480...) and normalizes local formats.
  */
 export function normalizePhoneNumber(phone?: string): string {
   if (!phone) return "";
 
-  const cleaned = phone.replace(/[\s\-\(\)\.]/g, "").trim();
+  // 1. Remove all spaces, dashes, dots, parentheses, and extra whitespace
+  let cleaned = phone.replace(/[\s\-\(\)\.]/g, "").trim();
   if (!cleaned) return "";
 
-  return cleaned.startsWith("+") ? cleaned : `+${cleaned}`;
+  // 2. If starts with 00, convert to +
+  if (cleaned.startsWith("00")) {
+    cleaned = `+${cleaned.slice(2)}`;
+  }
+
+  // 3. If starts with 0 followed by 10 digits (Nigerian local format: 08012345678, 070..., 090..., 081...)
+  if (/^0[789]\d{9}$/.test(cleaned)) {
+    cleaned = `+234${cleaned.slice(1)}`;
+  } else if (!cleaned.startsWith("+")) {
+    cleaned = `+${cleaned}`;
+  }
+
+  // 4. Strip trunk zero immediately following country code:
+  // Nigeria (+234): +23408012345678 -> +2348012345678
+  cleaned = cleaned.replace(/^\+2340([789]\d{8,9})$/, "+234$1");
+  cleaned = cleaned.replace(/^\+2340/, "+234");
+  // UK (+44): +4407... -> +447...
+  cleaned = cleaned.replace(/^\+440/, "+44");
+  // Kenya (+254): +2540... -> +254...
+  cleaned = cleaned.replace(/^\+2540/, "+254");
+  // Ghana (+233): +2330... -> +233...
+  cleaned = cleaned.replace(/^\+2330/, "+233");
+  // South Africa (+27): +270... -> +27...
+  cleaned = cleaned.replace(/^\+270/, "+27");
+
+  return cleaned;
 }
 
 /**
@@ -72,8 +98,8 @@ export async function addContactToAddressBook(
       email,
       variables: {
         name,
-        phone: normalizedPhone,
         Phone: normalizedPhone,
+        phone: normalizedPhone,
         ...variables,
       },
     };
@@ -81,7 +107,7 @@ export async function addContactToAddressBook(
     const url = `${SENDPULSE_ADDRESS_BOOKS_URL}/${addressBookId}/emails`;
     await axios.post(
       url,
-      { emails: JSON.stringify([emailData]) },
+      { emails: [emailData] },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -126,64 +152,155 @@ export async function sendWebinarConfirmationEmail({
 
   const htmlContent = `
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
     <head>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>The Author's Blueprint Registration Confirmation</title>
       <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #1f2937; background-color: #f3f4f6; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header { background: linear-gradient(135deg, #000061 0%, #1e1b4b 100%); color: #ffffff; padding: 36px 24px; text-align: center; }
-        .header h1 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
-        .header p { margin-top: 8px; font-size: 14px; opacity: 0.9; }
-        .content { padding: 32px 24px; }
-        .greeting { font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px; }
-        .card { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
-        .card-item { display: flex; margin-bottom: 10px; font-size: 14px; }
-        .card-label { font-weight: 600; width: 110px; color: #64748b; }
-        .card-value { color: #0f172a; font-weight: 500; }
-        .btn-container { text-align: center; margin: 30px 0; }
-        .btn { display: inline-block; background-color: #7C5CFC; color: #ffffff !important; font-size: 16px; font-weight: 600; text-decoration: none; padding: 14px 28px; border-radius: 8px; box-shadow: 0 4px 10px rgba(124, 92, 252, 0.3); }
-        .footer { background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; padding: 20px; color: #94a3b8; font-size: 12px; }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          line-height: 1.6;
+          color: #1a1c1c;
+          background-color: #ffffff;
+          margin: 0;
+          padding: 0;
+          -webkit-font-smoothing: antialiased;
+        }
+        .container {
+          max-width: 600px;
+          margin: 0;
+          padding: 32px 24px;
+          text-align: left;
+        }
+        .title {
+          font-size: 24px;
+          font-weight: 700;
+          color: #1a1c1c;
+          margin: 0 0 6px 0;
+          line-height: 1.3;
+          text-align: left;
+        }
+        .subtitle {
+          font-size: 14px;
+          font-weight: 500;
+          color: #5d5d6f;
+          margin: 0 0 28px 0;
+          text-align: left;
+          line-height: 1.4;
+        }
+        .greeting {
+          font-size: 16px;
+          font-weight: 600;
+          color: #1a1c1c;
+          margin-bottom: 12px;
+          text-align: left;
+        }
+        .paragraph {
+          font-size: 15px;
+          color: #4b5563;
+          margin: 0 0 16px 0;
+          line-height: 1.6;
+          text-align: left;
+        }
+        .details-section {
+          border-top: 1px solid #E2E2E9;
+          border-bottom: 1px solid #E2E2E9;
+          padding: 18px 0;
+          margin: 24px 0;
+          text-align: left;
+        }
+        .detail-row {
+          margin-bottom: 8px;
+          font-size: 14px;
+          display: flex;
+        }
+        .detail-row:last-child {
+          margin-bottom: 0;
+        }
+        .detail-label {
+          font-weight: 600;
+          width: 90px;
+          color: #5d5d6f;
+          font-size: 13px;
+        }
+        .detail-value {
+          color: #1a1c1c;
+          font-weight: 500;
+        }
+        .btn-wrapper {
+          text-align: left;
+          margin: 24px 0;
+        }
+        .btn {
+          display: inline-block;
+          background-color: #5f3add;
+          color: #ffffff !important;
+          font-size: 15px;
+          font-weight: 600;
+          text-decoration: none;
+          padding: 12px 28px;
+          border-radius: 8px;
+        }
+        .link-fallback {
+          font-size: 13px;
+          color: #6b7280;
+          margin-top: 16px;
+          word-break: break-all;
+          text-align: left;
+        }
+        .link-url {
+          color: #5f3add;
+          text-decoration: underline;
+        }
+        .footer {
+          margin-top: 36px;
+          padding-top: 20px;
+          border-top: 1px solid #f3f4f6;
+          text-align: left;
+          color: #6b7280;
+          font-size: 13px;
+        }
       </style>
     </head>
     <body>
       <div class="container">
-        <div class="header">
-          <h1>Registration Confirmed! 🎉</h1>
-          <p>THE AUTHOR'S BLUEPRINT: From Book Idea to a Published Work</p>
-        </div>
-        <div class="content">
-          <div class="greeting">Hi ${name},</div>
-          <p>Thank you for registering! Your payment has been successfully confirmed. You're all set to join us for this transformative 2-day virtual experience.</p>
-          
-          <div class="card">
-            <div class="card-item">
-              <span class="card-label">📅 Dates:</span>
-              <span class="card-value">9th & 10th October 2026</span>
-            </div>
-            <div class="card-item">
-              <span class="card-label">⏰ Time:</span>
-              <span class="card-value">2PM CST / 3PM EST / 8PM WAT / 12PM PST</span>
-            </div>
-            <div class="card-item">
-              <span class="card-label">📍 Venue:</span>
-              <span class="card-value">Online Virtual Meeting Room</span>
-            </div>
+        <div class="greeting">Hi ${name},</div>
+        <p class="paragraph">
+          Thank you for registering! Your payment has been successfully confirmed, and your seat is reserved for this 2-day virtual experience.
+        </p>
+
+        <div class="details-section">
+          <div class="detail-row">
+            <span class="detail-label">📅 Dates:</span>
+            <span class="detail-value">9th &amp; 10th October 2026</span>
           </div>
-
-          <p>Below is your private access link to enter the meeting room when the event begins:</p>
-
-          <div class="btn-container">
-            <a href="${meetingLink}" target="_blank" class="btn">Join Meeting Room</a>
+          <div class="detail-row" style="margin-top: 8px;">
+            <span class="detail-label">⏰ Time:</span>
+            <span class="detail-value">2PM CST / 3PM EST / 8PM WAT / 12PM PST</span>
           </div>
-
-          <p style="font-size: 13px; color: #6b7280;">If the button above does not work, copy and paste this link into your web browser:<br/><a href="${meetingLink}" style="color: #7C5CFC; word-break: break-all;">${meetingLink}</a></p>
-
-          <p>We look forward to seeing you there!</p>
-          <p style="margin-top: 24px;">Best regards,<br/><strong>The AYO LLC Team</strong></p>
+          <div class="detail-row" style="margin-top: 8px;">
+            <span class="detail-label">📍 Venue:</span>
+            <span class="detail-value">Online Virtual Meeting Room</span>
+          </div>
         </div>
+
+        <p class="paragraph">
+          Below is your private access link to enter the meeting room when the event begins:
+        </p>
+
+        <div class="btn-wrapper">
+          <a href="${meetingLink}" target="_blank" class="btn">Join Meeting Room</a>
+        </div>
+
+        <p class="link-fallback">
+          If the button above does not work, copy and paste this link into your web browser:<br/>
+          <a href="${meetingLink}" class="link-url">${meetingLink}</a>
+        </p>
+
         <div class="footer">
-          <p>© 2026 AYO LLC. All rights reserved.<br/>Riverside, California, USA</p>
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #1a1c1c;">The AYO LLC Team</p>
+          <p style="margin: 0; color: #9ca3af;">&copy; 2026 AYO LLC &bull; Riverside, California, USA</p>
         </div>
       </div>
     </body>

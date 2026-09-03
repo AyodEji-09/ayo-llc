@@ -24,27 +24,27 @@ export const AnnouncementBar = () => {
 
   return (
     <div className="relative z-50 bg-gradient-to-r from-[#000061] via-[#1e1b4b] to-[#7C5CFC] text-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8">
-        <div className="flex flex-1 items-center justify-center gap-2 text-xs font-medium sm:gap-3 sm:text-sm">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-2 sm:px-6 lg:px-8">
+        <div className="flex flex-1 flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-xs font-medium sm:gap-x-3 sm:text-sm">
           <span className="hidden text-[11px] font-semibold tracking-wider text-white/90 uppercase sm:inline">
-            Coming Up:
+            Virtual Experience:
           </span>
-          <span className="truncate">
+          <span className="leading-snug">
             {WEBINAR_CONFIG.theme} — {WEBINAR_CONFIG.dates}
           </span>
 
           <Link
             href="/webinar"
-            className="inline-flex items-center gap-1 font-semibold text-white underline underline-offset-4 transition-colors hover:text-white/80"
+            className="inline-flex items-center gap-1 font-semibold text-white underline underline-offset-4 whitespace-nowrap transition-colors hover:text-white/80"
           >
             <span>Register Now</span>
-            <ArrowRight className="size-3.5" />
+            <ArrowRight className="size-3.5 shrink-0" />
           </Link>
         </div>
 
         <button
           onClick={handleDismiss}
-          className="ml-2 rounded-md p-1 text-white/80 transition hover:bg-white/10 hover:text-white"
+          className="ml-2 shrink-0 rounded-md p-1 text-white/80 transition hover:bg-white/10 hover:text-white"
           aria-label="Close notification"
         >
           <X className="size-4" />
