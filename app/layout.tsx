@@ -48,6 +48,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,6 +70,7 @@ export default function RootLayout({
         <AOSInit />
         <Toaster position="top-right" />
         <div className="flex min-h-full flex-col">
+          <AnnouncementBar />
           <main className="grow overflow-hidden">{children}</main>
           <Footer />
         </div>
