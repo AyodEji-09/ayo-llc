@@ -130,6 +130,8 @@ interface SendWebinarEmailParams {
   email: string;
   name: string;
   meetingLink?: string;
+  meetingId?: string;
+  passcode?: string;
 }
 
 /**
@@ -140,6 +142,8 @@ export async function sendWebinarConfirmationEmail({
   name,
   meetingLink = process.env.WEBINAR_MEETING_LINK ||
     "https://zoom.us/j/meeting-link",
+  meetingId = process.env.WEBINAR_MEETING_ID || "",
+  passcode = process.env.WEBINAR_MEETING_PASSCODE || "",
 }: SendWebinarEmailParams): Promise<boolean> {
   const token = await getSendPulseToken();
   if (!token) {
@@ -173,22 +177,6 @@ export async function sendWebinarConfirmationEmail({
           padding: 32px 24px;
           text-align: left;
         }
-        .title {
-          font-size: 24px;
-          font-weight: 700;
-          color: #1a1c1c;
-          margin: 0 0 6px 0;
-          line-height: 1.3;
-          text-align: left;
-        }
-        .subtitle {
-          font-size: 14px;
-          font-weight: 500;
-          color: #5d5d6f;
-          margin: 0 0 28px 0;
-          text-align: left;
-          line-height: 1.4;
-        }
         .greeting {
           font-size: 16px;
           font-weight: 600;
@@ -220,13 +208,14 @@ export async function sendWebinarConfirmationEmail({
         }
         .detail-label {
           font-weight: 600;
-          width: 90px;
+          width: 105px;
           color: #5d5d6f;
           font-size: 13px;
         }
         .detail-value {
           color: #1a1c1c;
           font-weight: 500;
+          font-size: 14px;
         }
         .btn-wrapper {
           text-align: left;
@@ -242,16 +231,23 @@ export async function sendWebinarConfirmationEmail({
           padding: 12px 28px;
           border-radius: 8px;
         }
+        .link-clean {
+          color: #5f3add;
+          font-weight: 600;
+          text-decoration: underline;
+        }
         .link-fallback {
-          font-size: 13px;
+          font-size: 12px;
           color: #6b7280;
           margin-top: 16px;
-          word-break: break-all;
+          line-height: 1.5;
           text-align: left;
         }
         .link-url {
           color: #5f3add;
           text-decoration: underline;
+          word-break: break-all;
+          overflow-wrap: anywhere;
         }
         .footer {
           margin-top: 36px;
@@ -275,27 +271,41 @@ export async function sendWebinarConfirmationEmail({
             <span class="detail-label">📅 Dates:</span>
             <span class="detail-value">9th &amp; 10th October 2026</span>
           </div>
-          <div class="detail-row" style="margin-top: 8px;">
+          <div class="detail-row" style="margin-top: 10px;">
             <span class="detail-label">⏰ Time:</span>
             <span class="detail-value">2PM CST / 3PM EST / 8PM WAT / 12PM PST</span>
           </div>
-          <div class="detail-row" style="margin-top: 8px;">
-            <span class="detail-label">📍 Venue:</span>
-            <span class="detail-value">Online Virtual Meeting Room</span>
-          </div>
+          ${
+            meetingId
+              ? `
+          <div class="detail-row" style="margin-top: 10px;">
+            <span class="detail-label">🆔 Meeting ID:</span>
+            <span class="detail-value">${meetingId}</span>
+          </div>`
+              : ""
+          }
+          ${
+            passcode
+              ? `
+          <div class="detail-row" style="margin-top: 10px;">
+            <span class="detail-label">🔑 Password:</span>
+            <span class="detail-value">${passcode}</span>
+          </div>`
+              : ""
+          }
         </div>
-
-        <p class="paragraph">
-          Below is your private access link to enter the meeting room when the event begins:
-        </p>
 
         <div class="btn-wrapper">
           <a href="${meetingLink}" target="_blank" class="btn">Join Meeting Room</a>
         </div>
 
         <p class="link-fallback">
-          If the button above does not work, copy and paste this link into your web browser:<br/>
+          If the button above does not open, copy and paste this direct link into your browser:<br/>
           <a href="${meetingLink}" class="link-url">${meetingLink}</a>
+        </p>
+
+        <p class="paragraph" style="margin-top: 24px;">
+          We look forward to seeing you there! If you have any questions, feel free to reply directly to this email.
         </p>
 
         <div class="footer">
@@ -310,7 +320,7 @@ export async function sendWebinarConfirmationEmail({
   const emailData = {
     email: {
       html: Buffer.from(htmlContent).toString("base64"),
-      text: `Registration Confirmed!\n\nHi ${name},\n\nThank you for registering for THE AUTHOR'S BLUEPRINT: From Book Idea to a Published Work.\n\nDate: 9th & 10th October 2026\nTime: 2PM CST / 3PM EST / 8PM WAT / 12PM PST\n\nYour Private Access Link:\n${meetingLink}\n\nBest regards,\nAYO LLC Team`,
+      text: `Hi ${name},\n\nThank you for registering! Your payment has been successfully confirmed, and your seat is reserved for this 2-day virtual experience.\n\nDates: 9th & 10th October 2026\nTime: 2PM CST / 3PM EST / 8PM WAT / 12PM PST\nLink: ${meetingLink}${meetingId ? `\nMeeting ID: ${meetingId}` : ""}${passcode ? `\nPassword: ${passcode}` : ""}\n\nWe look forward to seeing you there!\n\nBest regards,\nAYO LLC Team\nRiverside, California, USA`,
       subject: `[Confirmed] Access Link for The Author's Blueprint Webinar`,
       from: { name: fromName, email: fromEmail },
       to: [{ name, email }],
