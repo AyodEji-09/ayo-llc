@@ -142,8 +142,6 @@ interface SendWebinarEmailParams {
   email: string;
   name: string;
   meetingLink?: string;
-  meetingId?: string;
-  passcode?: string;
 }
 
 /**
@@ -154,8 +152,6 @@ export async function sendWebinarConfirmationEmail({
   name,
   meetingLink = process.env.WEBINAR_MEETING_LINK ||
     "https://zoom.us/j/meeting-link",
-  meetingId = process.env.WEBINAR_MEETING_ID || "",
-  passcode = process.env.WEBINAR_MEETING_PASSCODE || "",
 }: SendWebinarEmailParams): Promise<boolean> {
   const token = await getSendPulseToken();
   if (!token) {
@@ -243,11 +239,6 @@ export async function sendWebinarConfirmationEmail({
           padding: 12px 28px;
           border-radius: 8px;
         }
-        .link-clean {
-          color: #5f3add;
-          font-weight: 600;
-          text-decoration: underline;
-        }
         .link-fallback {
           font-size: 12px;
           color: #6b7280;
@@ -287,24 +278,10 @@ export async function sendWebinarConfirmationEmail({
             <span class="detail-label">⏰ Time:</span>
             <span class="detail-value">2PM CST / 3PM EST / 8PM WAT / 12PM PST</span>
           </div>
-          ${
-            meetingId
-              ? `
           <div class="detail-row" style="margin-top: 10px;">
-            <span class="detail-label">🆔 Meeting ID:</span>
-            <span class="detail-value">${meetingId}</span>
-          </div>`
-              : ""
-          }
-          ${
-            passcode
-              ? `
-          <div class="detail-row" style="margin-top: 10px;">
-            <span class="detail-label">🔑 Password:</span>
-            <span class="detail-value">${passcode}</span>
-          </div>`
-              : ""
-          }
+            <span class="detail-label">📍 Venue:</span>
+            <span class="detail-value">Online Virtual Meeting Room</span>
+          </div>
         </div>
 
         <div class="btn-wrapper">
@@ -335,7 +312,7 @@ export async function sendWebinarConfirmationEmail({
   const emailData = {
     email: {
       html: Buffer.from(htmlContent).toString("base64"),
-      text: `Hi ${name},\n\nThank you for registering! Your payment has been successfully confirmed, and your seat is reserved for this 2-day virtual experience.\n\nDates: 9th & 10th October 2026\nTime: 2PM CST / 3PM EST / 8PM WAT / 12PM PST\nLink: ${meetingLink}${meetingId ? `\nMeeting ID: ${meetingId}` : ""}${passcode ? `\nPassword: ${passcode}` : ""}\n\nWe look forward to seeing you there!\n\nBest regards,\nAYO LLC Team\nRiverside, California, USA`,
+      text: `Hi ${name},\n\nThank you for registering! Your payment has been successfully confirmed, and your seat is reserved for this 2-day virtual experience.\n\nDates: 9th & 10th October 2026\nTime: 2PM CST / 3PM EST / 8PM WAT / 12PM PST\nVenue: Online Virtual Meeting Room\n\nYour Private Access Link:\n${meetingLink}\n\nWe look forward to seeing you there!\n\nBest regards,\nAYO LLC Team\nRiverside, California, USA`,
       subject: `[Confirmed] Access Link for The Author's Blueprint Webinar`,
       from: { name: fromName, email: fromEmail },
       to: [{ name, email }],
