@@ -43,8 +43,11 @@ export function normalizePhoneNumber(phone?: string): string {
   return cleaned;
 }
 
+let cachedToken: string | null = null;
+let tokenExpiresAt = 0;
+
 /**
- * Get SendPulse access token via OAuth2 credentials
+ * Get SendPulse access token via OAuth2 credentials (with in-memory caching)
  */
 export async function getSendPulseToken(): Promise<string | null> {
   const clientId = process.env.SENDPULSE_CLIENT_ID;
@@ -57,6 +60,11 @@ export async function getSendPulseToken(): Promise<string | null> {
     return null;
   }
 
+  // Return cached token if still valid (with 60s buffer)
+  if (cachedToken && Date.now() < tokenExpiresAt - 60000) {
+    return cachedToken;
+  }
+
   try {
     const response = await axios.post(SENDPULSE_TOKEN_URL, {
       grant_type: "client_credentials",
@@ -64,7 +72,11 @@ export async function getSendPulseToken(): Promise<string | null> {
       client_secret: clientSecret,
     });
 
-    return response.data.access_token;
+    cachedToken = response.data.access_token;
+    const expiresIn = response.data.expires_in || 3600;
+    tokenExpiresAt = Date.now() + expiresIn * 1000;
+
+    return cachedToken;
   } catch (error) {
     console.error("Error authenticating with SendPulse:", error);
     return null;
@@ -305,12 +317,15 @@ export async function sendWebinarConfirmationEmail({
         </p>
 
         <p class="paragraph" style="margin-top: 24px;">
-          We look forward to seeing you there! If you have any questions, feel free to reply directly to this email.
+          We look forward to seeing you there! If you have any questions or need assistance, feel free to get in touch with our team.
         </p>
 
         <div class="footer">
           <p style="margin: 0 0 4px 0; font-weight: 600; color: #1a1c1c;">The AYO LLC Team</p>
           <p style="margin: 0; color: #9ca3af;">&copy; 2026 AYO LLC &bull; Riverside, California, USA</p>
+          <span style="opacity: 0; font-size: 0px; line-height: 0px; height: 0px; overflow: hidden; display: none !important;">
+            &zwnj;&nbsp;&zwnj;&nbsp;[ref-${Date.now()}]
+          </span>
         </div>
       </div>
     </body>

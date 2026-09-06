@@ -68,11 +68,11 @@ export async function POST(request: NextRequest) {
     if (email) {
       console.log(`Processing paid registration for ${name} (${email}, phone: ${phone})...`);
 
-      // 1. Sync contact to SendPulse Address Book
-      await addContactToAddressBook(email, name, phone, { stage, currency });
-
-      // 2. Send automated confirmation email with meeting link
-      await sendWebinarConfirmationEmail({ email, name });
+      // Execute address book sync and email dispatch concurrently
+      await Promise.all([
+        addContactToAddressBook(email, name, phone, { stage, currency }),
+        sendWebinarConfirmationEmail({ email, name }),
+      ]);
     }
   }
 
