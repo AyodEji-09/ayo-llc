@@ -16,6 +16,10 @@ export const NAVIGATION_LINKS = [
     url: "/portfolio",
   },
   {
+  name: "Blog",
+  url: "/blog",
+  },
+  {
     name: "Webinar",
     url: "/webinar",
   },
