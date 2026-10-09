@@ -5,7 +5,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { AOSInit } from "@/components/common/aos-init";
 import { Toaster } from "@/components/ui/sonner";
-import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -66,7 +66,7 @@ export default function RootLayout({
       )}
     >
       <body className="overflow-x-hidden overflow-y-auto">
-        <GoogleAnalytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-ZQBJDXHCJ2"} />
         <Script
           id="meta-pixel"
           strategy="afterInteractive"
