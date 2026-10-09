@@ -1,5 +1,7 @@
 import { GridWrapper } from "@/components/common/grid-wrapper";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { partners } from "@/data";
 import Image from "next/image";
 import { PartnersMarquee } from "@/components/common/partners-marquee";
@@ -10,7 +12,8 @@ import { ReviewsSection } from "@/components/sections/reviews-section";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex min-h-full flex-col">
+      <AnnouncementBar />
       {/* hero */}
       <section className="relative min-h-screen overflow-hidden">
         <Image
@@ -73,6 +76,8 @@ export default function Home() {
         {/* reviews */}
         <ReviewsSection />
       </section>
-    </>
+      <Footer />
+    </div>
   );
 }
+

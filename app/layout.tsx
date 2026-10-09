@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Footer } from "@/components/layout/footer";
 import { AOSInit } from "@/components/common/aos-init";
 import { Toaster } from "@/components/ui/sonner";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -48,8 +49,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { AnnouncementBar } from "@/components/layout/announcement-bar";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,14 +66,40 @@ export default function RootLayout({
       )}
     >
       <body className="overflow-x-hidden overflow-y-auto">
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-ZQBJDXHCJ2"} />
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1623138489207682');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1623138489207682&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
         <AOSInit />
         <Toaster position="top-right" />
-        <div className="flex min-h-full flex-col">
-          <AnnouncementBar />
-          <main className="grow overflow-hidden">{children}</main>
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );
 }
+
