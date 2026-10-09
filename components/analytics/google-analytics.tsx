@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 declare global {
   interface Window {
@@ -11,9 +11,9 @@ declare global {
   }
 }
 
-const GA_ID = "G-ZQBJDXHCJ2";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-ZQBJDXHCJ2";
 
-export function GoogleAnalytics() {
+function GoogleAnalyticsTracking() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -28,6 +28,10 @@ export function GoogleAnalytics() {
     });
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+export function GoogleAnalytics() {
   return (
     <>
       <Script
@@ -42,6 +46,9 @@ export function GoogleAnalytics() {
           gtag('config', '${GA_ID}', { send_page_view: false });
         `}
       </Script>
+      <Suspense fallback={null}>
+        <GoogleAnalyticsTracking />
+      </Suspense>
     </>
   );
 }

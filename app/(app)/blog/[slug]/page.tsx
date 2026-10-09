@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import {ArrowLeft, Calendar} from 'lucide-react'
-import {PortableText} from '@portabletext/react'
+import {PortableText, type PortableTextComponents} from '@portabletext/react'
 import {notFound} from 'next/navigation'
-import {client} from '@/lib/sanity/client'
-import {urlFor} from '@/lib/sanity/image'
+import {client} from '@/sanity/lib/client'
+import {urlFor} from '@/sanity/lib/image'
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -20,32 +20,33 @@ const POST_QUERY = `*[
   "categories": categories[]->title
 }`
 
-const portableTextComponents = {
+const portableTextComponents: PortableTextComponents = {
   block: {
-    normal: ({children}: any) => <p className="mb-6 text-[17px] leading-8 text-gray-800">{children}</p>,
-    h1: ({children}: any) => <h2 className="mb-6 mt-12 text-4xl font-bold leading-tight text-gray-900">{children}</h2>,
-    h2: ({children}: any) => <h2 className="mb-5 mt-10 text-3xl font-semibold leading-snug text-gray-900">{children}</h2>,
-    h3: ({children}: any) => <h3 className="mb-4 mt-8 text-2xl font-semibold text-gray-900">{children}</h3>,
-    h4: ({children}: any) => <h4 className="mb-3 mt-6 text-xl font-semibold text-gray-900">{children}</h4>,
-    blockquote: ({children}: any) => <blockquote className="my-8 border-l-4 border-[#000061] pl-5 italic text-gray-700">{children}</blockquote>,
+    normal: ({children}) => <p className="mb-6 text-[17px] leading-8 text-gray-800">{children}</p>,
+    h1: ({children}) => <h2 className="mb-6 mt-12 text-4xl font-bold leading-tight text-gray-900">{children}</h2>,
+    h2: ({children}) => <h2 className="mb-5 mt-10 text-3xl font-semibold leading-snug text-gray-900">{children}</h2>,
+    h3: ({children}) => <h3 className="mb-4 mt-8 text-2xl font-semibold text-gray-900">{children}</h3>,
+    h4: ({children}) => <h4 className="mb-3 mt-6 text-xl font-semibold text-gray-900">{children}</h4>,
+    blockquote: ({children}) => <blockquote className="my-8 border-l-4 border-[#000061] pl-5 italic text-gray-700">{children}</blockquote>,
   },
   list: {
-    bullet: ({children}: any) => <ul className="mb-8 list-disc space-y-3 pl-6">{children}</ul>,
-    number: ({children}: any) => <ol className="mb-8 list-decimal space-y-3 pl-6">{children}</ol>,
+    bullet: ({children}) => <ul className="mb-8 list-disc space-y-3 pl-6">{children}</ul>,
+    number: ({children}) => <ol className="mb-8 list-decimal space-y-3 pl-6">{children}</ol>,
   },
   listItem: {
-    bullet: ({children}: any) => <li className="leading-8 text-gray-800">{children}</li>,
-    number: ({children}: any) => <li className="leading-8 text-gray-800">{children}</li>,
+    bullet: ({children}) => <li className="leading-8 text-gray-800">{children}</li>,
+    number: ({children}) => <li className="leading-8 text-gray-800">{children}</li>,
   },
   marks: {
-    link: ({children, value}: any) => (
+    link: ({children, value}) => (
       <a href={value?.href} target="_blank" rel="noopener noreferrer" className="font-medium text-[#000061] underline underline-offset-2">
         {children}
       </a>
     ),
   },
   types: {
-    image: ({value}: any) => (
+    image: ({value}) => (
+      /* eslint-disable-next-line @next/next/no-img-element */
       <img src={urlFor(value).width(1200).fit('max').url()} alt={value.alt || ''} className="my-10 w-full rounded-xl shadow-md" />
     ),
   },
@@ -105,17 +106,18 @@ export default async function BlogPostPage({params}: {params: Promise<{slug: str
           </div>
         </div>
 
-       {post.mainImage?.asset && (
-  <img
-    src={urlFor(post.mainImage)
-      .width(1400)
-      .height(900)
-      .fit('crop')
-      .url()}
-    alt={post.mainImage.alt || post.title}
-    className="w-full h-auto aspect-square object-contain rounded-xl mb-8"
-  />
-)}
+        {post.mainImage?.asset && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={urlFor(post.mainImage)
+              .width(1400)
+              .height(900)
+              .fit('crop')
+              .url()}
+            alt={post.mainImage.alt || post.title}
+            className="w-full h-auto aspect-square object-contain rounded-xl mb-8"
+          />
+        )}
 
         {post.excerpt && <p className="mt-10 text-lg leading-8 text-gray-600">{post.excerpt}</p>}
 

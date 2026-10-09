@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {Calendar, ArrowRight, Sparkles} from 'lucide-react'
-import {client} from '@/lib/sanity/client'
-import {urlFor} from '@/lib/sanity/image'
+import {client} from '@/sanity/lib/client'
+import {urlFor} from '@/sanity/lib/image'
 
 const POSTS_QUERY = `*[
   _type == "post" &&
@@ -21,7 +21,18 @@ const POSTS_QUERY = `*[
   "categories": categories[]->title
 }`
 
-async function getPosts() {
+interface BlogPost {
+  _id: string
+  title: string
+  slug: { current: string }
+  mainImage?: { asset: unknown; alt?: string }
+  publishedAt: string
+  excerpt?: string
+  author?: string
+  categories?: string[]
+}
+
+async function getPosts(): Promise<BlogPost[]> {
   return client.fetch(POSTS_QUERY)
 }
 
@@ -63,16 +74,20 @@ export default async function BlogPage() {
 
         {posts.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-10 text-center">
+            <p className="text-lg text-gray-500">
+              No posts yet. Check back soon!
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post: any) => (
+            {posts.map((post) => (
               <article
                 key={post._id}
                 className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="relative h-56 overflow-hidden bg-gray-100 sm:h-60">
                   {post.mainImage?.asset ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
                     <img
                       src={urlFor(post.mainImage)
                         .width(900)

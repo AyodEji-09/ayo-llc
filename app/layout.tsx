@@ -3,11 +3,9 @@ import Script from "next/script";
 import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Footer } from "@/components/layout/footer";
 import { AOSInit } from "@/components/common/aos-init";
 import { Toaster } from "@/components/ui/sonner";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
-import { AnnouncementBar } from "@/components/layout/announcement-bar";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -88,6 +86,7 @@ export default function RootLayout({
           }}
         />
         <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             height="1"
             width="1"
@@ -98,12 +97,9 @@ export default function RootLayout({
         </noscript>
         <AOSInit />
         <Toaster position="top-right" />
-        <div className="flex min-h-full flex-col">
-          <AnnouncementBar />
-          <main className="grow overflow-hidden">{children}</main>
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );
 }
+
