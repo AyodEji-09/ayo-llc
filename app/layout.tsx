@@ -58,7 +58,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "h-full",
+        "h-full overflow-x-hidden",
         "antialiased",
         plusJakartaSans.variable,
         "font-sans",

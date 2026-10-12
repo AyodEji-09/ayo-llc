@@ -12,10 +12,11 @@ import { ReviewsSection } from "@/components/sections/reviews-section";
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-full w-full flex-col overflow-x-hidden">
       <AnnouncementBar />
-      {/* hero */}
-      <section className="relative min-h-screen overflow-hidden">
+      <main className="w-full grow overflow-x-hidden">
+        {/* hero */}
+        <section className="relative min-h-screen overflow-hidden">
         <Image
           src="/images/bg.png"
           alt="Background Image"
@@ -48,7 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
+      <section className="mx-auto w-full max-w-6xl space-y-24 px-4 pt-14 pb-28 sm:space-y-28 sm:px-6 lg:space-y-32">
         {/* partners */}
         <div data-aos="fade-up">
           <PartnersMarquee partners={partners} />
@@ -76,6 +77,7 @@ export default function Home() {
         {/* reviews */}
         <ReviewsSection />
       </section>
+      </main>
       <Footer />
     </div>
   );

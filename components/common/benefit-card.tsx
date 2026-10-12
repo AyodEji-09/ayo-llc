@@ -18,7 +18,7 @@ export const BenefitCard = ({ icon, title, description }: BenefitCardProps) => {
           className="object-contain"
         />
       </div>
-      <div className="flex flex-col gap-2 transition-transform duration-300 group-hover:translate-x-1">
+      <div className="flex min-w-0 flex-1 flex-col gap-2 transition-transform duration-300 group-hover:translate-x-1">
         <h3 className="text-lg font-semibold tracking-tight text-[#040815]">
           {title}
         </h3>

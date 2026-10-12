@@ -18,12 +18,12 @@ export const Card = ({ imageUrl, slug, title, description }: CardProps) => {
 
   return (
     <div className="group w-full max-w-sm">
-      <div className="relative overflow-hidden rounded-lg">
+      <div className="relative aspect-square w-full overflow-hidden rounded-lg">
         <Image
           src={imageUrl}
           alt={title}
-          width={382}
-          height={382}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 382px"
           className="rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>

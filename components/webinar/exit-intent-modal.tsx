@@ -13,20 +13,11 @@ export function ExitIntentModal({ onClaim }: ExitIntentModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Exit-intent modal is strictly for desktop exit intent, disabled on mobile
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
+
     const isDismissed = sessionStorage.getItem("webinar_exit_intent_dismissed");
     if (isDismissed) return;
-
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        triggerModal();
-      }
-    };
-
-    const mobileTimer = setTimeout(() => {
-      if (window.innerWidth < 768) {
-        triggerModal();
-      }
-    }, 35000);
 
     const triggerModal = () => {
       const alreadyTriggered = sessionStorage.getItem(
@@ -37,11 +28,16 @@ export function ExitIntentModal({ onClaim }: ExitIntentModalProps) {
       }
     };
 
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        triggerModal();
+      }
+    };
+
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
-      clearTimeout(mobileTimer);
     };
   }, []);
 
