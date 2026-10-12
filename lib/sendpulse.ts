@@ -298,7 +298,7 @@ export async function sendWebinarConfirmationEmail({
           <p style="margin: 0 0 6px 0; font-size: 14px; font-weight: 600; color: #5f3add;">🎁 Your Free Author Resource Guide:</p>
           <p style="margin: 0; font-size: 13px; color: #4b5563;">
             As an attendee perk, you can download your complimentary guide here:<br/>
-            <a href="https://ayollc.com/downloads/free-author-resource.pdf" class="link-url">Download Free Author Resource (PDF)</a>
+            <a href="https://ayollc.com/downloads/a-beginners-guide-to-publishing.pdf" class="link-url">Download A Beginner&apos;s Guide to Publishing (PDF)</a>
           </p>
         </div>
 

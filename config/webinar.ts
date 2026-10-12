@@ -112,9 +112,9 @@ export const WEBINAR_CONFIG: WebinarConfig = {
     },
   ],
   leadMagnet: {
-    title: "Free Author Resource Guide",
+    title: "A Beginner's Guide to Publishing",
     description: "Get the exact step-by-step framework to navigate manuscript editing, cover design, formatting, Amazon KDP publishing, and distribution without the guesswork.",
     coverImage: "/images/webinar.jpeg",
-    downloadUrl: "/downloads/free-author-resource.pdf",
+    downloadUrl: "/downloads/a-beginners-guide-to-publishing.pdf",
   },
 };
