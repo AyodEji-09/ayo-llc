@@ -1,4 +1,5 @@
 import axios from "axios";
+import { WEBINAR_CONFIG } from "@/config/webinar";
 
 const SENDPULSE_TOKEN_URL = "https://api.sendpulse.com/oauth/access_token";
 const SENDPULSE_EMAIL_URL = "https://api.sendpulse.com/smtp/emails";
@@ -106,7 +107,7 @@ export async function addContactToAddressBook(
   const normalizedPhone = normalizePhoneNumber(phone);
 
   try {
-    const emailData: Record<string, any> = {
+    const emailData: Record<string, unknown> = {
       email,
       variables: {
         name,
@@ -272,15 +273,15 @@ export async function sendWebinarConfirmationEmail({
         <div class="details-section">
           <div class="detail-row">
             <span class="detail-label">📅 Dates:</span>
-            <span class="detail-value">9th &amp; 10th October 2026</span>
+            <span class="detail-value">${WEBINAR_CONFIG.dates}</span>
           </div>
           <div class="detail-row" style="margin-top: 10px;">
             <span class="detail-label">⏰ Time:</span>
-            <span class="detail-value">2PM CST / 3PM EST / 8PM WAT / 12PM PST</span>
+            <span class="detail-value">${WEBINAR_CONFIG.times}</span>
           </div>
           <div class="detail-row" style="margin-top: 10px;">
             <span class="detail-label">📍 Venue:</span>
-            <span class="detail-value">Online Virtual Meeting Room</span>
+            <span class="detail-value">${WEBINAR_CONFIG.venue}</span>
           </div>
         </div>
 
@@ -292,6 +293,14 @@ export async function sendWebinarConfirmationEmail({
           If the button above does not open, copy and paste this direct link into your browser:<br/>
           <a href="${meetingLink}" class="link-url">${meetingLink}</a>
         </p>
+
+        <div style="background-color: #F8F7FF; border: 1px solid #ECE8FF; border-radius: 8px; padding: 16px; margin: 24px 0;">
+          <p style="margin: 0 0 6px 0; font-size: 14px; font-weight: 600; color: #5f3add;">🎁 Your Free Author Resource Guide:</p>
+          <p style="margin: 0; font-size: 13px; color: #4b5563;">
+            As an attendee perk, you can download your complimentary guide here:<br/>
+            <a href="https://ayollc.com/downloads/free-author-resource.pdf" class="link-url">Download Free Author Resource (PDF)</a>
+          </p>
+        </div>
 
         <p class="paragraph" style="margin-top: 24px;">
           We look forward to seeing you there! If you have any questions or need assistance, feel free to get in touch with our team.

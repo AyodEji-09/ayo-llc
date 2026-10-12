@@ -71,10 +71,12 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ sessionId: session.id, url: session.url });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "Failed to initialize checkout session.";
     console.error("Error creating Stripe checkout session:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to initialize checkout session." },
+      { error: message },
       { status: 500 }
     );
   }

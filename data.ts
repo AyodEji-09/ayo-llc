@@ -408,4 +408,32 @@ export const testimonials: Testimonial[] = [
       },
     ],
   },
+  {
+    name: "Dare. O",
+    role: "Aspiring Author",
+    service: "Book Publishing",
+    testimonial:
+      "I had been thinking about writing a book for a long time, but I honestly didn't know where to start. What I appreciated most about the experience was how clearly the publishing journey was explained. It made the process feel much more achievable.",
+  },
+  {
+    name: "Iyin",
+    role: "Author",
+    service: "Book Publishing",
+    testimonial:
+      "Before working with AYO LLC, I thought writing the manuscript was the hardest part. I later realized there was so much more to consider; editing, design, formatting, publishing and getting the book to readers. The guidance helped me understand what comes next.",
+  },
+  {
+    name: "Esther",
+    role: "Manuscript Owner",
+    service: "Book Publishing",
+    testimonial:
+      "The experience gave me clarity about the different publishing options available to authors. I especially appreciated that everything was explained in a simple and practical way. I left with a much better understanding of the steps I need to take.",
+  },
+  {
+    name: "Richard",
+    role: "First-Time Author",
+    service: "Book Publishing",
+    testimonial:
+      "One of the biggest things I learned is that you don't have to figure out the entire publishing process on your own. Having someone explain the different stages and what to consider at each point gave me the confidence to take my next step.",
+  },
 ];

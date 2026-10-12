@@ -3,17 +3,48 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { CURRENCIES, CurrencyType, detectUserCurrency } from "@/lib/currency";
+import { WEBINAR_CONFIG } from "@/config/webinar";
+import { CountdownTimer } from "@/components/webinar/countdown-timer";
+import { ExitIntentModal } from "@/components/webinar/exit-intent-modal";
+import { BookPublishingSection } from "@/components/sections/book-publishing-section";
+import { WhyChooseSection } from "@/components/sections/why-choose-section";
 import {
   Calendar,
   Clock,
   Video,
   ArrowRight,
   Check,
-  Lock,
   Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { InternationalPhoneInput } from "@/components/common/phone-input";
+
+const attendeePerks = [
+  {
+    icon: "/icons/target.svg",
+    title: "10% to 20% Off Publishing Costs",
+    description:
+      "The first 10 registrants receive an exclusive 10% to 20% discount on complete book publishing packages with AYO LLC, covering editing, interior formatting, and distribution setup.",
+  },
+  {
+    icon: "/icons/star2.svg",
+    title: "Free Custom Book Cover Design",
+    description:
+      "5 registered attendees will be selected to receive a professionally crafted, bespoke book cover design for their upcoming project.",
+  },
+  {
+    icon: "/icons/head-love.svg",
+    title: "1-on-1 Strategy Session",
+    description:
+      "2 attendees will win a private, deep-dive consultation session with our senior publishing directors to review their manuscript roadmap.",
+  },
+  {
+    icon: "/icons/star.svg",
+    title: "Free Author Resource Guide (PDF)",
+    description:
+      "Every attendee receives our practical author guide covering manuscript preparation, cover typography standards, and publishing checklists.",
+  },
+];
 
 export default function WebinarPage() {
   const [currency, setCurrency] = useState<CurrencyType>("USD");
@@ -25,7 +56,8 @@ export default function WebinarPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setCurrency(detectUserCurrency());
+    const detected = detectUserCurrency();
+    setCurrency((prev) => (prev !== detected ? detected : prev));
   }, []);
 
   const activeCurrency = CURRENCIES[currency] || CURRENCIES.USD;
@@ -66,9 +98,13 @@ export default function WebinarPage() {
       } else {
         throw new Error("No checkout URL returned from server.");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Payment initialization error:", err);
-      toast.error(err.message || "Something went wrong. Please try again.");
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
+      toast.error(errorMessage);
       setLoading(false);
     }
   };
@@ -80,20 +116,15 @@ export default function WebinarPage() {
         <section className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 md:grid-cols-12 md:px-8 md:py-20 lg:gap-12">
           <div className="space-y-6 md:col-span-7">
             <h1 className="text-2xl leading-tight font-semibold tracking-tight text-[#1a1c1c] sm:text-3xl md:text-4xl">
-              THE AUTHOR&apos;S BLUEPRINT: From Book Idea to a Published Work
+              {WEBINAR_CONFIG.headline}
             </h1>
 
             <p className="text-base leading-snug font-medium text-[#5d5d6f] sm:text-lg md:text-xl">
-              A 2-Day Virtual Experience for Aspiring Authors, New Writers &amp;
-              Manuscript Owners
+              {WEBINAR_CONFIG.subtitle}, {WEBINAR_CONFIG.tagline}
             </p>
 
             <p className="text-sm leading-relaxed font-normal text-[#6E6E80] sm:text-base">
-              Ready to Take Your Book Idea Seriously? You don&apos;t need to
-              have everything figured out. You just need to take the next step.
-              Your book idea could become the book you&apos;ve always imagined.
-              Don&apos;t let uncertainty keep your manuscript or your idea on
-              the shelf.
+              {WEBINAR_CONFIG.hook}
             </p>
 
             <div className="pt-2">
@@ -107,33 +138,26 @@ export default function WebinarPage() {
             </div>
           </div>
 
+          {/* Hero Visual */}
           <div className="md:col-span-5">
-            <div className="relative overflow-hidden rounded-xl border border-[#E2E2E9] bg-[#f3f3f4] p-2 shadow-lg">
-              <div className="relative h-[360px] w-full overflow-hidden rounded-lg sm:h-[400px]">
+            <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm">
+              <div className="relative h-[420px] w-full overflow-hidden rounded-lg sm:h-[480px]">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuASGdfVLqMu4UXGvWV8YDLye1NGZ83FURo-wq_mB-YRmelrFSErvSj1aw26ra46glgPtwoed25nHWXj0xY71HrLXVDNlNcxKpsV8_-l9D-ZymCACL58i7ywLwEeH2-pGBBmZzSrMGDf3RQ91NAmiwpi9NCLDiQTApPq6N6rstgot0JKBBCcQFIJF6epS9z-0g8LDPfYwJctyMt4dgApIhuLebRd7jee-Q_QumBVCuxLHknLA2np6vHeyA"
-                  alt="The Author's Blueprint Masterclass"
+                  src={WEBINAR_CONFIG.heroImage}
+                  alt="Your Author Journey Simplified - The Author's Blueprint"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, 45vw"
                   priority
-                  className="rounded-lg object-cover"
+                  className="rounded-lg bg-[#120e29] object-contain"
                 />
               </div>
 
-              <div className="absolute right-6 bottom-6 left-6 rounded-xl border border-[#E2E2E9] bg-[#ffffff]/90 p-4 shadow-sm backdrop-blur-md">
-                <div className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-full bg-[#5f3add]/10 text-[#5f3add]">
-                    <Calendar className="size-5 text-[#5f3add]" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1a1c1c]">
-                      9th &amp; 10th October 2026
-                    </p>
-                    <p className="text-xs font-normal text-[#6E6E80]">
-                      Live Virtual Masterclass
-                    </p>
-                  </div>
-                </div>
+              {/* Countdown Overlay */}
+              <div className="absolute right-3 bottom-3 left-3 sm:right-6 sm:bottom-6 sm:left-6">
+                <CountdownTimer
+                  targetDateIso={WEBINAR_CONFIG.targetDateIso}
+                  className="border-[#E2E2E9] shadow-md"
+                />
               </div>
             </div>
           </div>
@@ -141,7 +165,7 @@ export default function WebinarPage() {
 
         {/* Event Details Section */}
         <section
-          className="border-y border-[#E2E2E9] bg-[#f3f3f4] py-14 sm:py-20"
+          className="border-b border-[#E2E2E9] bg-[#f3f3f4] py-14 sm:py-20"
           id="details"
         >
           <div className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-8">
@@ -162,7 +186,7 @@ export default function WebinarPage() {
                 </div>
                 <h3 className="text-base font-semibold text-[#1a1c1c]">Date</h3>
                 <p className="text-sm text-[#6E6E80] sm:text-base">
-                  9th &amp; 10th October 2026
+                  {WEBINAR_CONFIG.dates}
                 </p>
               </div>
 
@@ -172,7 +196,7 @@ export default function WebinarPage() {
                 </div>
                 <h3 className="text-base font-semibold text-[#1a1c1c]">Time</h3>
                 <p className="text-sm text-[#6E6E80] sm:text-base">
-                  2PM CST / 3PM EST / 8PM WAT / 12PM PST
+                  {WEBINAR_CONFIG.times}
                 </p>
               </div>
 
@@ -184,10 +208,33 @@ export default function WebinarPage() {
                   Venue
                 </h3>
                 <p className="text-sm text-[#6E6E80] sm:text-base">
-                  Online Meeting Room (Link sent upon payment confirmation)
+                  {WEBINAR_CONFIG.venue}
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* What You Receive as Attendee Section */}
+        <section className="bg-white py-16 sm:py-24" id="perks">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <WhyChooseSection
+              subtitle="REGISTRATION PERKS"
+              header="What You Receive as an Attendee"
+              description="Every registration includes tangible resources and opportunities designed to move your manuscript forward."
+              items={attendeePerks}
+            />
+          </div>
+        </section>
+
+        {/* Books We Have Published Section: REUSING BookPublishingSection component from landing page */}
+        <section className="bg-white py-16 sm:py-24" id="published-books">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <BookPublishingSection
+              subtitle="OUR PUBLISHED WORKS"
+              header="Books We Have Published"
+              description="Explore titles brought to life through our end-to-end publishing, design, and editorial services."
+            />
           </div>
         </section>
 
@@ -207,70 +254,62 @@ export default function WebinarPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
-                <Check className="size-4" />
+            {WEBINAR_CONFIG.targetAudience.map((audience, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs"
+              >
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
+                  <Check className="size-4" />
+                </div>
+                <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
+                  {audience}
+                </p>
               </div>
-              <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
-                You have a book idea but don&apos;t know where to begin.
-              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="bg-white py-16 sm:py-24" id="testimonials">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
+                What Authors Are Saying
+              </h2>
             </div>
 
-            <div className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
-                <Check className="size-4" />
-              </div>
-              <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
-                You&apos;ve started writing but don&apos;t know what comes next.
-              </p>
-            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+              {WEBINAR_CONFIG.testimonials.map((review, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col justify-between rounded-xl border border-[#E2E2E9] bg-white p-6 shadow-xs sm:p-8"
+                >
+                  <p className="text-sm leading-relaxed text-[#596780] italic sm:text-base">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
 
-            <div className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
-                <Check className="size-4" />
-              </div>
-              <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
-                You have a completed manuscript but haven&apos;t published it.
-              </p>
-            </div>
-
-            <div className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
-                <Check className="size-4" />
-              </div>
-              <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
-                You&apos;ve been researching publishing but still feel
-                overwhelmed.
-              </p>
-            </div>
-
-            <div className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
-                <Check className="size-4" />
-              </div>
-              <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
-                You want to understand the publishing process before investing
-                in it.
-              </p>
-            </div>
-
-            <div className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
-                <Check className="size-4" />
-              </div>
-              <p className="text-sm leading-relaxed text-[#1a1c1c] sm:text-base">
-                You&apos;ve always wanted to become a published author but
-                haven&apos;t taken the first step.
-              </p>
+                  <div className="mt-6 border-t border-[#E2E2E9] pt-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#5f3add]/10 text-sm font-bold text-[#5f3add]">
+                        {review.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-[#040815] sm:text-base">
+                          {review.name}
+                        </p>
+                        <p className="text-xs text-[#596780]">{review.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Registration Form Section */}
-        <section
-          className="border-t border-[#E2E2E9] bg-[#f3f3f4] py-16 sm:py-24"
-          id="register"
-        >
+        <section className="bg-[#f3f3f4] py-16 sm:py-24" id="register">
           <div className="mx-auto max-w-2xl px-4 sm:px-6 md:px-8">
             <div className="mb-12 text-center">
               <h2 className="mb-3 text-2xl font-semibold text-[#1a1c1c] sm:text-3xl md:text-4xl">
@@ -332,7 +371,7 @@ export default function WebinarPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#5f3add] px-6 py-4 text-base font-semibold text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] disabled:opacity-50"
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#5f3add] px-6 py-4 text-base font-semibold text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] disabled:opacity-50"
                   >
                     {loading ? (
                       <>
@@ -342,10 +381,8 @@ export default function WebinarPage() {
                     ) : (
                       <>
                         <span>
-                          Proceed to Stripe Checkout ({activeCurrency.formatted}
-                          )
+                          Proceed to Checkout ({activeCurrency.formatted})
                         </span>
-                        <Lock className="size-4" />
                       </>
                     )}
                   </button>
@@ -360,6 +397,9 @@ export default function WebinarPage() {
           </div>
         </section>
       </main>
+
+      {/* Exit Intent Modal */}
+      <ExitIntentModal />
     </div>
   );
 }

@@ -1,10 +1,18 @@
 import { BenefitCard } from "@/components/common/benefit-card";
 import { benefits } from "@/data";
 
+export interface BenefitItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 interface WhyChooseSectionProps {
   subtitle?: string;
   header?: string;
   description?: string | React.ReactNode;
+  items?: BenefitItem[];
+  className?: string;
 }
 
 export const WhyChooseSection = ({
@@ -17,9 +25,11 @@ export const WhyChooseSection = ({
       for a smarter future.
     </>
   ),
+  items = benefits,
+  className = "",
 }: WhyChooseSectionProps) => {
   return (
-    <section>
+    <section className={className}>
       <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
         <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
           {subtitle}
@@ -33,9 +43,9 @@ export const WhyChooseSection = ({
       </div>
 
       <div className="mt-16 grid justify-items-center gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14">
-        {benefits.map((benefits, idx) => (
-          <div key={idx} data-aos="fade-up" data-aos-delay={idx * 120}>
-            <BenefitCard {...benefits} />
+        {items.map((item, idx) => (
+          <div key={idx} data-aos="fade-up" data-aos-delay={idx * 120} className="w-full flex justify-center">
+            <BenefitCard {...item} />
           </div>
         ))}
       </div>

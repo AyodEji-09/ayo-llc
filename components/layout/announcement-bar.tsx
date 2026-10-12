@@ -9,10 +9,14 @@ export const AnnouncementBar = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("webinar_bar_dismissed");
-    if (!dismissed && WEBINAR_CONFIG.isActive) {
-      setIsVisible(true);
-    }
+    const timer = setTimeout(() => {
+      const dismissed = sessionStorage.getItem("webinar_bar_dismissed");
+      if (!dismissed && WEBINAR_CONFIG.isActive) {
+        setIsVisible(true);
+      }
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleDismiss = () => {
@@ -23,14 +27,14 @@ export const AnnouncementBar = () => {
   if (!isVisible || !WEBINAR_CONFIG.isActive) return null;
 
   return (
-    <div className="relative z-50 bg-gradient-to-r from-[#000061] via-[#1e1b4b] to-[#7C5CFC] text-white">
+    <div className="relative z-50 bg-[#000061] border-b border-[#000045] text-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-2 sm:px-6 lg:px-8">
         <div className="flex flex-1 flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-xs font-medium sm:gap-x-3 sm:text-sm">
           <span className="hidden text-[11px] font-semibold tracking-wider text-white/90 uppercase sm:inline">
             Virtual Experience:
           </span>
           <span className="leading-snug">
-            {WEBINAR_CONFIG.theme} — {WEBINAR_CONFIG.dates}
+            {WEBINAR_CONFIG.theme}: {WEBINAR_CONFIG.shortDates || WEBINAR_CONFIG.dates}
           </span>
 
           <Link

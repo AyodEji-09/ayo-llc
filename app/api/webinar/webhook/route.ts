@@ -45,10 +45,11 @@ export async function POST(request: NextRequest) {
       // In development without webhook secret setup yet
       event = JSON.parse(rawBody) as Stripe.Event;
     }
-  } catch (err: any) {
-    console.error(`Webhook Signature Verification Failed: ${err.message}`);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Webhook verification failed";
+    console.error(`Webhook Signature Verification Failed: ${message}`);
     return NextResponse.json(
-      { error: `Webhook Error: ${err.message}` },
+      { error: `Webhook Error: ${message}` },
       { status: 400 }
     );
   }

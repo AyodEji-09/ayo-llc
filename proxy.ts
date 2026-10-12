@@ -14,7 +14,7 @@ function headerCountry(request: NextRequest): string | null {
 export function proxy(request: NextRequest): NextResponse {
   // 1. Detect country from Edge Geo or IP headers (Vercel, Cloudflare, Netlify)
   const country =
-    (request as any).geo?.country ||
+    (request as unknown as { geo?: { country?: string } }).geo?.country ||
     headerCountry(request) ||
     "";
 
