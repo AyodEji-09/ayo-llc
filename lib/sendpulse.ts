@@ -206,7 +206,7 @@ export async function sendWebinarConfirmationEmail({
   const emailData = {
     email: {
       html: Buffer.from(htmlContent).toString("base64"),
-      text: `Hi ${name},\n\nYour payment is confirmed and your seat is reserved for The Author's Blueprint, a 2-day virtual experience.\n\nDates: ${WEBINAR_CONFIG.dates}\nTime: ${WEBINAR_CONFIG.times}\nWhere: Online meeting room\n\nJoin the meeting room:\n${meetingLink}\n\nYour free author resource (A Beginner's Guide to Publishing):\nhttps://ayollc.com${WEBINAR_CONFIG.leadMagnet.downloadUrl}\n\nQuestions before the day? Reply to this email and our team will help.\n\nThe AYO LLC Team\nRiverside, California, USA`,
+      text: `Hi ${name},\n\nYour payment is confirmed and your seat is reserved for The Author's Blueprint, a 2-day virtual experience.\n\nDates: ${WEBINAR_CONFIG.dates}\nTime: ${WEBINAR_CONFIG.times}\nWhere: Online meeting room\n\nJoin the meeting room:\n${meetingLink}\n\nYour free author resource (A Beginner's Guide to Publishing):\nhttps://ayo-llc.com${WEBINAR_CONFIG.leadMagnet.downloadUrl}\n\nQuestions before the day? Reply to this email and our team will help.\n\nThe AYO LLC Team\nRiverside, California, USA`,
       subject: `[Confirmed] Access Link for The Author's Blueprint Webinar`,
       from: { name: fromName, email: fromEmail },
       to: [{ name, email }],
