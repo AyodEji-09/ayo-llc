@@ -1,5 +1,15 @@
 import axios from "axios";
 import { WEBINAR_CONFIG } from "@/config/webinar";
+import {
+  emailButton,
+  emailDetails,
+  emailFinePrint,
+  emailHeading,
+  emailLink,
+  emailParagraph,
+  escapeHtml,
+  renderEmailLayout,
+} from "@/lib/email-template";
 
 const SENDPULSE_TOKEN_URL = "https://api.sendpulse.com/oauth/access_token";
 const SENDPULSE_EMAIL_URL = "https://api.sendpulse.com/smtp/emails";
@@ -163,165 +173,40 @@ export async function sendWebinarConfirmationEmail({
   const fromEmail = process.env.SENDPULSE_FROM_EMAIL || "info@ayo-llc.com";
   const fromName = process.env.SENDPULSE_FROM_NAME || "AYO LLC";
 
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>The Author's Blueprint Registration Confirmation</title>
-      <style>
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-          line-height: 1.6;
-          color: #1a1c1c;
-          background-color: #ffffff;
-          margin: 0;
-          padding: 0;
-          -webkit-font-smoothing: antialiased;
-        }
-        .container {
-          max-width: 600px;
-          margin: 0;
-          padding: 32px 24px;
-          text-align: left;
-        }
-        .greeting {
-          font-size: 16px;
-          font-weight: 600;
-          color: #1a1c1c;
-          margin-bottom: 12px;
-          text-align: left;
-        }
-        .paragraph {
-          font-size: 15px;
-          color: #4b5563;
-          margin: 0 0 16px 0;
-          line-height: 1.6;
-          text-align: left;
-        }
-        .details-section {
-          border-top: 1px solid #E2E2E9;
-          border-bottom: 1px solid #E2E2E9;
-          padding: 18px 0;
-          margin: 24px 0;
-          text-align: left;
-        }
-        .detail-row {
-          margin-bottom: 8px;
-          font-size: 14px;
-          display: flex;
-        }
-        .detail-row:last-child {
-          margin-bottom: 0;
-        }
-        .detail-label {
-          font-weight: 600;
-          width: 105px;
-          color: #5d5d6f;
-          font-size: 13px;
-        }
-        .detail-value {
-          color: #1a1c1c;
-          font-weight: 500;
-          font-size: 14px;
-        }
-        .btn-wrapper {
-          text-align: left;
-          margin: 24px 0;
-        }
-        .btn {
-          display: inline-block;
-          background-color: #5f3add;
-          color: #ffffff !important;
-          font-size: 15px;
-          font-weight: 600;
-          text-decoration: none;
-          padding: 12px 28px;
-          border-radius: 8px;
-        }
-        .link-fallback {
-          font-size: 12px;
-          color: #6b7280;
-          margin-top: 16px;
-          line-height: 1.5;
-          text-align: left;
-        }
-        .link-url {
-          color: #5f3add;
-          text-decoration: underline;
-          word-break: break-all;
-          overflow-wrap: anywhere;
-        }
-        .footer {
-          margin-top: 36px;
-          padding-top: 20px;
-          border-top: 1px solid #f3f4f6;
-          text-align: left;
-          color: #6b7280;
-          font-size: 13px;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="greeting">Hi ${name},</div>
-        <p class="paragraph">
-          Thank you for registering! Your payment has been successfully confirmed, and your seat is reserved for this 2-day virtual experience.
-        </p>
+  const resourceUrl = `https://ayollc.com${WEBINAR_CONFIG.leadMagnet.downloadUrl}`;
+  const safeName = escapeHtml(name);
+  const safeMeetingLink = escapeHtml(meetingLink);
 
-        <div class="details-section">
-          <div class="detail-row">
-            <span class="detail-label">📅 Dates:</span>
-            <span class="detail-value">${WEBINAR_CONFIG.dates}</span>
-          </div>
-          <div class="detail-row" style="margin-top: 10px;">
-            <span class="detail-label">⏰ Time:</span>
-            <span class="detail-value">${WEBINAR_CONFIG.times}</span>
-          </div>
-          <div class="detail-row" style="margin-top: 10px;">
-            <span class="detail-label">📍 Venue:</span>
-            <span class="detail-value">${WEBINAR_CONFIG.venue}</span>
-          </div>
-        </div>
-
-        <div class="btn-wrapper">
-          <a href="${meetingLink}" target="_blank" class="btn">Join Meeting Room</a>
-        </div>
-
-        <p class="link-fallback">
-          If the button above does not open, copy and paste this direct link into your browser:<br/>
-          <a href="${meetingLink}" class="link-url">${meetingLink}</a>
-        </p>
-
-        <div style="background-color: #F8F7FF; border: 1px solid #ECE8FF; border-radius: 8px; padding: 16px; margin: 24px 0;">
-          <p style="margin: 0 0 6px 0; font-size: 14px; font-weight: 600; color: #5f3add;">🎁 Your Free Author Resource Guide:</p>
-          <p style="margin: 0; font-size: 13px; color: #4b5563;">
-            As an attendee perk, you can download your complimentary guide here:<br/>
-            <a href="https://ayollc.com/downloads/a-beginners-guide-to-publishing.pdf" class="link-url">Download A Beginner&apos;s Guide to Publishing (PDF)</a>
-          </p>
-        </div>
-
-        <p class="paragraph" style="margin-top: 24px;">
-          We look forward to seeing you there! If you have any questions or need assistance, feel free to get in touch with our team.
-        </p>
-
-        <div class="footer">
-          <p style="margin: 0 0 4px 0; font-weight: 600; color: #1a1c1c;">The AYO LLC Team</p>
-          <p style="margin: 0; color: #9ca3af;">&copy; 2026 AYO LLC &bull; Riverside, California, USA</p>
-          <span style="opacity: 0; font-size: 0px; line-height: 0px; height: 0px; overflow: hidden; display: none !important;">
-            &zwnj;&nbsp;&zwnj;&nbsp;[ref-${Date.now()}]
-          </span>
-        </div>
-      </div>
-    </body>
-    </html>
-  `;
+  const htmlContent = renderEmailLayout({
+    title: "You're registered: The Author's Blueprint",
+    preheader: `Your seat is confirmed for ${WEBINAR_CONFIG.shortDates}. Your access link is inside.`,
+    content: [
+      emailHeading("You're in."),
+      emailParagraph(
+        `Hi ${safeName}, your payment is confirmed and your seat is reserved for The Author&#39;s Blueprint, a 2-day virtual experience.`,
+      ),
+      emailDetails([
+        { label: "Dates", value: escapeHtml(WEBINAR_CONFIG.dates) },
+        { label: "Time", value: escapeHtml(WEBINAR_CONFIG.times) },
+        { label: "Where", value: "Online meeting room" },
+      ]),
+      emailButton("Join the meeting room", safeMeetingLink),
+      emailFinePrint(
+        `Button not working? Copy this link into your browser:<br/>${emailLink(safeMeetingLink, safeMeetingLink)}`,
+      ),
+      emailParagraph(
+        `<strong style="color:#0F172A;" class="em-ink">Your free author resource.</strong> ${emailLink("Download A Beginner&#39;s Guide to Publishing (PDF)", resourceUrl)}`,
+      ),
+      emailParagraph(
+        "Questions before the day? Reply to this email and our team will help.",
+      ),
+    ].join("\n"),
+  });
 
   const emailData = {
     email: {
       html: Buffer.from(htmlContent).toString("base64"),
-      text: `Hi ${name},\n\nThank you for registering! Your payment has been successfully confirmed, and your seat is reserved for this 2-day virtual experience.\n\nDates: 9th & 10th October 2026\nTime: 2PM CST / 3PM EST / 8PM WAT / 12PM PST\nVenue: Online Virtual Meeting Room\n\nYour Private Access Link:\n${meetingLink}\n\nWe look forward to seeing you there!\n\nBest regards,\nAYO LLC Team\nRiverside, California, USA`,
+      text: `Hi ${name},\n\nYour payment is confirmed and your seat is reserved for The Author's Blueprint, a 2-day virtual experience.\n\nDates: ${WEBINAR_CONFIG.dates}\nTime: ${WEBINAR_CONFIG.times}\nWhere: Online meeting room\n\nJoin the meeting room:\n${meetingLink}\n\nYour free author resource (A Beginner's Guide to Publishing):\nhttps://ayollc.com${WEBINAR_CONFIG.leadMagnet.downloadUrl}\n\nQuestions before the day? Reply to this email and our team will help.\n\nThe AYO LLC Team\nRiverside, California, USA`,
       subject: `[Confirmed] Access Link for The Author's Blueprint Webinar`,
       from: { name: fromName, email: fromEmail },
       to: [{ name, email }],

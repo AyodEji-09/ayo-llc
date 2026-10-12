@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
+import {
+  emailButton,
+  emailDetails,
+  emailHeading,
+  emailLink,
+  emailParagraph,
+  escapeHtml,
+  escapeHtmlWithBreaks,
+  renderEmailLayout,
+} from "@/lib/email-template";
 
 interface ContactFormData {
   name: string;
@@ -45,48 +55,24 @@ async function sendEmail(data: ContactFormData, token: string): Promise<void> {
   const fromName = process.env.SENDPULSE_FROM_NAME || "AYO LLC";
   const toEmail = process.env.SENDPULSE_TO_EMAIL || "info@ayo-llc.com";
 
-  // Base64 encode the HTML content
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #000061; color: white; padding: 20px; text-align: center; }
-        .content { background-color: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 5px; }
-        .field { margin-bottom: 15px; }
-        .label { font-weight: bold; color: #596780; }
-        .value { margin-top: 5px; }
-        .footer { text-align: center; color: #666; font-size: 12px; margin-top: 20px; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <h2>New Contact Form Submission</h2>
-        </div>
-        <div class="content">
-          <div class="field">
-            <div class="label">Name:</div>
-            <div class="value">${data.name}</div>
-          </div>
-          <div class="field">
-            <div class="label">Email:</div>
-            <div class="value">${data.email}</div>
-          </div>
-          <div class="field">
-            <div class="label">Message:</div>
-            <div class="value">${data.message}</div>
-          </div>
-        </div>
-        <div class="footer">
-          <p>This email was sent from the AYO LLC contact form</p>
-        </div>
-      </div>
-    </body>
-    </html>
-  `;
+  const htmlContent = renderEmailLayout({
+    title: "New contact form submission",
+    preheader: `${data.name} sent a message through the website.`,
+    footerNote: "Sent from the AYO LLC website contact form.",
+    content: [
+      emailHeading("New message"),
+      emailParagraph("Someone just reached out through the contact form."),
+      emailDetails([
+        { label: "Name", value: escapeHtml(data.name) },
+        {
+          label: "Email",
+          value: emailLink(escapeHtml(data.email), `mailto:${escapeHtml(data.email)}`),
+        },
+      ]),
+      emailParagraph(escapeHtmlWithBreaks(data.message)),
+      emailButton("Reply to " + escapeHtml(data.name), `mailto:${escapeHtml(data.email)}`),
+    ].join("\n"),
+  });
 
   const emailData = {
     email: {
