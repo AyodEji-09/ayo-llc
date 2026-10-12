@@ -52,8 +52,18 @@ const portableTextComponents: PortableTextComponents = {
   },
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 async function getPost(slug: string) {
-  return client.fetch(POST_QUERY, {slug})
+  return client.fetch(
+    POST_QUERY,
+    { slug },
+    {
+      cache: 'no-store',
+      next: { revalidate: 0 },
+    }
+  )
 }
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}) {
