@@ -1,19 +1,16 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { WEBINAR_CONFIG } from "@/config/webinar";
-import {
-  Check,
-  Calendar,
-  Clock,
-  Video,
-  Download,
-  CalendarPlus,
-  ArrowLeft,
-  Mail,
-} from "lucide-react";
+import { Check, CalendarPlus, Download, ArrowLeft } from "lucide-react";
 
+/**
+ * Confirmation page, designed with SKILL.md (apple-design):
+ *  - Simplicity: one headline, one primary action, details shown as plain rows.
+ *  - Typography: tight tracking/leading on the headline, looser body copy.
+ *  - Response: every control gives instant pressed feedback (active:scale).
+ *  - Accessibility: motion is removed under prefers-reduced-motion.
+ *  - Wayfinding: tells the user what happened, what to do next, how to leave.
+ */
 export default function WebinarConfirmationPage() {
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
     `${WEBINAR_CONFIG.theme}: ${WEBINAR_CONFIG.subtitle}`,
@@ -21,138 +18,106 @@ export default function WebinarConfirmationPage() {
     `${WEBINAR_CONFIG.tagline}\n\nVenue: ${WEBINAR_CONFIG.venue}\nYour private meeting link has been sent to your email.`,
   )}&location=${encodeURIComponent(WEBINAR_CONFIG.venue)}`;
 
+  const details = [
+    { label: "Dates", value: WEBINAR_CONFIG.dates },
+    { label: "Time", value: WEBINAR_CONFIG.times },
+    { label: "Where", value: "Online meeting room. The link is in your email." },
+  ];
+
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-[#fafafc] px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-lg rounded-2xl border border-[#E2E2E9] bg-white p-6 shadow-xs sm:p-8">
-        {/* Success Header */}
-        <div className="text-center">
-          <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
-            <Check className="size-6 stroke-[2.5]" />
-          </div>
+    <main className="min-h-[80vh] bg-white px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto w-full max-w-xl">
+        <p className="flex items-center gap-2 text-sm font-semibold text-[#000061]">
+          <Check className="size-4 stroke-[2.5]" aria-hidden="true" />
+          Payment confirmed
+        </p>
 
-          <h1 className="text-2xl font-bold tracking-tight text-[#1a1c1c] sm:text-3xl">
-            You&apos;re all set!
-          </h1>
-          <p className="mt-2 text-sm text-[#6E6E80] sm:text-base">
-            Thank you for registering. We&apos;ve sent your confirmation and
-            access link to your email.
-          </p>
-        </div>
+        <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-[#0F172A] sm:text-5xl">
+          You&apos;re registered.
+        </h1>
+        <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Your seat for {WEBINAR_CONFIG.theme} is reserved. We sent your access
+          link to your email.
+        </p>
 
-        {/* Event Summary Ticket */}
-        <div className="mt-6 rounded-xl border border-[#E2E2E9] bg-[#f9fafb] p-5">
-          <div className="border-b border-[#E2E2E9]/80 pb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#7857f8]">
-              Virtual Masterclass
-            </span>
-            <h2 className="mt-1 text-base font-bold text-[#1a1c1c]">
-              {WEBINAR_CONFIG.theme}
-            </h2>
-            <p className="text-xs text-[#6E6E80]">{WEBINAR_CONFIG.subtitle}</p>
-          </div>
-
-          <div className="mt-4 space-y-2.5 text-xs text-[#1a1c1c] sm:text-sm">
-            <div className="flex items-start gap-2.5">
-              <Calendar className="mt-0.5 size-4 shrink-0 text-[#7857f8]" />
-              <div>
-                <span className="font-medium text-[#1a1c1c]">Dates: </span>
-                <span className="text-[#6E6E80]">{WEBINAR_CONFIG.dates}</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2.5">
-              <Clock className="mt-0.5 size-4 shrink-0 text-[#7857f8]" />
-              <div>
-                <span className="font-medium text-[#1a1c1c]">Time: </span>
-                <span className="text-[#6E6E80]">{WEBINAR_CONFIG.times}</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2.5">
-              <Video className="mt-0.5 size-4 shrink-0 text-[#7857f8]" />
-              <div>
-                <span className="font-medium text-[#1a1c1c]">Location: </span>
-                <span className="text-[#6E6E80]">{WEBINAR_CONFIG.venue}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Add to Calendar button */}
-          <div className="mt-4 border-t border-[#E2E2E9]/80 pt-3">
-            <a
-              href={googleCalendarUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#E2E2E9] bg-white py-2 text-xs font-medium text-[#1a1c1c] transition-colors hover:bg-neutral-50 sm:text-sm"
+        <dl className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
+          {details.map((item) => (
+            <div
+              key={item.label}
+              className="grid grid-cols-[5.5rem_1fr] gap-4 py-4 sm:grid-cols-[7rem_1fr]"
             >
-              <CalendarPlus className="size-4 text-[#7857f8]" />
-              <span>Add to Google Calendar</span>
+              <dt className="pt-0.5 text-xs font-semibold uppercase tracking-[0.04em] text-slate-500">
+                {item.label}
+              </dt>
+              <dd className="text-base font-medium leading-snug text-[#0F172A]">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <a
+          href={googleCalendarUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#000061] px-6 py-4 text-base font-semibold text-white transition-[background-color,transform] duration-100 ease-out hover:bg-[#000045] active:scale-[0.97] motion-reduce:transition-colors motion-reduce:active:scale-100"
+        >
+          <CalendarPlus className="size-5" aria-hidden="true" />
+          Add to Google Calendar
+        </a>
+
+        <div className="mt-12 flex items-center gap-4">
+          <div className="relative aspect-3/4 w-14 shrink-0 overflow-hidden rounded-md border border-slate-200 bg-slate-100">
+            <Image
+              src={WEBINAR_CONFIG.leadMagnet.coverImage}
+              alt={WEBINAR_CONFIG.leadMagnet.title}
+              fill
+              sizes="56px"
+              className="object-cover"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-base font-semibold leading-snug text-[#0F172A]">
+              {WEBINAR_CONFIG.leadMagnet.title}
+            </h2>
+            <p className="mt-0.5 text-sm text-slate-600">
+              Your free author resource, included with registration.
+            </p>
+            <a
+              href={WEBINAR_CONFIG.leadMagnet.downloadUrl}
+              download="A-Beginners-Guide-To-Publishing.pdf"
+              className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#000061] underline-offset-4 transition-opacity duration-100 hover:underline active:opacity-60"
+            >
+              <Download className="size-4" aria-hidden="true" />
+              Download PDF
             </a>
           </div>
         </div>
 
-        {/* Complimentary Guide Download Block */}
-        <div className="mt-5 rounded-xl border border-[#E2E2E9] bg-white p-4">
-          <div className="flex items-center gap-3.5">
-            <div className="relative aspect-[3/4] w-12 shrink-0 overflow-hidden rounded-md border border-[#E2E2E9] bg-[#120e29] shadow-xs">
-              <Image
-                src={WEBINAR_CONFIG.leadMagnet.coverImage}
-                alt={WEBINAR_CONFIG.leadMagnet.title}
-                fill
-                className="object-contain"
-              />
-            </div>
+        <p className="mt-12 text-sm leading-relaxed text-slate-500">
+          Can&apos;t find the email? Check your promotions or spam folder, or
+          reply to any message from us and we&apos;ll help.
+        </p>
 
-            <div className="min-w-0 flex-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#7857f8]">
-                Complimentary Guide
-              </span>
-              <h3 className="truncate text-sm font-semibold text-[#1a1c1c]">
-                {WEBINAR_CONFIG.leadMagnet.title}
-              </h3>
-              <p className="truncate text-xs text-[#6E6E80]">
-                Included free with your registration
-              </p>
-            </div>
-          </div>
-
-          <a
-            href={WEBINAR_CONFIG.leadMagnet.downloadUrl}
-            download="A-Beginners-Guide-To-Publishing.pdf"
-            className="mt-3.5 flex w-full items-center justify-center gap-2 rounded-lg bg-[#5f3add] py-2.5 text-xs font-medium text-white shadow-xs transition-colors hover:bg-[#7857f8] sm:text-sm"
+        <nav
+          aria-label="Continue"
+          className="mt-6 flex items-center gap-6 text-sm font-medium text-slate-600"
+        >
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#000061]"
           >
-            <Download className="size-4" />
-            <span>Download Guide (PDF)</span>
-          </a>
-        </div>
-
-        {/* Footer Info & Back Link */}
-        <div className="mt-6 text-center">
-          <p className="flex items-center justify-center gap-1.5 text-xs text-[#6E6E80]">
-            <Mail className="size-3.5" />
-            <span>
-              Can&apos;t find our email? Check your promotions or spam folder.
-            </span>
-          </p>
-
-          <div className="mt-4 flex items-center justify-center gap-4 text-xs font-medium text-[#6E6E80]">
-            <Link
-              href="/"
-              className="flex items-center gap-1 transition-colors hover:text-[#1a1c1c]"
-            >
-              <ArrowLeft className="size-3.5" />
-              <span>Back to Home</span>
-            </Link>
-            <span>•</span>
-            <Link
-              href="/webinar"
-              className="transition-colors hover:text-[#1a1c1c]"
-            >
-              Masterclass Overview
-            </Link>
-          </div>
-        </div>
+            <ArrowLeft className="size-4" aria-hidden="true" />
+            Back to home
+          </Link>
+          <Link
+            href="/webinar"
+            className="transition-colors hover:text-[#000061]"
+          >
+            Webinar details
+          </Link>
+        </nav>
       </div>
-    </div>
+    </main>
   );
 }
