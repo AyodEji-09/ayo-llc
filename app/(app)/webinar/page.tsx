@@ -6,8 +6,6 @@ import { CURRENCIES, CurrencyType, detectUserCurrency } from "@/lib/currency";
 import { WEBINAR_CONFIG } from "@/config/webinar";
 import { CountdownTimer } from "@/components/webinar/countdown-timer";
 import { ExitIntentModal } from "@/components/webinar/exit-intent-modal";
-import { BookPublishingSection } from "@/components/sections/book-publishing-section";
-import { WhyChooseSection } from "@/components/sections/why-choose-section";
 import {
   Calendar,
   Clock,
@@ -18,32 +16,13 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { InternationalPhoneInput } from "@/components/common/phone-input";
+import { AppCarousel } from "@/components/common/app-carousel";
 
 const attendeePerks = [
-  {
-    icon: "/icons/target.svg",
-    title: "10% to 20% Off Publishing Costs",
-    description:
-      "The first 10 registrants receive an exclusive 10% to 20% discount on complete book publishing packages with AYO LLC, covering editing, interior formatting, and distribution setup.",
-  },
-  {
-    icon: "/icons/star2.svg",
-    title: "Free Custom Book Cover Design",
-    description:
-      "5 registered attendees will be selected to receive a professionally crafted, bespoke book cover design for their upcoming project.",
-  },
-  {
-    icon: "/icons/head-love.svg",
-    title: "1-on-1 Strategy Session",
-    description:
-      "2 attendees will win a private, deep-dive consultation session with our senior publishing directors to review their manuscript roadmap.",
-  },
-  {
-    icon: "/icons/star.svg",
-    title: "Free Author Resource Guide (PDF)",
-    description:
-      "Every attendee receives our practical author guide covering manuscript preparation, cover typography standards, and publishing checklists.",
-  },
+  "First 10 registrants get 10- 20% off publishing costs",
+  "5 attendees will be selected to get a free cover design for their book",
+  "2 attendees will be selected to get a one on one session with us",
+  "All attendees get a free author resource",
 ];
 
 export default function WebinarPage() {
@@ -115,7 +94,7 @@ export default function WebinarPage() {
         {/* Hero Section */}
         <section className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 md:grid-cols-12 md:px-8 md:py-20 lg:gap-12">
           <div className="space-y-6 md:col-span-7">
-            <h1 className="text-2xl leading-tight font-semibold tracking-tight text-[#1a1c1c] sm:text-3xl md:text-4xl">
+            <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-[#040815] sm:text-4xl md:text-5xl lg:text-[3.25rem]">
               {WEBINAR_CONFIG.headline}
             </h1>
 
@@ -150,6 +129,25 @@ export default function WebinarPage() {
                   priority
                   className="rounded-lg bg-[#120e29] object-contain"
                 />
+
+                {/* Clickable callout box on top of the image */}
+                <a
+                  href="#register"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("register")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="group absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-3 rounded-xl border border-[#E2E2E9] bg-white p-3 text-xs font-bold text-[#040815] shadow-md transition-all duration-200 hover:border-slate-300 hover:shadow-lg sm:inset-x-4 sm:top-4 sm:p-3.5 sm:text-sm"
+                >
+                  <span className="leading-snug">
+                    Register now to get access to your free author resource
+                  </span>
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-[#040815] transition-colors group-hover:bg-[#040815] group-hover:text-white">
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                  </div>
+                </a>
               </div>
 
               {/* Countdown Overlay */}
@@ -218,23 +216,45 @@ export default function WebinarPage() {
         {/* What You Receive as Attendee Section */}
         <section className="bg-white py-16 sm:py-24" id="perks">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <WhyChooseSection
-              subtitle="REGISTRATION PERKS"
-              header="What You Receive as an Attendee"
-              description="Every registration includes tangible resources and opportunities designed to move your manuscript forward."
-              items={attendeePerks}
-            />
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
+                What You Receive as an Attendee
+              </h2>
+              {/* <p className="text-base leading-relaxed font-normal text-[#6E6E80] sm:text-lg"> */}
+              {/*   Every registration includes tangible resources and opportunities */}
+              {/*   designed to move your manuscript forward. */}
+              {/* </p> */}
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {attendeePerks.map((perk, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-4 rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-6 shadow-xs"
+                >
+                  <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#7857f8] text-[#fffbff]">
+                    <Check className="size-4" />
+                  </div>
+                  <p className="text-sm leading-relaxed font-medium text-[#1a1c1c] sm:text-base">
+                    {perk}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Books We Have Published Section: REUSING BookPublishingSection component from landing page */}
         <section className="bg-white py-16 sm:py-24" id="published-books">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <BookPublishingSection
-              subtitle="OUR PUBLISHED WORKS"
-              header="Books We Have Published"
-              description="Explore titles brought to life through our end-to-end publishing, design, and editorial services."
-            />
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
+                Books We Have Published
+              </h2>
+            </div>
+            <div>
+              <AppCarousel type="book" />
+            </div>
           </div>
         </section>
 

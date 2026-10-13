@@ -48,7 +48,7 @@ export const WEBINAR_CONFIG: WebinarConfig = {
   dates: "Friday, November 13th & Saturday, November 14th, 2026",
   shortDates: "13th & 14th November 2026",
   targetDateIso: "2026-11-13T20:00:00+01:00", // 8PM WAT
-  times: "2PM CST / 3PM EST / 8PM WAT / 12PM PST",
+  times: "8:00 PM WAT / 11AM PST / 2PM EST / 1PM CST",
   priceNGN: "₦20,000",
   priceUSD: "$20",
   priceAmountCents: 2000,
@@ -66,23 +66,23 @@ export const WEBINAR_CONFIG: WebinarConfig = {
   usps: [
     {
       badge: "Early Bird",
-      title: "10% to 20% Off Publishing Costs",
-      description: "The first 10 registrants will receive an exclusive 10% to 20% discount on comprehensive publishing packages with AYO LLC.",
+      title: "First 10 registrants get 10- 20% off publishing costs",
+      description: "",
     },
     {
       badge: "Lucky Draw",
-      title: "Free Custom Book Cover Design",
-      description: "5 registered attendees will be selected to receive a professionally crafted, bespoke book cover design for their upcoming title.",
+      title: "5 attendees will be selected to get a free cover design for their book",
+      description: "",
     },
     {
       badge: "VIP Access",
-      title: "Exclusive 1-on-1 Strategy Session",
-      description: "2 attendees will win a private, deep-dive consultation session with our senior publishing directors.",
+      title: "2 attendees will be selected to get a one on one session with us",
+      description: "",
     },
     {
       badge: "Instant Perk",
-      title: "Complimentary Author Resource Guide",
-      description: "Every single registrant receives instant access to download our proprietary Author Resource Guide.",
+      title: "All attendees get a free author resource",
+      description: "",
     },
   ],
   testimonials: [
