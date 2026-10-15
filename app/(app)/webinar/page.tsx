@@ -19,10 +19,10 @@ import { InternationalPhoneInput } from "@/components/common/phone-input";
 import { AppCarousel } from "@/components/common/app-carousel";
 
 const attendeePerks = [
-  "First 10 registrants get 10- 20% off publishing costs",
-  "5 attendees will be selected to get a free cover design for their book",
-  "2 attendees will be selected to get a one on one session with us",
-  "All attendees get a free author resource",
+  "The first 10 registrants will receive a 10–20% discount on publishing costs. ",
+  "Five selected attendees will receive free book cover designs.",
+  "Two selected attendees will receive complimentary one-on-one sessions to discuss their publishing journeys with our team.",
+  "Every attendee will receive a free author resource. ",
 ];
 
 export default function WebinarPage() {
@@ -106,12 +106,17 @@ export default function WebinarPage() {
               {WEBINAR_CONFIG.hook}
             </p>
 
+            <p className="text-sm leading-relaxed font-normal text-[#6E6E80] sm:text-base">
+              Don't let uncertainty keep your book idea or manuscript on the
+              shelf.
+            </p>
+
             <div className="pt-2">
               <a
                 href="#register"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] sm:text-base"
               >
-                <span>Secure Your Spot</span>
+                <span>REGISTER NOW</span>
                 <ArrowRight className="size-4" />
               </a>
             </div>
@@ -142,7 +147,7 @@ export default function WebinarPage() {
                   className="group absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-3 rounded-xl border border-[#E2E2E9] bg-white p-3 text-xs font-bold text-[#040815] shadow-md transition-all duration-200 hover:border-slate-300 hover:shadow-lg sm:inset-x-4 sm:top-4 sm:p-3.5 sm:text-sm"
                 >
                   <span className="leading-snug">
-                    Register now to get access to your free author resource
+                    Register Now to Get Your Exclusive Author Resource Today
                   </span>
                   <div className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-[#040815] transition-colors group-hover:bg-[#040815] group-hover:text-white">
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -172,8 +177,7 @@ export default function WebinarPage() {
                 Event Details
               </h2>
               <p className="text-sm text-[#6E6E80] sm:text-base">
-                Everything you need to know about joining this transformative
-                2-day virtual experience.
+                What you need to know about the 2-day virtual training:
               </p>
             </div>
 
@@ -218,7 +222,7 @@ export default function WebinarPage() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
               <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
-                What You Receive as an Attendee
+                Exclusive Benefits for Attendees
               </h2>
               {/* <p className="text-base leading-relaxed font-normal text-[#6E6E80] sm:text-lg"> */}
               {/*   Every registration includes tangible resources and opportunities */}
@@ -245,11 +249,18 @@ export default function WebinarPage() {
         </section>
 
         {/* Books We Have Published Section: REUSING BookPublishingSection component from landing page */}
-        <section className="bg-white py-16 sm:py-24" id="published-books">
+        <section
+          className="max-w-6xl bg-white py-16 sm:py-24"
+          id="published-books"
+        >
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
               <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
                 Books We Have Published
+                <p className="text-base leading-relaxed font-normal text-[#6E6E80] sm:text-lg">
+                  Explore some of the books published by AYO LLC and see
+                  examples of the work we have helped bring to life.
+                </p>
               </h2>
             </div>
             <div>
@@ -265,11 +276,11 @@ export default function WebinarPage() {
         >
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <h2 className="mb-3 text-2xl font-semibold tracking-tight text-[#1a1c1c] uppercase sm:text-3xl md:text-4xl">
-              THIS EXPERIENCE IS FOR YOU IF...
+              This is for You
             </h2>
             <p className="text-sm text-[#6E6E80] sm:text-base">
-              Identify your current stage and discover how this masterclass
-              provides the exact framework you need.
+              Wherever you are in your author journey, this training is for you
+              if:
             </p>
           </div>
 
@@ -288,6 +299,21 @@ export default function WebinarPage() {
               </div>
             ))}
           </div>
+
+          <div className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
+            <p className="text-base leading-snug font-medium text-[#5d5d6f] sm:text-lg">
+              You don't have to have everything figured out before taking the
+              next step. Start by understanding the process and the options
+              available to you.
+            </p>
+            <a
+              href="#register"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] sm:text-base"
+            >
+              <span>REGISTER NOW</span>
+              <ArrowRight className="size-4" />
+            </a>
+          </div>
         </section>
 
         {/* Testimonials Section */}
@@ -295,7 +321,7 @@ export default function WebinarPage() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
               <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
-                What Authors Are Saying
+                Feedback From Writers
               </h2>
             </div>
 
@@ -333,11 +359,11 @@ export default function WebinarPage() {
           <div className="mx-auto max-w-2xl px-4 sm:px-6 md:px-8">
             <div className="mb-12 text-center">
               <h2 className="mb-3 text-2xl font-semibold text-[#1a1c1c] sm:text-3xl md:text-4xl">
-                Secure Your Registration
+                Register Here
               </h2>
               <p className="text-sm text-[#6E6E80] sm:text-base">
-                Complete the form below to reserve your seat for this exclusive
-                2-day virtual event.
+                Fill out this form to reserve your spot for this exclusive 2-day
+                virtual training. You won’t regret it!
               </p>
             </div>
 
