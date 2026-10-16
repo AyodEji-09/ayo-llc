@@ -99,7 +99,7 @@ export default function WebinarPage() {
             </h1>
 
             <p className="text-base leading-snug font-medium text-[#5d5d6f] sm:text-lg md:text-xl">
-              {WEBINAR_CONFIG.subtitle}, {WEBINAR_CONFIG.tagline}
+              {WEBINAR_CONFIG.subtitle}: {WEBINAR_CONFIG.tagline}
             </p>
 
             <p className="text-sm leading-relaxed font-normal text-[#6E6E80] sm:text-base">
