@@ -42,9 +42,9 @@ export const WEBINAR_CONFIG: WebinarConfig = {
   isActive: true,
   headline: "Your Author Journey Simplified",
   theme: "THE AUTHOR'S BLUEPRINT",
-  subtitle: "From Book Idea to a Published Work",
+  subtitle: "From Book Idea to a Published Work:",
   tagline:
-    "From Book Idea to a Published Work: A 2-Day Virtual Training for Aspiring Authors, New Writers, and Manuscript Owners. ",
+    "A 2-Day Virtual Training for Aspiring Authors, New Writers, and Manuscript Owners. ",
   hook: "Are you stuck in your author journey? Whether you're still figuring out where to start or wondering how to publish your completed manuscript, this training will help you understand the next steps. ",
   dates: "Friday, November 13th & Saturday, November 14th, 2026",
   shortDates: "13th & 14th November 2026",
