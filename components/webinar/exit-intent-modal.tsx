@@ -13,8 +13,14 @@ export function ExitIntentModal({ onClaim }: ExitIntentModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Exit-intent modal is strictly for desktop exit intent, disabled on mobile
-    if (typeof window === "undefined" || window.innerWidth < 768) return;
+    // Exit-intent modal is disabled once the webinar has ended or on mobile
+    if (
+      WEBINAR_CONFIG.hasEnded ||
+      typeof window === "undefined" ||
+      window.innerWidth < 768
+    ) {
+      return;
+    }
 
     const isDismissed = sessionStorage.getItem("webinar_exit_intent_dismissed");
     if (isDismissed) return;
@@ -58,7 +64,7 @@ export function ExitIntentModal({ onClaim }: ExitIntentModalProps) {
     }
   };
 
-  if (!isOpen) return null;
+  if (WEBINAR_CONFIG.hasEnded || !isOpen) return null;
 
   return (
     <div

@@ -12,6 +12,13 @@ function getStripeClient(): Stripe | null {
 
 export async function POST(request: NextRequest) {
   try {
+    if (WEBINAR_CONFIG.hasEnded) {
+      return NextResponse.json(
+        { error: "Registration for this webinar has closed." },
+        { status: 400 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, phone, stage, currency = "USD" } = body;
 

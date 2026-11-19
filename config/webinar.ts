@@ -12,6 +12,7 @@ export interface WebinarTestimonial {
 
 export interface WebinarConfig {
   isActive: boolean;
+  hasEnded: boolean;
   headline: string;
   theme: string;
   subtitle: string;
@@ -39,7 +40,8 @@ export interface WebinarConfig {
 }
 
 export const WEBINAR_CONFIG: WebinarConfig = {
-  isActive: true,
+  isActive: false,
+  hasEnded: true,
   headline: "Your Author Journey Simplified",
   theme: "THE AUTHOR'S BLUEPRINT",
   subtitle: "From Book Idea to a Published Work",

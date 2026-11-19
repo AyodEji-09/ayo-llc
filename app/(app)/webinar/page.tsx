@@ -25,7 +25,33 @@ const attendeePerks = [
   "Every attendee will receive a free author resource. ",
 ];
 
+function RegisterCtaButton({ disabled }: { disabled: boolean }) {
+  if (disabled) {
+    return (
+      <button
+        type="button"
+        disabled
+        className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] opacity-50 shadow-md sm:text-base"
+      >
+        <span>REGISTER NOW</span>
+        <ArrowRight className="size-4" />
+      </button>
+    );
+  }
+
+  return (
+    <a
+      href="#register"
+      className="inline-flex items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5f3add] sm:text-base"
+    >
+      <span>REGISTER NOW</span>
+      <ArrowRight className="size-4" />
+    </a>
+  );
+}
+
 export default function WebinarPage() {
+  const isEnded = WEBINAR_CONFIG.hasEnded;
   const [currency, setCurrency] = useState<CurrencyType>("USD");
   const [formData, setFormData] = useState({
     name: "",
@@ -47,6 +73,11 @@ export default function WebinarPage() {
 
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isEnded) {
+      toast.error("Registration for this webinar has closed.");
+      return;
+    }
 
     if (!formData.name.trim() || !formData.email.trim()) {
       toast.error("Please provide your name and email address.");
@@ -90,35 +121,29 @@ export default function WebinarPage() {
 
   return (
     <div className="bg-[#f9f9f9] text-[#1a1c1c] antialiased">
-      <main>
+      <div>
         {/* Hero Section */}
         <section className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 md:grid-cols-12 md:px-8 md:py-20 lg:gap-12">
           <div className="space-y-6 md:col-span-7">
-            <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-[#040815] sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+            <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance text-[#040815] sm:text-4xl md:text-5xl lg:text-[3.25rem]">
               {WEBINAR_CONFIG.headline}
             </h1>
 
-            <p className="text-base leading-snug font-medium text-[#5d5d6f] sm:text-lg md:text-xl">
+            <p className="text-base leading-snug font-medium text-[#4a4a5a] sm:text-lg md:text-xl">
               {WEBINAR_CONFIG.subtitle}: {WEBINAR_CONFIG.tagline}
             </p>
 
-            <p className="text-sm leading-relaxed font-normal text-[#6E6E80] sm:text-base">
+            <p className="text-sm leading-relaxed font-normal text-[#596780] sm:text-base">
               {WEBINAR_CONFIG.hook}
             </p>
 
-            <p className="text-sm leading-relaxed font-normal text-[#6E6E80] sm:text-base">
-              Don't let uncertainty keep your book idea or manuscript on the
-              shelf.
+            <p className="text-sm leading-relaxed font-normal text-[#596780] sm:text-base">
+              Don&apos;t let uncertainty keep your book idea or manuscript
+              on the shelf.
             </p>
 
             <div className="pt-2">
-              <a
-                href="#register"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] sm:text-base"
-              >
-                <span>REGISTER NOW</span>
-                <ArrowRight className="size-4" />
-              </a>
+              <RegisterCtaButton disabled={isEnded} />
             </div>
           </div>
 
@@ -136,29 +161,33 @@ export default function WebinarPage() {
                 />
 
                 {/* Clickable callout box on top of the image */}
-                <a
-                  href="#register"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("register")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="group absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-3 rounded-xl border border-[#E2E2E9] bg-white p-3 text-xs font-bold text-[#040815] shadow-md transition-all duration-200 hover:border-slate-300 hover:shadow-lg sm:inset-x-4 sm:top-4 sm:p-3.5 sm:text-sm"
-                >
-                  <span className="leading-snug">
-                    Register Now to Get Your Exclusive Author Resource Today
-                  </span>
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-[#040815] transition-colors group-hover:bg-[#040815] group-hover:text-white">
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                  </div>
-                </a>
+                {!isEnded && (
+                  <a
+                    href="#register"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById("register")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="group absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-3 rounded-xl border border-[#E2E2E9] bg-white p-3 text-xs font-bold text-[#040815] shadow-md transition-all duration-200 hover:border-slate-300 hover:shadow-lg sm:inset-x-4 sm:top-4 sm:p-3.5 sm:text-sm"
+                  >
+                    <span className="leading-snug">
+                      Register Now to Get Your Exclusive Author Resource
+                      Today
+                    </span>
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-[#040815] transition-colors group-hover:bg-[#040815] group-hover:text-white">
+                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                    </div>
+                  </a>
+                )}
               </div>
 
               {/* Countdown Overlay */}
               <div className="absolute right-3 bottom-3 left-3 sm:right-6 sm:bottom-6 sm:left-6">
                 <CountdownTimer
                   targetDateIso={WEBINAR_CONFIG.targetDateIso}
+                  hasEnded={isEnded}
                   className="border-[#E2E2E9] shadow-md"
                 />
               </div>
@@ -173,10 +202,10 @@ export default function WebinarPage() {
         >
           <div className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
-              <h2 className="mb-3 text-2xl font-semibold text-[#1a1c1c] sm:text-3xl md:text-4xl">
+              <h2 className="mb-3 text-2xl font-bold tracking-tight text-balance text-[#040815] sm:text-3xl md:text-4xl">
                 Event Details
               </h2>
-              <p className="text-sm text-[#6E6E80] sm:text-base">
+              <p className="text-sm text-[#596780] sm:text-base">
                 What you need to know about the 2-day virtual training:
               </p>
             </div>
@@ -187,7 +216,7 @@ export default function WebinarPage() {
                   <Calendar className="size-6 text-[#5f3add]" />
                 </div>
                 <h3 className="text-base font-semibold text-[#1a1c1c]">Date</h3>
-                <p className="text-sm text-[#6E6E80] sm:text-base">
+                <p className="text-sm text-[#596780] sm:text-base">
                   {WEBINAR_CONFIG.dates}
                 </p>
               </div>
@@ -197,7 +226,7 @@ export default function WebinarPage() {
                   <Clock className="size-6 text-[#5f3add]" />
                 </div>
                 <h3 className="text-base font-semibold text-[#1a1c1c]">Time</h3>
-                <p className="text-sm text-[#6E6E80] sm:text-base">
+                <p className="text-sm text-[#596780] sm:text-base">
                   {WEBINAR_CONFIG.times}
                 </p>
               </div>
@@ -209,7 +238,7 @@ export default function WebinarPage() {
                 <h3 className="text-base font-semibold text-[#1a1c1c]">
                   Venue
                 </h3>
-                <p className="text-sm text-[#6E6E80] sm:text-base">
+                <p className="text-sm text-[#596780] sm:text-base">
                   {WEBINAR_CONFIG.venue}
                 </p>
               </div>
@@ -221,13 +250,9 @@ export default function WebinarPage() {
         <section className="bg-white py-16 sm:py-24" id="perks">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
-              <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
+              <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-balance text-[#040815] sm:text-3xl md:text-4xl">
                 Exclusive Benefits for Attendees
               </h2>
-              {/* <p className="text-base leading-relaxed font-normal text-[#6E6E80] sm:text-lg"> */}
-              {/*   Every registration includes tangible resources and opportunities */}
-              {/*   designed to move your manuscript forward. */}
-              {/* </p> */}
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -249,19 +274,16 @@ export default function WebinarPage() {
         </section>
 
         {/* Books We Have Published Section: REUSING BookPublishingSection component from landing page */}
-        <section
-          className="max-w-6xl bg-white py-16 sm:py-24"
-          id="published-books"
-        >
+        <section className="bg-white py-16 sm:py-24" id="published-books">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
-              <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-[#040815] sm:text-3xl md:text-4xl">
+              <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-balance text-[#040815] sm:text-3xl md:text-4xl">
                 Books We Have Published
-                <p className="text-base leading-relaxed font-normal text-[#6E6E80] sm:text-lg">
-                  Explore some of the books published by AYO LLC and see
-                  examples of the work we have helped bring to life.
-                </p>
               </h2>
+              <p className="text-base leading-relaxed font-normal text-[#596780] sm:text-lg">
+                Explore some of the books published by AYO LLC and see examples
+                of the work we have helped bring to life.
+              </p>
             </div>
             <div>
               <AppCarousel type="book" />
@@ -275,10 +297,10 @@ export default function WebinarPage() {
           id="audience"
         >
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <h2 className="mb-3 text-2xl font-semibold tracking-tight text-[#1a1c1c] uppercase sm:text-3xl md:text-4xl">
+            <h2 className="mb-3 text-2xl font-bold tracking-tight text-balance text-[#040815] uppercase sm:text-3xl md:text-4xl">
               This is for You
             </h2>
-            <p className="text-sm text-[#6E6E80] sm:text-base">
+            <p className="text-sm text-[#596780] sm:text-base">
               Wherever you are in your author journey, this training is for you
               if:
             </p>
@@ -300,19 +322,15 @@ export default function WebinarPage() {
             ))}
           </div>
 
-          <div className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
-            <p className="text-base leading-snug font-medium text-[#5d5d6f] sm:text-lg">
-              You don't have to have everything figured out before taking the
-              next step. Start by understanding the process and the options
+          <div className="mt-10 flex flex-col items-start justify-between gap-5 rounded-xl border border-[#E2E2E9] bg-white px-8 py-7 shadow-xs md:flex-row md:items-center">
+            <p className="max-w-[54ch] text-base leading-relaxed font-medium text-[#4a4a5a]">
+              You don&apos;t have to have everything figured out before taking
+              the next step. Start by understanding the process and the options
               available to you.
             </p>
-            <a
-              href="#register"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] sm:text-base"
-            >
-              <span>REGISTER NOW</span>
-              <ArrowRight className="size-4" />
-            </a>
+            <div className="shrink-0">
+              <RegisterCtaButton disabled={isEnded} />
+            </div>
           </div>
         </section>
 
@@ -358,44 +376,57 @@ export default function WebinarPage() {
         <section className="bg-[#f3f3f4] py-16 sm:py-24" id="register">
           <div className="mx-auto max-w-2xl px-4 sm:px-6 md:px-8">
             <div className="mb-12 text-center">
-              <h2 className="mb-3 text-2xl font-semibold text-[#1a1c1c] sm:text-3xl md:text-4xl">
-                Register Here
+              <h2 className="mb-3 text-2xl font-bold tracking-tight text-balance text-[#040815] sm:text-3xl md:text-4xl">
+                {isEnded ? "Registration Closed" : "Register Here"}
               </h2>
-              <p className="text-sm text-[#6E6E80] sm:text-base">
-                Fill out this form to reserve your spot for this exclusive 2-day
-                virtual training. You won’t regret it!
+              <p className="text-sm text-[#596780] sm:text-base">
+                {isEnded
+                  ? "This 2-day virtual training has ended. Stay tuned for upcoming sessions."
+                  : "Fill out this form to reserve your spot for this exclusive 2-day virtual training. You won’t regret it!"}
               </p>
             </div>
 
             <div className="rounded-xl border border-[#E2E2E9] bg-[#ffffff] p-8 shadow-lg md:p-12">
               <form onSubmit={handleRegisterSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-[#1a1c1c]">
+                  <label
+                    htmlFor="webinar-name"
+                    className="block text-sm font-semibold text-[#1a1c1c]"
+                  >
                     Full Name
                   </label>
                   <input
+                    id="webinar-name"
                     type="text"
                     name="name"
+                    autoComplete="name"
                     required
+                    disabled={isEnded}
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter your full name"
-                    className="w-full rounded-lg border border-[#c9c4d8] bg-[#f9f9f9] px-4 py-3 text-sm text-[#1a1c1c] focus:ring-2 focus:ring-[#5f3add] focus:outline-none"
+                    className="w-full rounded-lg border border-[#c9c4d8] bg-[#f9f9f9] px-4 py-3 text-sm text-[#1a1c1c] focus:ring-2 focus:ring-[#5f3add] focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-[#1a1c1c]">
+                  <label
+                    htmlFor="webinar-email"
+                    className="block text-sm font-semibold text-[#1a1c1c]"
+                  >
                     Email Address
                   </label>
                   <input
+                    id="webinar-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
                     required
+                    disabled={isEnded}
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email address"
-                    className="w-full rounded-lg border border-[#c9c4d8] bg-[#f9f9f9] px-4 py-3 text-sm text-[#1a1c1c] focus:ring-2 focus:ring-[#5f3add] focus:outline-none"
+                    className="w-full rounded-lg border border-[#c9c4d8] bg-[#f9f9f9] px-4 py-3 text-sm text-[#1a1c1c] focus:ring-2 focus:ring-[#5f3add] focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
@@ -410,14 +441,15 @@ export default function WebinarPage() {
                     }
                     defaultCountry={currency === "NGN" ? "ng" : "us"}
                     placeholder="801 234 5678"
+                    disabled={isEnded}
                   />
                 </div>
 
                 <div className="pt-4">
                   <button
                     type="submit"
-                    disabled={loading}
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#5f3add] px-6 py-4 text-base font-semibold text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] disabled:opacity-50"
+                    disabled={loading || isEnded}
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#5f3add] px-6 py-4 text-base font-semibold text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5f3add] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {loading ? (
                       <>
@@ -434,15 +466,17 @@ export default function WebinarPage() {
                   </button>
                 </div>
 
-                <p className="mt-4 text-center text-xs text-[#6E6E80]">
-                  Payment confirmation and meeting link will be sent instantly
-                  to your email.
-                </p>
+                {!isEnded && (
+                  <p className="mt-4 text-center text-xs text-[#596780]">
+                    Payment confirmation and meeting link will be sent instantly
+                    to your email.
+                  </p>
+                )}
               </form>
             </div>
           </div>
         </section>
-      </main>
+      </div>
 
       {/* Exit Intent Modal */}
       <ExitIntentModal />
