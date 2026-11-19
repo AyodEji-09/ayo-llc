@@ -33,10 +33,9 @@ function RegisterCtaButton({ disabled }: { disabled: boolean }) {
       <button
         type="button"
         disabled
-        className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl bg-[#5f3add] px-8 py-4 text-sm font-medium text-[#ffffff] opacity-50 shadow-md sm:text-base"
+        className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl bg-slate-300 px-8 py-4 text-sm font-medium text-slate-600 sm:text-base"
       >
-        <span>REGISTER NOW</span>
-        <ArrowRight className="size-4" />
+        <span>REGISTRATION CLOSED</span>
       </button>
     );
   }
@@ -465,9 +464,11 @@ export function WebinarDetailView({ webinar }: WebinarDetailViewProps) {
                   <button
                     type="submit"
                     disabled={loading || isEnded}
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#5f3add] px-6 py-4 text-base font-semibold text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5f3add] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#5f3add] px-6 py-4 text-base font-semibold text-[#ffffff] shadow-md transition-all duration-200 hover:bg-[#7857f8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5f3add] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600 disabled:shadow-none"
                   >
-                    {loading ? (
+                    {isEnded ? (
+                      <span>Registration Closed</span>
+                    ) : loading ? (
                       <>
                         <Loader2 className="size-5 animate-spin" />
                         <span>Redirecting to Stripe...</span>
