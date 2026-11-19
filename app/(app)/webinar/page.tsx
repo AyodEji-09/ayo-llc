@@ -5,31 +5,31 @@ import { Calendar } from "lucide-react";
 import { WEBINARS } from "@/config/webinar";
 
 export const metadata: Metadata = {
-  title: "Webinar",
-  description: "Explore Past and Upcoming Webinars from AYOLLC.",
+  title: "Webinars",
+  description:
+    "Explore past and upcoming virtual trainings from AYO LLC, featuring practical sessions to help you grow your brand, skills, and creative projects.",
 };
 
 export default function WebinarIndexPage() {
   return (
-    <div className="min-h-screen bg-white text-[#1a1c1c] antialiased">
-      {/* Studio Header */}
-      <section className="bg-white pt-14 pb-8 sm:pt-20 sm:pb-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl leading-[1.08] font-bold tracking-[-0.03em] text-balance text-[#040815] sm:text-4xl lg:text-5xl">
-              Webinar
-            </h1>
-            <p className="mt-3.5 max-w-[50ch] text-base leading-[1.65] text-pretty text-[#596780]">
-              Explore Past and Upcoming Webinars from AYOLLC
-            </p>
-          </div>
+    <div className="mx-auto max-w-6xl space-y-12 px-4 pt-16 pb-28 sm:px-6 sm:pt-20 lg:px-8">
+      {/* Header */}
+      <section>
+        <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
+          <h1 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
+            Webinars
+          </h1>
+          <p className="text-primary text-base font-normal sm:text-lg">
+            Explore past and upcoming virtual trainings from AYO LLC, featuring
+            practical sessions to help you grow your brand, skills, and creative
+            projects.
+          </p>
         </div>
       </section>
 
       {/* Webinars Grid */}
-      <section className="bg-white pb-14 sm:pb-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <section>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {WEBINARS.map((webinar) => (
               <article
                 key={webinar.slug}
@@ -81,7 +81,6 @@ export default function WebinarIndexPage() {
               </article>
             ))}
           </div>
-        </div>
       </section>
     </div>
   );
