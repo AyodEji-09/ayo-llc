@@ -15,7 +15,7 @@ export default function WebinarIndexPage() {
     <div className="mx-auto max-w-6xl space-y-12 px-4 pt-16 pb-28 sm:px-6 sm:pt-20 lg:px-8">
       {/* Header */}
       <section>
-        <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
+        <div className="mx-auto max-w-2xl text-center">
           <h1 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
             Webinars
           </h1>
@@ -59,7 +59,7 @@ export default function WebinarIndexPage() {
 
                 <div className="flex flex-1 flex-col gap-2 p-5">
                   <h2 className="line-clamp-1 text-lg leading-snug font-semibold text-[#040815]">
-                    {webinar.headline}
+                    {webinar.theme}
                   </h2>
                   <p className="line-clamp-3 text-sm leading-relaxed text-[#596780]">
                     {webinar.subtitle}: {webinar.tagline}
