@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
         webinarTheme: WEBINAR_CONFIG.theme,
       },
       success_url: `${origin}/webinar/confirmation?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/webinar`,
+      cancel_url: `${origin}/webinar/${WEBINAR_CONFIG.slug}`,
     });
 
     return NextResponse.json({ sessionId: session.id, url: session.url });

@@ -70,9 +70,6 @@ export default function PortfolioPage() {
       {/* Header */}
       <section>
         <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
-          <p className="text-secondary text-xs font-semibold tracking-[0.12em] uppercase sm:text-sm">
-            OUR WORK
-          </p>
           <h1 className="my-3 text-3xl font-bold text-[#040815] md:text-4xl">
             Portfolio
           </h1>

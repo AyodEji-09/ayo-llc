@@ -11,6 +11,7 @@ export interface WebinarTestimonial {
 }
 
 export interface WebinarConfig {
+  slug: string;
   isActive: boolean;
   hasEnded: boolean;
   headline: string;
@@ -40,6 +41,7 @@ export interface WebinarConfig {
 }
 
 export const WEBINAR_CONFIG: WebinarConfig = {
+  slug: "the-authors-blueprint",
   isActive: false,
   hasEnded: true,
   headline: "Your Author Journey Simplified",
@@ -123,3 +125,9 @@ export const WEBINAR_CONFIG: WebinarConfig = {
     downloadUrl: "/downloads/a-beginners-guide-to-publishing.pdf",
   },
 };
+
+export const WEBINARS: WebinarConfig[] = [WEBINAR_CONFIG];
+
+export function getWebinarBySlug(slug: string): WebinarConfig | undefined {
+  return WEBINARS.find((webinar) => webinar.slug === slug);
+}
