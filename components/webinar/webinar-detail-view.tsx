@@ -354,7 +354,7 @@ export function WebinarDetailView({ webinar }: WebinarDetailViewProps) {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl text-center">
               <h2 className="mt-3 mb-3 text-2xl font-bold tracking-tight text-balance text-[#040815] sm:text-3xl md:text-4xl">
-                Feedback From Writers
+                What Authors Are Saying
               </h2>
             </div>
 
