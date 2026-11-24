@@ -12,6 +12,7 @@ interface TimeLeft {
 
 interface CountdownTimerProps {
   targetDateIso: string;
+  hasEnded?: boolean;
   className?: string;
   label?: string;
   dateLabel?: string;
@@ -36,6 +37,7 @@ function calculateTimeLeft(targetIso: string): TimeLeft {
 
 export function CountdownTimer({
   targetDateIso,
+  hasEnded = false,
   className = "",
   label,
   dateLabel,
@@ -65,6 +67,20 @@ export function CountdownTimer({
       clearInterval(intervalTimer);
     };
   }, [targetDateIso]);
+
+  if (hasEnded) {
+    return (
+      <div
+        role="status"
+        className={`flex w-full items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white/95 px-4 py-3 text-slate-700 backdrop-blur-xs ${className}`}
+      >
+        <span className="size-2 shrink-0 rounded-full bg-slate-400" />
+        <span className="text-xs font-semibold sm:text-sm">
+          This webinar has ended. Registration is now closed.
+        </span>
+      </div>
+    );
+  }
 
   if (mounted && timeLeft.isExpired) {
     return (

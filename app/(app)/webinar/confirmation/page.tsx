@@ -111,7 +111,7 @@ export default function WebinarConfirmationPage() {
             Back to home
           </Link>
           <Link
-            href="/webinar"
+            href={`/webinar/${WEBINAR_CONFIG.slug}`}
             className="transition-colors hover:text-[#000061]"
           >
             Webinar details

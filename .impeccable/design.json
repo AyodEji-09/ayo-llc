@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T08:46:30+01:00",
+  "title": "Design System: AYO LLC",
+  "extensions": {
+    "colorMeta": {
+      "royal-violet": {
+        "role": "primary",
+        "displayName": "Royal Violet",
+        "canonical": "#5f3add",
+        "tonalRamp": ["#190d42", "#2d1875", "#4426ad", "#5f3add", "#7857f8", "#9d85fa", "#c6b7fd", "#efeaff"]
+      },
+      "deep-indigo": {
+        "role": "secondary",
+        "displayName": "Deep Indigo",
+        "canonical": "#000061",
+        "tonalRamp": ["#000024", "#000045", "#000061", "#1a1a80", "#3d3da3", "#6e6ec2", "#a8a8de", "#e6e6f7"]
+      },
+      "midnight-ink": {
+        "role": "neutral",
+        "displayName": "Midnight Ink",
+        "canonical": "#040815",
+        "tonalRamp": ["#040815", "#13192b", "#283147", "#434e69", "#65718c", "#8e99b0", "#c2c9d6", "#eff1f5"]
+      },
+      "slate-ink": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "#596780",
+        "tonalRamp": ["#1b2029", "#2e3645", "#434e63", "#596780", "#76849c", "#99a5b8", "#c4ccd9", "#eef1f5"]
+      },
+      "alabaster": {
+        "role": "neutral",
+        "displayName": "Alabaster",
+        "canonical": "#f9f9f9",
+        "tonalRamp": ["#262626", "#454545", "#696969", "#8f8f8f", "#b5b5b5", "#d4d4d4", "#ebebeb", "#f9f9f9"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only." },
+      "headline": { "displayName": "Headline", "purpose": "Major section titles." },
+      "title": { "displayName": "Title", "purpose": "Card headings and feature labels." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, testimonials, and form copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase eyebrows and countdown labels." }
+    },
+    "shadows": [
+      { "name": "card-xs", "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "purpose": "Subtle rest elevation on bordered cards." },
+      { "name": "cta-md", "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)", "purpose": "Primary action buttons and floating callouts." },
+      { "name": "form-lg", "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)", "purpose": "Primary conversion form container." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "200ms hover and focus transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary conversion action across landing and webinar pages.",
+      "html": "<button class=\"ds-btn-primary\">REGISTER NOW</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #5f3add; color: #ffffff; padding: 16px 32px; border-radius: 12px; font-weight: 500; font-size: 1rem; border: none; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: #7857f8; } .ds-btn-primary:focus-visible { outline: 2px solid #5f3add; outline-offset: 2px; }"
+    },
+    {
+      "name": "Disabled CTA Button",
+      "kind": "button",
+      "refersTo": "button-disabled",
+      "description": "Closed or unavailable registration action.",
+      "html": "<button class=\"ds-btn-disabled\" disabled>REGISTRATION CLOSED</button>",
+      "css": ".ds-btn-disabled { display: inline-flex; align-items: center; gap: 8px; background: #cbd5e1; color: #475569; padding: 16px 32px; border-radius: 12px; font-weight: 500; font-size: 1rem; border: none; cursor: not-allowed; }"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Bordered informational card for event details, benefits, and testimonials.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Event Details</h3><p class=\"ds-card-body\">Clear, practical guidance for aspiring authors.</p></div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid #E2E2E9; border-radius: 12px; padding: 32px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); } .ds-card-title { margin: 0 0 8px; font-size: 1rem; font-weight: 600; color: #1a1c1c; } .ds-card-body { margin: 0; font-size: 0.9375rem; line-height: 1.6; color: #596780; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "Standard form input with hairline violet-tinted border.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Enter your full name\" />",
+      "css": ".ds-input { width: 100%; background: #f9f9f9; color: #1a1c1c; border: 1px solid #c9c4d8; border-radius: 8px; padding: 12px 16px; font-size: 0.875rem; outline: none; transition: box-shadow 0.15s ease; } .ds-input:focus { box-shadow: 0 0 0 2px #5f3add; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Creative Publishing Studio",
+    "overview": "AYO LLC's visual system balances refined editorial warmth with modern digital agency craft. Crisp alabaster and pure-white reading surfaces give published book covers, partner marks, and client stories room to breathe, while deep indigo and royal violet establish clear authority and interactive focus.\n\nSurfaces stay calm and structured rather than ornamental. Generous section rhythm, balanced headings, and restrained borders keep visitors oriented whether they are browsing agency capabilities, exploring published works, or completing a registration flow.",
+    "keyCharacteristics": [
+      "Alabaster and pure-white alternating section bands paired with deep indigo headers",
+      "Royal violet reserved strictly for primary actions, active states, and focus rings",
+      "Plus Jakarta Sans geometric headings paired with Geist body copy for crisp legibility",
+      "Flat-by-default cards framed by 1px hairline borders and soft ambient shadows on elevated containers"
+    ],
+    "rules": [
+      { "name": "The Accent Restraint Rule", "body": "Royal violet is reserved for primary actions, active navigation, and focus indicators; never flood entire content sections with saturated violet.", "section": "colors" },
+      { "name": "The Slate Ink Contrast Rule", "body": "Supporting copy on light surfaces uses slate ink or darker neutrals so body text maintains at least 4.5:1 contrast.", "section": "colors" },
+      { "name": "The Balanced Heading Rule", "body": "Display and section headings use balanced line wrapping (text-balance) to prevent single-word orphans across mobile and desktop breakpoints.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Content cards stay flat with 1px hairline borders; reserve larger ambient shadows for primary conversion containers and floating overlays.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do alternate full-bleed section backgrounds (alabaster, soft stone, pure white) so sections read as distinct chapters without heavy dividers.",
+      "Do pair every form input with an explicit <label htmlFor> and clear focus-visible ring.",
+      "Do use real published book covers, partner marks, and confirmed testimonials from data.ts and config/webinar.ts."
+    ],
+    "donts": [
+      "Don't constrain full-bleed background sections with max-w-* without centering, which leaves uneven background strips on wide viewports.",
+      "Don't nest interactive or landmark elements (such as <main> inside <main> or <p> inside <h2>).",
+      "Don't invent new brand hues or swap out Plus Jakarta Sans / Geist for unrelated display fonts."
+    ]
+  }
+}
